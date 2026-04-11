@@ -106,6 +106,23 @@ export const productValidation = {
 };
 
 /**
+ * Validation Rules for Stores
+ */
+export const storeValidation = {
+  create: [
+    body('name')
+      .trim()
+      .isLength({ min: 2, max: 100 })
+      .withMessage('Store name must be between 2 and 100 characters'),
+    body('description')
+      .optional()
+      .trim()
+      .isLength({ max: 500 })
+      .withMessage('Description cannot exceed 500 characters'),
+  ],
+};
+
+/**
  * Validation Rules for Orders
  */
 export const orderValidation = {
@@ -130,3 +147,10 @@ export const orderValidation = {
 };
 
 export default handleValidationErrors;
+
+/**
+ * Composed validation middlewares
+ */
+export const validateRegister = [...authValidation.register, handleValidationErrors];
+export const validateLogin = [...authValidation.login, handleValidationErrors];
+export const validateCreateStore = [...storeValidation.create, handleValidationErrors];

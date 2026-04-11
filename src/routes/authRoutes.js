@@ -1,31 +1,39 @@
 import express from 'express';
-import { register, login, logout, getProfile } from '../controllers/authController.js';
-import { validateAuth } from '../middlewares/validation.js';
+import {
+  register,
+  login,
+  logout,
+  getProfile,
+  refresh,
+} from '../controllers/authController.js';
+
+import { validateRegister, validateLogin } from '../middlewares/validation.js';
 import { verifyToken } from '../middlewares/auth.js';
 
 const router = express.Router();
 
 /**
- * POST /auth/register
- * Register a new user
+ * REGISTER
  */
-router.post('/register', validateAuth, register);
+router.post('/register', validateRegister, register);
 
 /**
- * POST /auth/login
- * Login user
+ * LOGIN
  */
-router.post('/login', validateAuth, login);
+router.post('/login', validateLogin, login);
 
 /**
- * POST /auth/logout
- * Logout user
+ * REFRESH TOKEN (NEW)
+ */
+router.post('/refresh', refresh);
+
+/**
+ * LOGOUT (SESSION-BASED)
  */
 router.post('/logout', verifyToken, logout);
 
 /**
- * GET /auth/profile
- * Get user profile
+ * PROFILE (PROTECTED)
  */
 router.get('/profile', verifyToken, getProfile);
 

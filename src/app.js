@@ -1,11 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import config from './config/env.js';
-import authRoutes from './routes/auth.js';
+import authRoutes from './routes/authRoutes.js';
+import storeRoutes from './routes/storeRoutes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import logger from './config/logger.js';
 import { checkDatabaseHealth } from './config/database.js';
 import { initializeUserTable } from './models/userModel.js';
+import { initializeStoreTable } from './models/storeModel.js';
 
 const app = express();
 
@@ -22,11 +24,13 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/stores', storeRoutes);
 app.use(errorHandler);
 
 const startServer = async () => {
   try {
     await initializeUserTable();
+    await initializeStoreTable();
     const health = await checkDatabaseHealth();
     logger.info('Database health check passed', health);
   } catch (error) {

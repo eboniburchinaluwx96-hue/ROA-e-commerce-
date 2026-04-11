@@ -8,9 +8,11 @@
  * @returns {boolean} - True if valid Nigerian number
  */
 export const isValidNigerianPhone = (phone) => {
-  // Matches: +234, 0234, or 234 followed by 10 digits
-  const nigerianPhoneRegex = /^(\+234|0234|234)\d{10}$/;
-  return nigerianPhoneRegex.test(phone.replace(/\s/g, ''));
+  const cleaned = phone.replace(/\s/g, '');
+
+  const nigerianPhoneRegex = /^(\+234|234|0)[789][01]\d{8}$/;
+
+  return nigerianPhoneRegex.test(cleaned);
 };
 
 /**
@@ -38,29 +40,6 @@ export const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
-/**
- * Validate BVN (Bank Verification Number)
- * BVN is 11 digits
- * @param {string} bvn - BVN to validate
- * @returns {boolean}
- */
-export const isValidBVN = (bvn) => {
-  if (!bvn) return false;
-  const cleaned = bvn.replace(/\s/g, '');
-  return /^\d{11}$/.test(cleaned);
-};
-
-/**
- * Validate CAC number (Corporate Affairs Commission)
- * CAC registrations are typically 7-10 characters
- * @param {string} cacNumber - CAC number
- * @returns {boolean}
- */
-export const isValidCACNumber = (cacNumber) => {
-  if (!cacNumber) return false;
-  const cleaned = cacNumber.replace(/\s/g, '').toUpperCase();
-  return /^[A-Z0-9]{7,10}$/.test(cleaned);
-};
 
 /**
  * Validate Bank Account Number
@@ -191,8 +170,6 @@ export default {
   isValidNigerianPhone,
   normalizeNigerianPhone,
   isValidEmail,
-  isValidBVN,
-  isValidCACNumber,
   isValidBankAccount,
   NIGERIAN_STATES,
   PRODUCT_CATEGORIES,
