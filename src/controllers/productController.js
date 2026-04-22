@@ -1,5 +1,5 @@
-import * as productService from './services/productservice.js';
-import { successResponse, errorResponse } from './utils/response.js';
+import * as productService from '../services/productservice.js';
+import { successResponse, errorResponse } from '../utils/response.js';
 
 /**
  * CREATE PRODUCT

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import logger from './config/logger.js';
-import config from './config/env.js';
+import logger from '../config/logger.js';
+import config from '../config/env.js';
 
 /**
  * Authentication Middleware
