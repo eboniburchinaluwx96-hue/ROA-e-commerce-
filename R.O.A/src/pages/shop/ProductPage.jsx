@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ProductDetailsSkeleton from "../shop/skeleton/ProductDetailsSkeleton";
 import ProductGrid from "./ProductGrid";
 import ProductDetails from "./ProductDetails";
 import ProductDrawer from "./ProductDrawer";
-import FiltersSidebar from "./FiltersSidebar";
+import FiltersSidebar from "./productFilter";
 
-import "./product.scss";
 
 export default function ProductPage() {
   const [selected, setSelected] = useState(null);
   const [showDrawer, setShowDrawer] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const handleSelect = (product) => {
     setSelected(product);
@@ -22,26 +20,29 @@ export default function ProductPage() {
     }
   };
 
+  const MotionDiv = motion.div;
+
   return (
     <Container fluid className="product-page">
+
+      {/* FILTERS */}
+      <div className="d-none d-md-block">
+        <FiltersSidebar />
+      </div>
+
       <Row>
-        {/* FILTERS */}
-        <Col lg={2} className="d-none d-lg-block">
-          <FiltersSidebar />
-        </Col>
 
         {/* GRID (animated resize) */}
         <Col lg={selected ? 7 : 12} md={selected ? 7 : 12}>
-          <motion.div layout>
+          <MotionDiv layout>
             <ProductGrid onSelect={handleSelect} />
-          </motion.div>
+          </MotionDiv>
         </Col>
 
         {/* DETAILS (desktop animated switching) */}
         <Col md={5} lg={5} className="d-none d-md-block d-lg-block">
           <AnimatePresence mode="wait">
-            {selected && (
-              loading ? <ProductDetailsSkeleton /> : <ProductDetails product={selected} />
+            {selected && (<ProductDetails product={selected} />
             )}
           </AnimatePresence>
         </Col>
