@@ -1,0 +1,13 @@
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin hover {
+  transition: $transition;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

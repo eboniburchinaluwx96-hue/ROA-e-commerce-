@@ -1,0 +1,99 @@
+.header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .navbar-brand {
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 35px;
+  }
+
+  .search-bar {
+    form input{
+      border-radius: 900px;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .nav-icons {
+    gap: 25px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    a{
+      position: relative;
+      font-size: 18px;
+      padding: 6px 8px;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    .badge {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    font-size: 10px;
+    padding: 6px 8px;
+    }
+
+  }
+
+  .offcanvas {
+    background: var(--bg-panel);
+    color: var(--text-main);
+    border-left: 1px solid var(--border);
+  }
+
+  .offcanvas-body {
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin-bottom: 8px;
+   background: var(--bg-panel);
+  }
+
+  .nav-link svg {
+    vertical-align: middle;
+  }
+
+  .nav-link {
+    font-size: 15px;
+    color: var(--text-muted) !important;
+    padding: 6px 0;
+    transition: transform 0.2s;
+  }
+
+  .nav-link:hover :active {
+    transform: scale(0.95);
+    background: rgba(0,0,0,0.03);
+    color: var(--text-main) !important;
+  }
+
+  .hamburger-button{
+    transition: transform 0.2s;
+  
+    &:hover {
+      transform: translateY(-2px);
+    }
+    &:active {
+      transform: rotate(90deg);
+    }
+
+  }
+
+}
+
+
+
