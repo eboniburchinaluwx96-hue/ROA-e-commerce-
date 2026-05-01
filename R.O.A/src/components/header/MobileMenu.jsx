@@ -1,12 +1,10 @@
 import { Offcanvas, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-import { useTheme } from "../../js/theme";
 import { FiUser, FiHome, FiGrid, FiHeart, FiSettings, FiHelpCircle, FiPackage, FiMoon } from "react-icons/fi";
 
 const MobileMenu = ({ show, handleClose }) => {
   const { user } = useAuthStore();
-  const { toggleTheme } = useTheme();
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="start">
@@ -62,14 +60,6 @@ const MobileMenu = ({ show, handleClose }) => {
 
         </div>
 
-        {/* 🌙 DARK MODE */}
-        <div className="border-top pt-3">
-         
-          <button onClick={toggleTheme} className="btn btn-light">
-            <FiMoon className="me-2" size={24} /> Dark Mode
-          </button>
-            
-        </div>
 
       </Offcanvas.Body>
     </Offcanvas>

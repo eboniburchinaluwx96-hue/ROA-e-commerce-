@@ -7,8 +7,8 @@ import HeaderAuth from "./header/HeaderAuth";
 
 const MainHeader = () => {
   return (
-    <Navbar fluid className="header shadow-sm ">
-      <Container fluid>
+    <Navbar className="header shadow-sm ">
+      <Container >
         <HeaderHamburger />
         <HeaderLogo />
         <HeaderSearch />

@@ -6,43 +6,47 @@ import ProductGrid from "./ProductGrid";
 import ProductDetails from "./ProductDetails";
 import ProductDrawer from "./ProductDrawer";
 import FiltersSidebar from "./productFilter";
+import { Navigate } from "react-router";
 
 
 export default function ProductPage() {
-  const [selected, setSelected] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDrawer, setShowDrawer] = useState(false);
 
-  const handleSelect = (product) => {
-    setSelected(product);
+  const selectProduct = (product) => {
+    console.log(product);
 
     if (window.innerWidth < 768) {
       setShowDrawer(true);
-    }
+    };
+
   };
 
   const MotionDiv = motion.div;
 
   return (
-    <Container fluid className="product-page">
+    <Container className="product-page">
 
       {/* FILTERS */}
-      <div className="d-none d-md-block">
+      <div className="d-none d-md-block d-flex justify-content-center">
         <FiltersSidebar />
       </div>
 
       <Row>
 
         {/* GRID (animated resize) */}
-        <Col lg={selected ? 7 : 12} md={selected ? 7 : 12}>
+        <Col md={selectedProduct ? 7 : 12}>
           <MotionDiv layout>
-            <ProductGrid onSelect={handleSelect} />
+            
+            <ProductGrid selectProduct={selectProduct} />
+          
           </MotionDiv>
         </Col>
 
         {/* DETAILS (desktop animated switching) */}
-        <Col md={5} lg={5} className="d-none d-md-block d-lg-block">
+        <Col md={5} className="d-none d-md-block">
           <AnimatePresence mode="wait">
-            {selected && (<ProductDetails product={selected} />
+            {selectedProduct && (<ProductDetails product={selectedProduct} />
             )}
           </AnimatePresence>
         </Col>
@@ -52,7 +56,7 @@ export default function ProductPage() {
       <ProductDrawer
         show={showDrawer}
         onHide={() => setShowDrawer(false)}
-        product={selected}
+        product={selectedProduct}
       />
     </Container>
   );

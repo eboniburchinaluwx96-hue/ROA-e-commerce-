@@ -3,18 +3,20 @@ import {products} from "../../js/products"
 import {Row, Col, Container} from "react-bootstrap"
 
 
-const ProductGrid= ({onSelect}) => {
+const ProductGrid= ({ selectProduct }) => {
 
    return (
-    <Row>
+    <div className="product-grid">
+      <Row>
       {products.map(product => {
         return (
-          <Col key={product.id}>
-          <ProuctCard product={product} onClick={onSelect} />
+          <Col key={product.id} onClick={()=> selectProduct(product)} >
+          <ProductCard product={product} />
         </Col>
         )
       })}
     </Row>
+    </div>
    )
 };
 

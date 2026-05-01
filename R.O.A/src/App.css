@@ -1,4 +1,4 @@
-*{
+:root{
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight:500;
@@ -9,5 +9,9 @@
   padding: 0;
   box-sizing: border-box;
   color: #092032;
+}
+
+a {
+  text-decoration: none;
 }
 

@@ -6,6 +6,8 @@ export default function ProductDrawer({ show, onHide, product }) {
 
  if(!product) return null;
 
+ const MotionDiv = motion.div;
+
   return (
 
     <Offcanvas
@@ -15,7 +17,7 @@ export default function ProductDrawer({ show, onHide, product }) {
       className="product-drawer"
     >
       <Offcanvas.Body className="p-0">
-        <motion.div
+        <MotionDiv
           key={product?.id}
           className="drawer-content"
 
@@ -40,7 +42,7 @@ export default function ProductDrawer({ show, onHide, product }) {
           <div className="drag-handle" />
 
           <ProductDetails product={product} />
-        </motion.div>
+        </MotionDiv>
       </Offcanvas.Body>
     </Offcanvas>
   );

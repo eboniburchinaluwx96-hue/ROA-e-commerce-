@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
-export function ProductCardSkeleton() {
+export default function ProductCardSkeleton() {
   return (
     <div className="product-card p-2">
       <Skeleton height={180} />

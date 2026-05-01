@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"
 
-export function ProductDetailsSkeleton() {
+export default function ProductDetailsSkeleton() {
   return (
     <div className="product-details">
       <Skeleton height={250} />
