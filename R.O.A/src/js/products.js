@@ -1,13 +1,18 @@
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+    image: "images/products/intermediate-composite-basketball.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+    store: "Moda House",
     rating: {
       stars: 4.5,
       count: 87
     },
+    description: "Breathable linen blend with adjustable wrap silhouete. perfect for all kind of utilities in the kitchen",
+    delivery: "2-3 days",
+    sizes: ["XS","S","M","L"],
     price: 1090,
+    oldPrice: 1200,
     keywords: ["socks", "sports", "apparel"]
   },
   {

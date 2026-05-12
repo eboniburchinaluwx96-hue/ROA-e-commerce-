@@ -1,17 +1,16 @@
-:root{
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight:500;
-  font-style: normal;
-  line-height: 10px;
-  font-size: 17px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: #092032;
-}
-
 a {
   text-decoration: none;
+}
+
+body {
+ background: linear-gradient(90deg,rgba(19, 18, 18, 0.9), rgba(8, 80, 45, 0.9));
+  font-family: "outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 10px;
+  font-size: 15px;
+  margin: 0;
+  padding-top: 100px;
+  box-sizing: border-box;
 }
 

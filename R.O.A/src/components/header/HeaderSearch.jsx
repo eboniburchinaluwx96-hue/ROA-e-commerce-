@@ -4,8 +4,8 @@ const HeaderSearch = () => {
   return (
     <>
       {/* Desktop Search */}
-      <Form className="d-none d-md-flex w-50 mx-3 search-bar">
-        <FormControl placeholder="Search products..." />
+      <Form className="d-none d-md-flex w-50 search-bar">
+        <FormControl placeholder="Search products..." className="mx-4"/>
       </Form>
 
     </>

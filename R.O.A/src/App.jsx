@@ -8,14 +8,14 @@ import AppRoutes from './routes/AppRoutes';
 
 
 function App() {
+
   const fetchUser = useAuthStore(s => s.fetchUser);
   
   useEffect (()=> {
     fetchUser();
-  },[]);
+  },[fetchUser]);
   return (
     <>
-      <MainHeader />
       <AppRoutes />
     </>
   )
