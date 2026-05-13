@@ -38,19 +38,25 @@ export default function ProductPage() {
           <ProductGrid selectProduct={selectProduct} />
 
         {/* DETAILS (desktop animated switching) */}
-          <Col className="d-none d-md-block">
-          <AnimatePresence mode="wait">
-            {selectedProduct && (<ProductDetails product={selectedProduct} show={showDetails} onHide={()=> {setShowDetails(false)}} />
+          <div>
+          
+            {selectedProduct && (<ProductDetails 
+            show={showDetails} 
+            onHide={()=> {setShowDetails(false)}} 
+            onClose={()=> setSelectedProduct(null)}
+            product={selectedProduct} />
             )}
-          </AnimatePresence>
-          </Col>
+          </div>
 
         {/* MOBILE DRAWER (drag enabled) */}
-          <ProductDrawer
-          show={showDrawer}
-          onHide={() => setShowDrawer(false)}
-          product={selectedProduct}
-          />
+          {selectedProduct && (
+            <ProductDrawer
+            show={showDrawer}
+            onHide={() => setShowDrawer(false)}
+            product={selectedProduct}
+            onClose={()=> setSelectedProduct(null)}
+            />
+          )}
     </Container>
     </>
   );

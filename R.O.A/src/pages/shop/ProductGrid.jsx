@@ -6,7 +6,7 @@ import {Row, Col, Container} from "react-bootstrap"
 const ProductGrid= ({ selectProduct }) => {
 
    return (
-    <div className="product-grid">
+    <div>
       <Row>
       {products.map(product => {
         return (

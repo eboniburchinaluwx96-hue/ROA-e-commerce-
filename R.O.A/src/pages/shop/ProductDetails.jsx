@@ -1,8 +1,7 @@
-import { useState } from "react"
-import { FaTruck, FaStore } from "react-icons/fa";
+import { useState } from "react";
 import { Button, Offcanvas, Container, Row, Col} from "react-bootstrap";
 
-export default function ProductDetails({product, onHide, show}) {
+export default function ProductDetails({product, onHide, show, onClose}) {
 
   const [activeSize, setActiveSize] = useState([]);
   const [qty, setQty] = useState(1);
@@ -28,20 +27,20 @@ export default function ProductDetails({product, onHide, show}) {
         <Container className="text-white p-0">
 
           <div className="hero-image">
-        <img src={product.image} alt={product.name} />
-        <div className="details-eyebrow">
-          {product.keywords.map((keyword, i)=>{
-            return(
-              <ul key={i} >
-                <li style={{color: i===0 ? "#00e676" : "rgba(255,255,255,0.55)"}} >{keyword} </li>
-              </ul>
-            );
-          })};
-          
-        </div>
-        <Offcanvas.Header closeButton>
-          
-        </Offcanvas.Header>
+            <img src={product.image} alt={product.name} />
+            <div className="details-eyebrow">
+              {product.keywords.map((keyword, i)=>{
+                return(
+                  <ul key={i} >
+                    <li style={{color: i===0 ? "#00e676" : "rgba(255,255,255,0.55)"}} >{keyword} </li>
+                  </ul>
+                );
+              })};
+            
+            </div>
+            <div className="close-btn" onClick={onClose} >
+              x
+            </div>
           </div>
           <div className="product-details">
             
@@ -56,13 +55,13 @@ export default function ProductDetails({product, onHide, show}) {
               </div>
 
               <div className="details-price">
-                <span className="new-price" >{(product.price)*10 }</span>
+                <span className="new-price" >${((product.price)*10).toLocaleString() }</span>
                 {product.oldPrice && (
                   <div>
                     <div className="old-price" >
-                      {(product.oldPrice)*10}
+                      ${(product.oldPrice)}
                     </div>
-                    <div style={{color: "#00e676", fontSize: "0.72rem", fontWeight:"700", fontFamily:"Outfit, sans-serif"}}>
+                    <div style={{color: "#00e676", fontSize: "0.82rem", fontWeight:"700", fontFamily:"Outfit, sans-serif"}}>
                       Save {product.oldPrice - product.price} ({Math.round((1- product.price / product.oldPrice) * 100)}% off)
                     </div>
                   </div>
@@ -73,9 +72,9 @@ export default function ProductDetails({product, onHide, show}) {
                 {product.description}
               </p>
             
-              <div className="py-">
+              <div>
                 <div style={{
-                  color:"rgba(255,255,255,0.55)", fontSize:"0.75rem", fontWeight:"600", letterSpacing:"1", textTransform:"uppercase",fontFamily:"outfit", margin:"40px 0 20px"
+                  color:"rgba(255,255,255,0.99)", fontSize:"0.85rem", fontWeight:"600", letterSpacing:"2px", textTransform:"uppercase",fontFamily:"outfit", margin:"20px 0 10px"
                   }}>
                   Size
                 </div>

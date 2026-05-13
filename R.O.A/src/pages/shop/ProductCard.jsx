@@ -14,7 +14,16 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <p className="price mt-4">{((product.price)*10).toLocaleString()} Naira</p>
+        <div className="d-flex align-items-center mt-4 gap-2 price-container">
+          <div className="price">${((product.price)*10).toLocaleString()}</div>
+          {product.oldPrice && (
+                  <div>
+                    <div className="old-price" >
+                      ${((product.oldPrice)).toLocaleString()}
+                    </div>
+                  </div>
+                )}
+        </div>
        
         
       </CardBody>

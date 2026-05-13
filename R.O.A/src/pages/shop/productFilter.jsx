@@ -2,7 +2,7 @@ import { Row, Col, Form } from "react-bootstrap";
 
 function ProductFilter() {
   return (
-    <div className="pt-3 mb-5">
+    <div className="pt-5 mb-5">
       <Row className="g-4 justify-content-center">
         
         {/* Category Filter */}
