@@ -3,7 +3,7 @@ a {
 }
 
 body {
- background: linear-gradient(90deg,rgba(19, 18, 18, 0.9), rgba(8, 80, 45, 0.9)) !important;
+ background: linear-gradient(90deg,rgba(19, 18, 18, 0.9), rgba(8, 80, 45, 0.8)) !important;
   font-family: "outfit", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;

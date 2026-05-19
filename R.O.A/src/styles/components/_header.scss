@@ -27,8 +27,8 @@
 
 .header-scrolled {
   background: rgba(255, 255, 255, 0.01) !important;
-  backdrop-filter: blur(60px) !important;
-  -webkit-backdrop-filter: blur(60px) !important;
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px) ;
   box-shadow: 0 4px 20px rba(0,0,0,0.15) !important;
   margin: 0 !important;
   padding: 12px !important;
@@ -51,11 +51,12 @@
 .header {
   top: 0;
   z-index: 300;
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
+  backdrop-filter: blur(85px);
+  -webkit-backdrop-filter: blur(85px);
   transition: all 0.6s ease;
   color: #fff;
   margin-top: 10px;
+  background: none;
 
   .navbar-brand {
     font-weight: 600;

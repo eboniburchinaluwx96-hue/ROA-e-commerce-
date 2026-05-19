@@ -1,46 +1,43 @@
 import { Row, Col, Form } from "react-bootstrap";
 
-function ProductFilter() {
+function ProductFilter({ selectkeyword, setSelectedKeyword, keywords, selectedPrice, setSelectedPrice}) {
+  
   return (
-    <div className="pt-5 mb-5">
-      <Row className="g-4 justify-content-center">
+
+      <Row className="my-5 py-5 justify-content-center align-items-center text-center g-5" >
+
+        <Col className="col-12 col-sm-2">
+          <div style={{color:"#fff", fontSize:"20px", lineHeight:"1.2"}} className="fw-semibold">
+              Filter by:
+          </div>
+        </Col>
         
         {/* Category Filter */}
-        <Col className="col-4">
-          <Form.Group>
-            <Form.Label className="fw-semibold">
-              Categories
-            </Form.Label>
 
-            <Form.Select>
-              <option value="">All Categories</option>
-              <option value="fashion">Fashion</option>
-              <option value="electronics">Electronics</option>
-              <option value="phones">Phones</option>
-              <option value="gaming">Gaming</option>
-            </Form.Select>
-          </Form.Group>
+        <Col className="col-12 col-sm-5" >
+
+          <select className="cat-select" value={selectkeyword} onChange={e => setSelectedKeyword(e.target.value)}>
+            <option value="">All Categories</option>
+            { keywords.map(k => {
+              return (<option key={k} value={k}>{k}</option>)
+            })}
+          </select>
+          
         </Col>
 
         {/* Price Range Filter */}
-        <Col className="col-4" >
-          <Form.Group>
-            <Form.Label className="fw-semibold">
-              Price Range
-            </Form.Label>
-
-            <Form.Select>
-              <option value="">All Prices</option>
-              <option value="0-50">$0 - $50</option>
-              <option value="50-100">$50 - $100</option>
-              <option value="100-500">$100 - $500</option>
-              <option value="500+">$500+</option>
-            </Form.Select>
-          </Form.Group>
+        <Col className="col-12 col-sm-5" >
+          <select className="cat-select" value={selectedPrice} onChange={e => setSelectedPrice(e.target.value)}>
+            <option value="">All Prices</option>
+            <option value="0-50">$0 - $50</option>
+            <option value="50-100">$50 - $100</option>
+            <option value="100-200">$100 - $200</option>
+            <option value="200+">$200+</option>
+          </select>
         </Col>
 
       </Row>
-    </div>
+    
   );
 }
 

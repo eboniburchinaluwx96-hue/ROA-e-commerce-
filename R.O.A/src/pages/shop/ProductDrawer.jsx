@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { MdLocalShipping } from "react-icons/md";
 import { Button, Offcanvas, Container, Row, Col} from "react-bootstrap";
 
 export default function ProductDrawer({ show, onHide, product, onClose }) {
@@ -24,7 +23,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
       className="product-details h-100 w-100"
     >
         
-       <Offcanvas.Body className="p-0">
+      <Offcanvas.Body className="p-0">
               <Container className="text-white p-0">
       
                 <div className="hero-image">
@@ -119,7 +118,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
                 </div>
       
               </Container>   
-            </Offcanvas.Body>
+      </Offcanvas.Body>
 
     </Offcanvas>
     

@@ -1,17 +1,16 @@
 import { create } from "zustand";
 
 const DEV_MODE = true
-const MOCK_STATE = "";
+const MOCK_STATE = "shopOwner";
 
 export const useAuthStore = create((set) => ({
-  user: null,
-  loading: false,
+  
 
   fetchUser: async () => {
 
     if (DEV_MODE){
-      set({ loading: true });
       let user= null;
+      let shopOwner=null;
 
      if(MOCK_STATE === "user") {
         user = {
@@ -20,14 +19,14 @@ export const useAuthStore = create((set) => ({
           hasShop: false,
         };
       } else if(MOCK_STATE === "shopOwner") {
-        user = {
-          id: "2",
+        shopOwner = {
+          id: "1",
           name:"samuel Victor",
           hasShop: true,
         };
       }
 
-      set({ user, loading: false});
+      set({ user, shopOwner });
       return;
     }
    

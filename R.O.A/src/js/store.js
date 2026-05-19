@@ -11,17 +11,17 @@ stats: [
 { value: "486+", label: "Products" },
 { value: "12.4k", label: "Orders Fulfilled" },
 { value: "Free", label: "Returns" },
-{ value: "1–3 Days", label: "Delivery" },
+{ value: "1-3 Days", label: "Delivery" },
 ],
 trust: ["Verified Seller", "Secure Checkout", "Free Returns", "24h Support"],
 about: "SportZone is your one-stop destination for authentic sports gear, athletic apparel, and lifestyle accessories. We partner directly with top manufacturers to bring you the best quality at unbeatable prices — every order ships fast with full buyer protection.",
 policies: [
-{ label: "Shipping",     value: "Nationwide · 1-3 business days" },
-{ label: "Returns",      value: "Free returns within 30 days" },
-{ label: "Payments",     value: "100% secure checkout" },
-{ label: "Support",      value: "WhatsApp response under 1 hr" },
+{ label: "Shipping", value: "Nationwide · 1-3 business days" },
+{ label: "Returns", value: "Free returns within 30 days" },
+{ label: "Payments", value: "100% secure checkout" },
+{ label: "Support", value: "WhatsApp response under 1 hr" },
 { label: "Member Since", value: "January 2023" },
-{ label: "Location",     value: "Lagos, Nigeria" },
+{ label: "Location", value: "Lagos, Nigeria" },
 ],
 };
 

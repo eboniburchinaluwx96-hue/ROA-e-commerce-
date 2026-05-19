@@ -1,4 +1,4 @@
-export const products = [
+ const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/intermediate-composite-basketball.jpg",
@@ -470,3 +470,5 @@ export const products = [
     keywords: ["kitchen", "kitchen towels", "tissues"]
   }
 ];
+
+export default products;  

@@ -1,21 +1,22 @@
 import ProductCard from "./ProductCard";
-import {products} from "../../js/products"
 import {Row, Col, Container} from "react-bootstrap"
 
 
-const ProductGrid= ({ selectProduct }) => {
+const ProductGrid= ({ selectProduct,filterProduct }) => {
 
    return (
     <div>
       <Row>
-      {products.map(product => {
-        return (
-          <Col  className="col-12 col-sm-4 col-md-3 col-lg-2" key={product.id} onClick={()=> selectProduct(product)} >
-          <ProductCard product={product} />
-        </Col>
-        )
-      })}
-    </Row>
+        {filterProduct.length > 0 ? filterProduct.map((p) => (
+          <Col key={p.id} xxs={12} xs={6} sm={6} md={4} lg={2} onClick={()=> selectProduct(p)} >
+            <ProductCard product={p} />
+          </Col>
+        )) : <div style={{ textAlign:"center", padding:"70px 0" }}>
+              <h2 style={{ fontSize:"1.2rem", color:"#fff", fontWeight:600, marginBottom:10 }}> 
+                No products found 
+              </h2>
+            </div>  }
+      </Row>
     </div>
    )
 };

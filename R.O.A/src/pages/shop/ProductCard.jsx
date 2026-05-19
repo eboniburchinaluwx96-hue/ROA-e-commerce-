@@ -3,7 +3,18 @@ import {Card, CardBody } from "react-bootstrap";
 export default function ProductCard({ product }) {
   return(
     <Card className="product-card">
-      <Card.Img src={product.image} />
+      <div style={{position:"relative"}}>
+        <Card.Img src={product.image} />
+        {product.store && (
+          <div style={{position:"absolute", left:"5px", top:"15px", background:"rgba(0, 230, 119, 0.9)",
+          backdropFilter:"blur(15px)",padding:"6px 7px", borderRadius:"7px"}}>
+          <div style={{ display:"flex", alignItems:"center", gap:"5px"}}>
+            <div style={{fontSize:"14px"}}>🏪</div>
+            <div style={{fontSize:"15px", lineHeight:"20px", fontWeight:"600", color:"#000", letterSpacing:"2px"}}>{product.store}</div>
+          </div>
+        </div>
+        )}
+      </div>
       <CardBody>
         <div className="mb-4 product-name">{product.name}</div>
 

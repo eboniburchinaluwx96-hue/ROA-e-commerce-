@@ -1,10 +1,10 @@
 import { Offcanvas, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-import { FiUser, FiHome, FiGrid, FiHeart, FiSettings, FiHelpCircle, FiPackage, FiMoon } from "react-icons/fi";
+import { FiUser, FiHome, FiHeart, FiSettings, FiHelpCircle, FiPackage, FiMoon, FiShoppingBag, } from "react-icons/fi";
 
 const MobileMenu = ({ show, handleClose }) => {
-  const { user } = useAuthStore();
+  const { user, shopOwner } = useAuthStore();
 
   return (
     <Offcanvas show={show} onHide={handleClose} placement="start" className="off-canvas-header" >
@@ -30,7 +30,7 @@ const MobileMenu = ({ show, handleClose }) => {
           {/* 🧾 SHOP */}
           <Nav className="flex-column py-3">
             <Nav.Link as={Link} to="/shopping">
-              <FiGrid className="me-2" size={24} /> Shop
+              <FiShoppingBag className="me-2" size={24} /> Shop
             </Nav.Link>
           </Nav>
 
@@ -50,6 +50,25 @@ const MobileMenu = ({ show, handleClose }) => {
              <Nav className="flex-column py-3 d-lg-none">
                <Nav.Link as={Link} to="/account">
                 <FiUser className="me-2" size={24} /> Notifications
+              </Nav.Link>
+             </Nav>
+            </>
+          )}
+
+         { shopOwner && (
+            <>
+             <Nav className="flex-column py-3 d-lg-none">
+               <Nav.Link as={Link} to="/account">
+                <FiUser className="me-2" size={24} /> Notifications
+              </Nav.Link>
+             </Nav>
+            </>)}
+
+           {shopOwner && (
+            <>
+             <Nav className="flex-column py-3">
+               <Nav.Link as={Link} to="/store-admin">
+                  My Store
               </Nav.Link>
              </Nav>
             </>
