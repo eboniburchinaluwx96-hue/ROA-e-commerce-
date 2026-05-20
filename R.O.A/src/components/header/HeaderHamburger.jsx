@@ -10,11 +10,11 @@ const HeaderHamburger = () => {
     <>
       <div className="hamburger-button">
         <div
-        className="border-0 bg-transparent"
-        onClick={() => setShow(true)}
-      >
-        <FiMenu size={34} />
-      </div>
+          className="border-0 bg-transparent me-4"
+          onClick={() => setShow(true)}
+        >
+          <FiMenu size={34} />
+        </div>
       </div>
 
       <MobileMenu show={show} handleClose={() => setShow(false)} />

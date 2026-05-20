@@ -8,27 +8,28 @@ import HeaderAuth from "./header/HeaderAuth";
 
 const CartPageHeader = () => {
   const [scrolled, setScrolled] = useState(false);
-  
-    useEffect( ()=> {
-      const handleScroll = () => {
-        setScrolled(window.scrollY > 10);
-      }
-  
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    },[]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <Navbar fixed="top" className={`header ${scrolled ? "header-scrolled" : ""}`}>
-      <Container >
+    <Navbar
+      fixed="top"
+      className={`header ${scrolled ? "header-scrolled" : ""}`}
+    >
+      <Container>
         <HeaderHamburger />
         <HeaderLogo />
-       
 
         <Nav className="ms-auto nav-icons">
-          
           <div>
             <HeaderAuth />
           </div>

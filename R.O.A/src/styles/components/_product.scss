@@ -266,38 +266,6 @@
   color: #000000;
 }
 
-.increment-button {
-  background: rgba(255,255,255,0.08);
-  border: none !important;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  font-family: "outfit";
-  font-weight: 600;
-  font-size: 1rem;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: background 0.10s ;
-  border-radius: 0 !important;
-
-  &:hover, .size-btn.active {
-    background: rgba(255,255,255,0.14);
-
-  }
-}
-
-.qty-button {
-  background: transparent;
-  color: #fff;
-  width: 48px;
-  height: 40px;
-  font-family: "outfit";
-  font-weight: 600;
-  font-size: 1rem;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: background 0.15s;
-  border-radius: 0 !important;
-}
-
 .add-btn{
   background: linear-gradient(135deg, #00e676, #00c853) !important;
   border: none !important;
