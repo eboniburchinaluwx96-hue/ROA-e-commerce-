@@ -1,7 +1,7 @@
 import { Offcanvas, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-import { FiUser, FiHome, FiHeart, FiSettings, FiHelpCircle, FiPackage, FiMoon, FiShoppingBag, } from "react-icons/fi";
+import { FiHome, FiHeart, FiSettings, FiHelpCircle, FiPackage, FiMoon, FiShoppingBag, FiMessageSquare } from "react-icons/fi";
 
 const MobileMenu = ({ show, handleClose }) => {
   const { user, shopOwner } = useAuthStore();
@@ -49,7 +49,7 @@ const MobileMenu = ({ show, handleClose }) => {
             <>
              <Nav className="flex-column py-3 d-lg-none">
                <Nav.Link as={Link} to="/account">
-                <FiUser className="me-2" size={24} /> Notifications
+                <FiMessageSquare className="me-2" size={24} /> Notifications
               </Nav.Link>
              </Nav>
             </>
@@ -59,7 +59,7 @@ const MobileMenu = ({ show, handleClose }) => {
             <>
              <Nav className="flex-column py-3 d-lg-none">
                <Nav.Link as={Link} to="/account">
-                <FiUser className="me-2" size={24} /> Notifications
+                <FiMessageSquare className="me-2" size={24} /> Notifications
               </Nav.Link>
              </Nav>
             </>)}
@@ -68,7 +68,7 @@ const MobileMenu = ({ show, handleClose }) => {
             <>
              <Nav className="flex-column py-3">
                <Nav.Link as={Link} to="/store-admin">
-                  My Store
+                My Store
               </Nav.Link>
              </Nav>
             </>

@@ -14,6 +14,14 @@ const HeaderAuth = () => {
     <Image roundedCircle width={40} height={40} src="/images/profile.jpg" />
     </Nav.Link>
     ))}
+    
+    {!user && (
+      <Link to="/login">
+        <button className="login-btn">
+        Login
+        </button>
+      </Link>
+    )}
     </>
   );
 };

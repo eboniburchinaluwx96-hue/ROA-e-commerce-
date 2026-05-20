@@ -10,7 +10,7 @@ const HeaderHamburger = () => {
     <>
       <div className="hamburger-button">
         <div
-        className="me-4 border-0 bg-transparent"
+        className="border-0 bg-transparent"
         onClick={() => setShow(true)}
       >
         <FiMenu size={34} />

@@ -41,7 +41,7 @@
 }
 
 .container-login button{
-  background: linear-gradient(135deg, #00e676, #00c853);
+  background: linear-gradient(135deg, #00e676, #9dc800);
    box-shadow: 0 8px 28px rgba(0,230,118,0.35);
   color: #fff;
   font-size: 11px;
@@ -149,7 +149,7 @@
 
 .toggle{
   height: 100%;
-  background: linear-gradient(135deg, #00e676, #00c853);
+  background: linear-gradient(135deg, #6fe600, #c8bb00);
   color: #fff;
   position: relative;
   left: -100%;

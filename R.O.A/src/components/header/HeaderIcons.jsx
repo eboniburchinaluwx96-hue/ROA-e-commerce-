@@ -34,11 +34,7 @@ const HeaderIcons = () => {
             <Nav.Link as={Link} to="/cart">
                 <FiShoppingCart size={36} /> <Badge bg="dark" pill>1</Badge>
             </Nav.Link>
-            <Link to="/login">
-              <button className="login-btn">
-              Login
-              </button>
-            </Link>
+            
           </div>
         )}
       

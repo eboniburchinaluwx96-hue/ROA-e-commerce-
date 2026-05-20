@@ -1,4 +1,4 @@
-import ProductCard from "../shop/ProductCard"
+import ProductCard from "./ProductCard"
 import {Row, Col, Container} from "react-bootstrap"
 
 

@@ -25,9 +25,10 @@ return (
 
   {/* ── HERO ── */}
   <section style={{ background:"linear-gradient(135deg,#0d1117 0%,#161b22 55%,#0d1117 100%)", padding:"5rem 0 4rem", position:"relative", overflow:"hidden" }}>
-    <div style={{ position:"absolute", top:-110, right:-110, width:540, height:540, borderRadius:"50%", background:"radial-gradient(circle,rgba(0,230,118,0.24) ,transparent 73%)", pointerEvents:"none" }} />
-    <div style={{ position:"absolute", bottom:-80, left:-80, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(0,200,83,0.15) 0%,transparent 73%)", pointerEvents:"none" }} />
-    <div style={{ position:"absolute", top:"-22%", left:"-20%", width:"100%", height:"100%", borderRadius:"50%", background:"radial-gradient(circle,rgba(0,230,118,0.09) 35%,transparent 55%)", pointerEvents:"none" }} />
+    <div style={{ position:"absolute", top:-110, right:-110, width:540, height:540, borderRadius:"50%", background:"radial-gradient(circle,rgba(196, 230, 0, 0.28) ,transparent 71%)", pointerEvents:"none" }} />
+    <div style={{ position:"absolute", bottom:150, left:230, width:520, height:540, borderRadius:"50%", background:"radial-gradient(circle,rgba(180, 200, 0, 0.15),transparent 70%)", pointerEvents:"none" }} />
+    <div style={{ position:"absolute", top:"5%", left:"-20%", width:"90%", height:"90%", borderRadius:"50%", background:"radial-gradient(circle,rgba(0,230,118,0.1)5% ,transparent 60%)", pointerEvents:"none" }} />
+    <div style={{ position:"absolute", top:0, left:-380, width:"90%", height:"90%", borderRadius:"50%", background:"radial-gradient(circle,rgba(0,230,118,0.1) ,transparent 60%)", pointerEvents:"none" }} />
 
     <Container fluid>
       <div style={{ marginTop:"80px", padding:"0 20px" }}>
@@ -50,12 +51,12 @@ return (
           </div>
 
           {/* Store name */}
-          <h1 style={{ fontWeight:800, color:"#f0f6fc", fontSize:"clamp(2.7rem,6vw,3.8rem)", lineHeight:1.2, letterSpacing:"-0.99px" }}>
+          <h1 style={{ fontWeight:800, color:"#f0f6fc", fontSize:"clamp(2.7rem,6vw,3.8rem)", lineHeight:1.2, letterSpacing:"-0.99px", marginBottom:"11px" }}>
             {STORE.name}
           </h1>
 
           {/* Meta */}
-          <p style={{ color:"rgba(255,255,255,0.67)", fontSize:"11.5px", letterSpacing:"1px", marginBottom:"33px" }}>
+          <p style={{ color:"rgba(255,255,255,0.67)", fontSize:"14px", marginBottom:"33px" }}>
             {STORE.handle} &nbsp;·&nbsp; 📍 {STORE.location} &nbsp;·&nbsp; Since {STORE.joined}
           </p>
 

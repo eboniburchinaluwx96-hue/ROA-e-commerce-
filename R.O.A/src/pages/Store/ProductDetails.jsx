@@ -1,29 +1,30 @@
-import { useState } from "react"
+import { useState } from "react";
 import { Button, Offcanvas, Container, Row, Col} from "react-bootstrap";
 
-export default function ProductDrawer({ show, onHide, product, onClose }) {
+export default function ProductDetails({product, onHide, show, onClose}) {
 
-   const [activeSize, setActiveSize] = useState([]);
+  const [activeSize, setActiveSize] = useState([]);
+  const [activeColor, setActiveColor] = useState([]);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
   function handleAdd(){
     setAdded(true);
-    setTimeout(()=> setAdded(false), 2000);
+    setTimeout(()=>setAdded(false), 2000);
   }
 
   if (!product) return null;
 
-  return (
-
-    <Offcanvas
+  return(
+     <Offcanvas
       show={show}
       onHide={onHide}
-      placement="bottom"
-      className="product-details h-100 w-100"
+      placement="end"
+      className="product-details offcanvas-product-details"
     >
+      
         
-       <Offcanvas.Body className="p-0">
+      <Offcanvas.Body className="p-0">
         <Container className="text-white p-0">
 
           <div className="hero-image">
@@ -125,12 +126,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
                   </div>
                 </Col>
                 <Col className="col-auto d-flex flex-column ">
-                  <div style={{color:"rgba(255, 255, 255, 0.6)", fontSize:"17px",fontFamily:"outfit", marginLeft:"20px"}}>
-                    Sold by
-                  </div>
-                  <div style={{color:"#fff", fontSize:"23px", fontWeight:"800",fontFamily:"outfit", marginTop:"18px"}} >
-                    {product.store}
-                  </div>
+                  
                 </Col>
               </Row>
 
@@ -146,8 +142,6 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
       </Offcanvas.Body>
 
     </Offcanvas>
-    
-      
     
   );
 }

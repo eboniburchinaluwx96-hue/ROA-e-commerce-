@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import ProductGrid from "./ProductGrid";
-import ProductDetails from "../shop/ProductDetails";
-import ProductDrawer from "../shop/ProductDrawer";
+import ProductDetails from "./ProductDetails";
+import ProductDrawer from "./ProductDrawer";
 
 export default function ProductPage({setCategory, category, filtered, CATEGORIES}) {
   const [selected, setSelected] = useState(null);
