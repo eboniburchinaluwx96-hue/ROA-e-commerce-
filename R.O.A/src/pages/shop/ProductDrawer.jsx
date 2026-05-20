@@ -4,7 +4,6 @@ import { Button, Offcanvas, Container, Row, Col } from "react-bootstrap";
 export default function ProductDrawer({ show, onHide, product, onClose }) {
   const [activeSize, setActiveSize] = useState([]);
   const [activeColor, setActiveColor] = useState([]);
-  const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
@@ -34,7 +33,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
                         color: i === 0 ? "#00e676" : "rgba(255,255,255,0.55)",
                       }}
                     >
-                      {keyword}{" "}
+                      {keyword}
                     </li>
                   </ul>
                 );
@@ -152,48 +151,55 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
               )}
 
               <Row className="mt-4 mb-5 align-items-center">
-                <Col>
-                  <div>
-                    <button
-                      onClick={() => {
-                        setQty(Math.max(1, qty - 1));
+                <Col className="">
+                  <div className="d-inline-flex align-items-center gap-2">
+                    <p
+                      style={{
+                        fontSize: "18px",
+                        color: "rgba(255, 255, 255, 0.8)",
+                        margin: 0,
                       }}
-                      className="increment-button"
                     >
-                      -
-                    </button>
-                    <button className="qty-button">{qty}</button>
-                    <button
-                      onClick={() => {
-                        setQty(qty + 1);
+                      Delivery :
+                    </p>
+                    <h5
+                      className="mb-0"
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: 600,
                       }}
-                      className="increment-button"
                     >
-                      +
-                    </button>
+                      {product.delivery}
+                    </h5>
                   </div>
                 </Col>
-                <Col className="col-auto d-flex flex-column ">
-                  <div
-                    style={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "17px",
-                      fontFamily: "outfit",
-                      marginLeft: "20px",
-                    }}
-                  >
-                    Sold by
-                  </div>
-                  <div
-                    style={{
-                      color: "#fff",
-                      fontSize: "23px",
-                      fontWeight: "800",
-                      fontFamily: "outfit",
-                      marginTop: "18px",
-                    }}
-                  >
-                    {product.store}
+                <Col>
+                  <div className="col-auto d-flex flex-column ">
+                    <div
+                      style={{
+                        color: "rgba(255, 255, 255, 0.6)",
+                        fontSize: "18px",
+                        fontFamily: "outfit",
+                        lineHeight: "1",
+                      }}
+                    >
+                      Check My Store for more Available Products
+                    </div>
+                    <div
+                      style={{
+                        color: "#fff",
+                        fontSize: "23px",
+                        fontWeight: "800",
+                        fontFamily: "outfit",
+                        marginTop: "18px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <a className="text-warning" href="">
+                        {product.store}
+                      </a>
+                    </div>
                   </div>
                 </Col>
               </Row>

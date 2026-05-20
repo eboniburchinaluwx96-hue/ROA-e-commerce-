@@ -151,28 +151,58 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
               )}
 
               <Row className="mt-4 mb-5 align-items-center">
-                <Col></Col>
-                <Col className="col-auto d-flex flex-column ">
-                  <div
-                    style={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "17px",
-                      fontFamily: "outfit",
-                      marginLeft: "20px",
-                    }}
-                  >
-                    Sold by
+                <Col className="">
+                  <div className="d-inline-flex align-items-center gap-2">
+                    <p
+                      style={{
+                        fontSize: "18px",
+                        color: "rgba(255, 255, 255, 0.7)",
+                        margin: 0,
+                        fontWeight: 600,
+                        letterSpacing: 1,
+                      }}
+                    >
+                      Delivery:
+                    </p>
+                    <h5
+                      className="mb-0"
+                      style={{
+                        fontSize: "18px",
+                        letterSpacing: 1,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {product.delivery}
+                    </h5>
                   </div>
-                  <div
-                    style={{
-                      color: "#fff",
-                      fontSize: "23px",
-                      fontWeight: "800",
-                      fontFamily: "outfit",
-                      marginTop: "18px",
-                    }}
-                  >
-                    {product.store}
+                </Col>
+                <Col>
+                  <div className="col-auto d-flex flex-column ">
+                    <div
+                      style={{
+                        color: "rgba(255, 255, 255, 0.6)",
+                        fontSize: "18px",
+                        fontFamily: "outfit",
+                        lineHeight: "1",
+                      }}
+                    >
+                      Check My Store for more Available Products
+                    </div>
+                    <div
+                      style={{
+                        color: "#fff",
+                        fontSize: "23px",
+                        fontWeight: "800",
+                        fontFamily: "outfit",
+                        marginTop: "18px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <a className="text-warning" href="/public-store">
+                        {product.store}
+                      </a>
+                    </div>
                   </div>
                 </Col>
               </Row>

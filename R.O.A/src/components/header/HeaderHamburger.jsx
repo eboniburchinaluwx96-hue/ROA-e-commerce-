@@ -13,7 +13,7 @@ const HeaderHamburger = () => {
           className="border-0 bg-transparent me-4"
           onClick={() => setShow(true)}
         >
-          <FiMenu size={34} />
+          <FiMenu size={31} />
         </div>
       </div>
 

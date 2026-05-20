@@ -8,12 +8,11 @@
 
   .nav-link {
     font-size: 16px;
-    padding: 6px 0;
+    padding: 10px 0;
     transition: transform 0.2s;
     padding-left: 20px;
     background: rgba(0, 187, 97, 0.4);
     border-radius: 15px;
-    //padding: 12px;
     transition: all 0.2s ease;
   }
 
@@ -30,7 +29,8 @@
   backdrop-filter: blur(80px);
   -webkit-backdrop-filter: blur(80px);
   box-shadow: 0 4px 20px rba(0, 0, 0, 0.15) !important;
-  padding: 20px !important;
+  padding: 20px;
+  position: fixed;
 }
 
 .header-icons {
@@ -40,34 +40,43 @@
   color: #fff !important;
 }
 
-@media (max-width: 100px) {
+@media (max-width: 450px) {
   .header-icons {
-    gap: 1px;
+    gap: 4px;
   }
 }
 
 .header {
-  top: 0;
+  top: 0 !important;
   z-index: 300;
   transition: all 0.6s ease;
-  color: #fff;
+  color: #000;
   margin: 0 !important;
   background: transparent;
-  padding: 20px !important;
+  padding: 20px;
   border: none !important;
 
   .navbar-brand {
     font-weight: 600;
-    color: #fff;
-    letter-spacing: 2px;
-    font-size: 35px;
+    letter-spacing: 1px;
+    font-size: 30px;
+
+    .first-letter {
+      color: rgb(163, 207, 4);
+    }
+    .second-letter {
+      color: rgb(196, 250, 1);
+    }
+    .third-letter {
+      color: rgb(0, 241, 0);
+    }
   }
 
   .search-bar {
     align-items: center !important;
     justify-items: center !important;
     width: 100% !important;
-    color: #fff !important;
+    color: rgb(12, 12, 12) !important;
   }
 
   .search-bar ::placeholder {
@@ -98,6 +107,14 @@
     display: flex;
     align-items: center;
 
+    @media (max-width: 450px) {
+      gap: 11px;
+    }
+
+    .nav-link {
+      padding-right: 0 !important;
+    }
+
     a {
       position: relative;
       font-size: 18px;
@@ -113,13 +130,20 @@
       position: absolute;
       top: -5px;
       right: -2px;
-      font-size: 10px;
-      padding: 6px 8px;
+      font-size: 16px;
+      padding: 4px 6px;
     }
   }
 
   .hamburger-button {
     transition: transform 0.2s;
+    width: 28px !important;
+    margin-right: 13px;
+
+    svg {
+      width: 28px !important;
+      color: #fff;
+    }
 
     &:hover {
       transform: translateY(-2px);

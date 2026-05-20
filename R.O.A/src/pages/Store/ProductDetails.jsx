@@ -4,7 +4,6 @@ import { Button, Offcanvas, Container, Row, Col } from "react-bootstrap";
 export default function ProductDetails({ product, onHide, show, onClose }) {
   const [activeSize, setActiveSize] = useState([]);
   const [activeColor, setActiveColor] = useState([]);
-  const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
@@ -150,31 +149,6 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                   </Row>
                 </div>
               )}
-
-              <Row className="mt-4 mb-5 align-items-center">
-                <Col>
-                  <div>
-                    <button
-                      onClick={() => {
-                        setQty(Math.max(1, qty - 1));
-                      }}
-                      className="increment-button"
-                    >
-                      -
-                    </button>
-                    <button className="qty-button">{qty}</button>
-                    <button
-                      onClick={() => {
-                        setQty(qty + 1);
-                      }}
-                      className="increment-button"
-                    >
-                      +
-                    </button>
-                  </div>
-                </Col>
-                <Col className="col-auto d-flex flex-column "></Col>
-              </Row>
 
               <Button
                 onClick={handleAdd}

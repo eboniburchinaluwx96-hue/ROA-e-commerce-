@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const DEV_MODE = true
-const MOCK_STATE = "shopOwner";
+const MOCK_STATE = "user";
 
 export const useAuthStore = create((set) => ({
   

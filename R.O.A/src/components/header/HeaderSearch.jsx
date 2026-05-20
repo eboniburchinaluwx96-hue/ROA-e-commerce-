@@ -5,9 +5,11 @@ const HeaderSearch = () => {
     <>
       {/* Desktop Search */}
       <Form className="d-none d-md-flex w-50 search-bar">
-        <FormControl placeholder="Search products..." className="mx-4 text-light"/>
+        <FormControl
+          placeholder="Search products..."
+          className="mx-4 text-light"
+        />
       </Form>
-
     </>
   );
 };
