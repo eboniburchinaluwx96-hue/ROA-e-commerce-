@@ -1,19 +1,20 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HeaderHamburger from "./header/HeaderHamburger";
 import HeaderLogo from "./header/HeaderLogo";
 import HeaderSearch from "./header/HeaderSearch";
 import HeaderIcons from "./header/HeaderIcons";
 import HeaderAuth from "./header/HeaderAuth";
-import { AccountPage } from "../pages/Account/AccountPage";
 
 const MainHeader = () => {
   const [scrolled, setScrolled] = useState(false);
 
-  const [show, setShow] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShowProfile(true);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,12 +41,13 @@ const MainHeader = () => {
 
           <Nav className="ms-auto nav-icons">
             <HeaderIcons />
-            <div>
-              <HeaderAuth handleShow={handleShow} />
-            </div>
+            <HeaderAuth
+              handleShow={handleShow}
+              show={showProfile}
+              onHide={() => setShowProfile(false)}
+              scrolled={scrolled}
+            />
           </Nav>
-
-          {handleShow && <AccountPage show={show} onHide={handleClose} />}
         </Container>
       </Navbar>
     </>

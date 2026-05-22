@@ -5,6 +5,7 @@ import ProductDetails from "../pages/shop/ProductDetails";
 import ProductDrawer from "../pages/shop/ProductDrawer";
 import PublicStore from "../pages/Store/PublicStorePage";
 import CartPage from "../pages/Cart/CartPage";
+import ProfilePage from "../pages/Profile/ProfilePage";
 
 function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ function AppRoutes() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/public-store" element={<PublicStore />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );

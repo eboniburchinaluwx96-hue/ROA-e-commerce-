@@ -11,14 +11,14 @@ const HeaderIcons = () => {
       {user && (
         <div className="header-icons">
           <Nav.Link className="d-md-none ms-auto">
-            <FiSearch size={33} color="white" />
+            <FiSearch size={27} color="white" />
           </Nav.Link>
           <Nav.Link className="d-none d-lg-block" as={Link} to="/notifications">
-            <FiBell size={33} color="orange" />
+            <FiBell size={27} color="orange" />
           </Nav.Link>
 
           <Nav.Link as={Link} to="/cart">
-            <FiShoppingCart size={33} />
+            <FiShoppingCart size={27} />
             <Badge pill bg="warning">
               2
             </Badge>
@@ -29,10 +29,10 @@ const HeaderIcons = () => {
       {!user && (
         <div className="header-icons ">
           <div className="d-md-none">
-            <FiSearch size={33} />
+            <FiSearch size={27} />
           </div>
           <Nav.Link as={Link} to="/cart">
-            <FiShoppingCart size={33} />{" "}
+            <FiShoppingCart size={27} />{" "}
             <Badge pill bg="warning">
               2
             </Badge>

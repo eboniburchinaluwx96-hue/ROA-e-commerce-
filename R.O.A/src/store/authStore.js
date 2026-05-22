@@ -1,27 +1,24 @@
 import { create } from "zustand";
 
-const DEV_MODE = true
+const DEV_MODE = true;
 const MOCK_STATE = "user";
 
 export const useAuthStore = create((set) => ({
-  
-
   fetchUser: async () => {
+    if (DEV_MODE) {
+      let user = null;
+      let shopOwner = null;
 
-    if (DEV_MODE){
-      let user= null;
-      let shopOwner=null;
-
-     if(MOCK_STATE === "user") {
+      if (MOCK_STATE === "user") {
         user = {
           id: "1",
-          name:"samuel Victor",
+          name: "samuel Victor",
           hasShop: false,
         };
-      } else if(MOCK_STATE === "shopOwner") {
+      } else if (MOCK_STATE === "shopOwner") {
         shopOwner = {
           id: "1",
-          name:"samuel Victor",
+          name: "samuel Victor",
           hasShop: true,
         };
       }
@@ -29,7 +26,6 @@ export const useAuthStore = create((set) => ({
       set({ user, shopOwner });
       return;
     }
-   
 
     try {
       const res = await API.get("/auth/me");

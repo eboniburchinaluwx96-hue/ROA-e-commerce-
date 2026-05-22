@@ -1,30 +1,27 @@
-.offcanvas {
-  background: transparent !important;
-  backdrop-filter: blur(80px) !important;
+.offcanvas.product-details {
+  width: 450px !important;
+  backdrop-filter: blur(100px) !important;
   border: none !important;
-}
+  background: rgba(77, 85, 1, 0.13);
 
-.offcanvas-body {
-  width: 100% !important;
-}
+  .offcanvas-body::-webkit-scrollbar-track {
+    background: transparent !important;
+    width: 12px;
+  }
 
-.offcanvas-body::-webkit-scrollbar-track {
-  background: transparent !important;
-  width: 12px;
-}
+  .offcanvas-body::-webkit-scrollbar-thumb {
+    background: rgba(85, 85, 85, 0.3);
+  }
 
-.offcanvas-body::-webkit-scrollbar-thumb {
-  background: rgba(85, 85, 85, 0.3);
-}
+  .offcanvas-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    width: 12px;
+  }
 
-.offcanvas-body::-webkit-scrollbar-thumb:hover {
-  background: #555;
-  width: 12px;
-}
-
-.offcanvas-body::-webkit-scrollbar {
-  width: 12px;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  .offcanvas-body::-webkit-scrollbar {
+    width: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
 .product-page {
@@ -105,10 +102,6 @@
     filter: brightness(0) invert(85%) sepia(22%) saturate(4405%)
       hue-rotate(357deg) brightness(105%) contrast(150%);
   }
-}
-
-.offcanvas.product-details {
-  width: 500px !important;
 }
 
 .product-details {

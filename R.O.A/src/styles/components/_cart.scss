@@ -1,6 +1,4 @@
 .cart-items-section {
-  padding-top: 200px;
-
   .cart-col {
     border: 1px solid rgba(255, 255, 255, 0.692);
     border-radius: 18px;
@@ -68,8 +66,8 @@
 
   .summary-section {
     background: rgba(255, 255, 255, 0.863);
-    border: 1px solid
-      linear-gradient(135deg, rgb(77, 83, 0), rgba(168, 214, 0, 0.432));
+    // border: 1px solid
+    // linear-gradient(135deg, rgb(77, 83, 0), rgba(168, 214, 0, 0.432));
     border-radius: 18px;
     color: #000;
   }
