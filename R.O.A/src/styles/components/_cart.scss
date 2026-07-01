@@ -1,0 +1,119 @@
+.cart-items-section {
+  .cart-col {
+    border: 1px solid rgba(255, 255, 255, 0.692);
+    border-radius: 18px;
+    background: linear-gradient(
+      135deg,
+      rgba(167, 170, 0, 0.315),
+      rgba(86, 214, 0, 0.26)
+    );
+    color: #fff;
+    margin-bottom: 27px;
+  }
+
+  h5 {
+    font-style: italic;
+  }
+
+  img {
+    transition: all 0.4s ease;
+
+    &:hover {
+      transform: scale(0.77);
+    }
+  }
+
+  .increment-button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.575) !important;
+    color: rgba(255, 255, 255, 0.877);
+    width: 40px;
+    height: 40px;
+    font-family: "outfit";
+    font-weight: 700;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.1s;
+    border-radius: 0 !important;
+
+    &:hover,
+    .size-btn.active {
+      background: rgba(255, 255, 255, 0.14);
+    }
+  }
+
+  .qty-button {
+    background: transparent;
+    color: #fff;
+    width: 48px;
+    height: 40px;
+    font-family: "outfit";
+    font-weight: 600;
+    font-size: 20px;
+    border: none;
+    transition: background 0.15s;
+    border-radius: 0 !important;
+  }
+
+  .delete-btn {
+    color: #0228ff;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.1s;
+    cursor: pointer;
+  }
+
+  .summary-section {
+    background: rgba(255, 255, 255, 0.863);
+    // border: 1px solid
+    // linear-gradient(135deg, rgb(77, 83, 0), rgba(168, 214, 0, 0.432));
+    border-radius: 18px;
+    color: #000;
+  }
+
+  .order-border {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+  }
+
+  .checkout-btn {
+    padding: 13px !important;
+    border: 1px solid rgba(172, 172, 172, 0.7);
+    font-size: 18px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+
+    &:hover {
+      border: 1px solid #000;
+    }
+  }
+}
+
+.checkout-pgn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .checkout-form {
+    background: linear-gradient(
+      135deg,
+      rgba(73, 78, 1, 0.311),
+      rgba(168, 214, 0, 0.099)
+    );
+    padding: 20px;
+    border-radius: 15px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: auto;
+  }
+
+  .form-control {
+    border-radius: 12px;
+    border: none;
+    font-size: 17px;
+  }
+}
