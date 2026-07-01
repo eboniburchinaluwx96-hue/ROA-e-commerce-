@@ -1,0 +1,36 @@
+.help_support {
+  color: #c2c2c2d4;
+
+  .form-control {
+    background: none !important;
+    border-radius: 0;
+    border: none;
+    font-size: 17px;
+    color: #fff !important;
+
+    &:focus,
+    &::placeholder {
+      box-shadow: none;
+      color: #c2c2c2d4;
+    }
+  }
+}
+
+.accordion-item {
+  background: none !important;
+  border: none !important;
+
+  .accordion-button {
+    background: #ffffff1e !important;
+    color: #fff !important;
+    font-size: 18px !important;
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+
+  .accordion-body {
+    color: #c2c2c2d4;
+  }
+}

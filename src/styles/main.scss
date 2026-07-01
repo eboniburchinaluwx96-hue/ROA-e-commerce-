@@ -1,0 +1,67 @@
+@use "abstracts/variables";
+
+@use "components/header";
+@use "components/product";
+@use "components/store";
+@use "components/cart";
+@use "components/order";
+@use "components/Profile";
+@use "components/home";
+@use "components/settings";
+@use "components/wishlist";
+@use "components/help_support";
+
+.mySwiper {
+  color: rgba(255, 255, 255, 0.664);
+  font-size: 11px;
+
+  .swiper-pagination-bullet-active {
+    background: rgb(255, 251, 5) !important;
+  }
+
+  .swiper-slide {
+    cursor: pointer;
+    .border-list {
+      opacity: 0;
+    }
+
+    .active {
+      color: rgb(255, 251, 5);
+
+      .border-list {
+        opacity: 1;
+      }
+
+      span {
+        color: #000;
+        background: rgba(245, 229, 2, 0.98) !important;
+      }
+    }
+  }
+}
+
+.form-switch {
+  &:focus {
+    box-shadow: none !important;
+  }
+  .form-check-input {
+    height: 27px !important;
+    width: 47px !important;
+    border-radius: 15px !important;
+    box-shadow: none !important;
+
+    &:checked {
+      background-color: #a8ff059f !important;
+      border-radius: 10px;
+      border: none;
+
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}

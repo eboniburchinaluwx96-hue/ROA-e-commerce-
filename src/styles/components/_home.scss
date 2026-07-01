@@ -1,0 +1,128 @@
+.about-us {
+  font-size: clamp(69px, 13vw, 150px);
+  line-height: 1.2;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-btn {
+  border: 1px solid rgba(255, 238, 0, 0.62);
+  background: transparent;
+  color: rgba(194, 194, 194, 0.83);
+  font-size: 14px;
+}
+
+.hero-active {
+  border: none;
+  background: rgb(255, 238, 0);
+  color: #000;
+}
+
+@media (max-width: 760px) {
+  .order-milestone,
+  .store-milestone,
+  .satisfactory-milestone {
+    border: none !important;
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 986px) {
+  .features-card {
+    height: 400px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 767px) {
+  .seller-info-card {
+    height: 450px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 2000px) {
+  .seller-info-card {
+    height: 350px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 700px) {
+  .seller-info-card {
+    height: 445px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .buyer-info-card {
+    height: 380px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 2000px) {
+  .buyer-info-card {
+    height: 250px !important;
+  }
+}
+
+.features-card {
+  //border: 1px solid rgba(255, 238, 0, 0.11);
+  background: rgba(156, 253, 0, 0.25);
+  padding: 35px;
+  font-size: 18px;
+  margin-top: 22px;
+  box-shadow: 0 0 35px -12px #82d10385;
+}
+
+.waitlist-form {
+  input {
+    max-width: 500px;
+    background: none !important;
+    border: 1px solid rgba(255, 238, 0, 0.575);
+    padding: 15px;
+    width: 50%;
+
+    &:focus-visible {
+      outline: none !important;
+      color: rgba(194, 194, 194, 0.83);
+    }
+  }
+
+  button {
+    border: none !important;
+    background: rgb(255, 238, 0);
+  }
+}
+
+.footer-social-links {
+  a {
+    background: #ffffff27;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(11px, 7px + 2vw, 16px);
+    color: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #ffffff7e;
+      color: rgb(200, 255, 0);
+    }
+  }
+}
+
+.about {
+  .col {
+    a {
+      &:hover {
+        color: rgb(200, 255, 0);
+      }
+    }
+  }
+}
+
+::marker {
+  color: rgb(255, 238, 0);
+}
