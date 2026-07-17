@@ -101,7 +101,7 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                   >
                     Sizes
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.sizes.map((s, i) => {
                       return (
                         <Col key={i} className="col-3">
@@ -133,7 +133,7 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                   >
                     Colors
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.colors.map((c, i) => {
                       return (
                         <Col key={i} className="col-3">

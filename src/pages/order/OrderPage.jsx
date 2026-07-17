@@ -72,7 +72,7 @@ function OrderPage() {
             <p className="mb-4">All your orders placed across R.O.A stores</p>
           </div>
 
-          <Row className="align-items-center">
+          <Row g-5 className="align-items-center">
             <Col className="col-12 col-sm-8 ">
               <div
                 className="d-inline-flex align-items-center  gap-3 ps-3 my-4 w-100"
@@ -134,7 +134,7 @@ function OrderPage() {
 
           <Slider />
 
-          <Row>
+          <Row g-5>
             <Col className="col-12 col-md-6 col-lg-4">
               <div
                 className="mt-5 "
@@ -196,7 +196,7 @@ function OrderPage() {
                   style={{ borderBottom: "1px solid  rgba(255, 238, 0, 0.42)" }}
                 >
                   <div className="px-4 py-2">
-                    <Row className="align-items-center">
+                    <Row g-5 className="align-items-center">
                       <Col>
                         <div className="d-flex gap-2">
                           <Image
@@ -225,7 +225,7 @@ function OrderPage() {
 
                 <div>
                   <div className="p-4">
-                    <Row className="align-items-center g-3">
+                    <Row g-5 className="align-items-center g-3">
                       <Col>
                         <button
                           className="d-inline-flex align-items-center gap-2  p-2"
@@ -326,7 +326,7 @@ function OrderPage() {
                   style={{ borderBottom: "1px solid  rgba(255, 238, 0, 0.42)" }}
                 >
                   <div className="px-4 py-2">
-                    <Row className="align-items-center">
+                    <Row g-5 className="align-items-center">
                       <Col>
                         <div className="d-flex gap-2">
                           <Image
@@ -355,7 +355,7 @@ function OrderPage() {
 
                 <div>
                   <div className="p-4">
-                    <Row className="align-items-center g-3">
+                    <Row g-5 className="align-items-center g-3">
                       <Col>
                         <button
                           className=" d-inline-flex p-2"

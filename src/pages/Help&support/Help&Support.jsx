@@ -85,7 +85,7 @@ export default function Help_Support() {
               padding: "50px",
             }}
           >
-            <Row className="g-4">
+            <Row g-5 className="g-4">
               {[
                 {
                   Icon: FiShoppingBag,
@@ -170,7 +170,7 @@ export default function Help_Support() {
           <div>
             <div className="mb-5">
               <h6 className="mb-3">CONTACT US</h6>
-              <Row className="g-4">
+              <Row g-5 className="g-4">
                 {[
                   {
                     Icon: FiMessageCircle,

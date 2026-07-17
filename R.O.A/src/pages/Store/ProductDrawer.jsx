@@ -99,7 +99,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
                   >
                     Size
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.sizes.map((s, i) => {
                       return (
                         <Col key={i} className="col-3">
@@ -131,7 +131,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
                   >
                     Colors
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.colors.map((c, i) => {
                       return (
                         <Col key={i} className="col-3">

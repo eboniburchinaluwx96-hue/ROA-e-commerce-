@@ -12,6 +12,7 @@ export const ProfileInfo = () => {
         }}
       >
         <Row
+          g-5
           className="py-4 py-md-4 g-4 g-sm-5  justify-content-between mx-auto  "
           style={{
             fontSize: "clamp (17px, 2vw, 20px)",

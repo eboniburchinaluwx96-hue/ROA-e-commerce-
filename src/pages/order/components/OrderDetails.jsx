@@ -104,7 +104,7 @@ function OrderDetails({ show, onHide }) {
             </div>
           </div>
 
-          <Row className="my-4 align-items-center">
+          <Row g-5 className="my-4 align-items-center">
             <Col>
               <button
                 style={{
@@ -182,7 +182,7 @@ function OrderDetails({ show, onHide }) {
                 borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
               }}
             >
-              <Row>
+              <Row g-5>
                 <Col className="col-3 col-sm-3 col-md-1 col-lg-2 ">
                   <Slider />
                 </Col>
@@ -283,7 +283,7 @@ function OrderDetails({ show, onHide }) {
                 borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
               }}
             >
-              <Row>
+              <Row g-5>
                 <Col className="col-3 col-sm-3 col-md-1 col-lg-2 ">
                   <Slider />
                 </Col>

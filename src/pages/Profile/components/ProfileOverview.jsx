@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 
 export const Overview = () => {
   return (
-    <Row className="mb-5">
+    <Row g-5 className="mb-5">
       <Col className="col-12 col-lg-6">
         <div
           className="mt-5 p-4"
@@ -73,7 +73,7 @@ export const Overview = () => {
             className="py-4"
             style={{ color: "#ffffff83", fontSize: "11.5px" }}
           >
-            <Row>
+            <Row g-5>
               <Col className="col-auto">
                 <div
                   style={{
@@ -115,9 +115,9 @@ export const Overview = () => {
             className="py-4"
             style={{ color: "#ffffff83", fontSize: "11.5px" }}
           >
-            <Row>
+            <Row g-5>
               <Col className="col-12">
-                <Row className="align-items-center">
+                <Row g-5 className="align-items-center">
                   <Col className="col-auto">
                     <div
                       style={{
@@ -163,7 +163,7 @@ export const Overview = () => {
               </Col>
 
               <Col className="12">
-                <Row className="align-items-center">
+                <Row g-5 className="align-items-center">
                   <Col className="col-auto">
                     <div
                       style={{
@@ -209,7 +209,7 @@ export const Overview = () => {
               </Col>
 
               <Col className="col-12">
-                <Row className="align-items-center">
+                <Row g-5 className="align-items-center">
                   <Col className="col-auto">
                     <div
                       style={{

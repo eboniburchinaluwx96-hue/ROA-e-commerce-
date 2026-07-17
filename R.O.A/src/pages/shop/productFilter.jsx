@@ -8,7 +8,10 @@ function ProductFilter({
   setSelectedPrice,
 }) {
   return (
-    <Row className=" mt-5 py-5 justify-content-center align-items-center text-center g-3">
+    <Row
+      g-5
+      className=" mt-5 py-5 justify-content-center align-items-center text-center g-3"
+    >
       <Col className="col-12 col-sm-2">
         <div
           style={{ color: "#fff", fontSize: "20px", lineHeight: "1.2" }}

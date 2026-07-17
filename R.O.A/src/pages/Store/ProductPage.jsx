@@ -30,7 +30,7 @@ export default function ProductPage({
         <Container>
           <div>
             {/* Toolbar */}
-            <Row className="my-4">
+            <Row g-5 className="my-4">
               <Col className="mb-5 text-sm-start text-center">
                 <div
                   style={{
@@ -93,7 +93,7 @@ export default function ProductPage({
 
             {/* Grid */}
             {filtered.length > 0 ? (
-              <Row>
+              <Row g-5>
                 {filtered.map((p) => (
                   <ProductGrid selectProduct={selectProduct} product={p} />
                 ))}

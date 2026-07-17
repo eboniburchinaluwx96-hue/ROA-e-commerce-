@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
     <Card className="product-card">
       <div style={{ position: "relative" }}>
         <Card.Img src={product.image} />
-        <Row style={{ position: "relative", top: -270, height: "0" }}>
+        <Row g-5 style={{ position: "relative", top: -270, height: "0" }}>
           <Col className="col-8 col-auto">
             {product.store && (
               <div

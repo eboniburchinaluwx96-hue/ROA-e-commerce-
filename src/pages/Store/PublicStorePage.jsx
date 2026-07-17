@@ -316,7 +316,7 @@ export default function StorePublicPage() {
         }}
       >
         <Container>
-          <Row className="align-items-center">
+          <Row g-5 className="align-items-center">
             <Col
               className="col-7"
               style={{

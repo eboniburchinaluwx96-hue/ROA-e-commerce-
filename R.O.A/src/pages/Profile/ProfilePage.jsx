@@ -24,7 +24,7 @@ function ProfilePage() {
 
             <button className="cover-btn">EDIT COVER</button>
 
-            <Row className=" align-items-center g-2 g-sm-4 g-md-4">
+            <Row g-5 className=" align-items-center g-2 g-sm-4 g-md-4">
               <Col
                 className="col-5 col-sm-4 col-md-4 col-lg-3"
                 style={{
@@ -47,9 +47,12 @@ function ProfilePage() {
                   right: "0",
                 }}
               >
-                <Row>
+                <Row g-5>
                   <Col>
-                    <Row className="align-items-center  mb-1 mb-sm-2 mt-sm-1 mt-md-4 g-sm-3">
+                    <Row
+                      g-5
+                      className="align-items-center  mb-1 mb-sm-2 mt-sm-1 mt-md-4 g-sm-3"
+                    >
                       <Col className="col-6 col-sm-auto">
                         <p
                           style={{
@@ -105,7 +108,7 @@ function ProfilePage() {
               marginTop: "clamp(15px, 33vw, 350px)",
             }}
           >
-            <Row className="g-3">
+            <Row g-5 className="g-3">
               <Col className="col-auto">
                 <button
                   className="btn btn-outline"
@@ -139,6 +142,7 @@ function ProfilePage() {
             }}
           >
             <Row
+              g-5
               className="py-4 py-md-5 p-sm- g-4 g-sm-5"
               style={{
                 fontSize: "16px",

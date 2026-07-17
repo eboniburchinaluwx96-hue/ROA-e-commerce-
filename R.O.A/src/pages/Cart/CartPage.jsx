@@ -18,12 +18,12 @@ const CartPage = () => {
         {cart && (
           <div style={{ marginTop: "150px" }}>
             <Container>
-              <Row className="px-3">
+              <Row g-5 className="px-3">
                 <Col className="col-12 col-md-7">
                   {/* cart Items Card */}
 
                   <div className="cart-col">
-                    <Row className="py-5 px-3 ">
+                    <Row g-5 className="py-5 px-3 ">
                       <Col className="col-3 col-sm-2 me-3">
                         <Image
                           roundedCircle
@@ -45,7 +45,7 @@ const CartPage = () => {
                           $10,900
                         </p>
 
-                        <Row className="align-items-center mt-4">
+                        <Row g-5 className="align-items-center mt-4">
                           <Col className="col-12 col-sm-9 mb-4 mb-sm-0">
                             <button
                               onClick={() => {
@@ -74,7 +74,7 @@ const CartPage = () => {
                   </div>
 
                   <div className="cart-col">
-                    <Row className="py-5 px-3 ">
+                    <Row g-5 className="py-5 px-3 ">
                       <Col className="col-3 col-sm-2 me-3">
                         <Image
                           roundedCircle
@@ -96,7 +96,7 @@ const CartPage = () => {
                           $10,900
                         </p>
 
-                        <Row className="align-items-center mt-4">
+                        <Row g-5 className="align-items-center mt-4">
                           <Col className="col-12 col-sm-9 mb-4 mb-sm-0">
                             <button
                               onClick={() => {
@@ -125,7 +125,7 @@ const CartPage = () => {
                   </div>
 
                   <div className="cart-col">
-                    <Row className="py-5 px-3 ">
+                    <Row g-5 className="py-5 px-3 ">
                       <Col className="col-3 col-sm-2 me-3">
                         <Image
                           roundedCircle
@@ -147,7 +147,7 @@ const CartPage = () => {
                           $10,900
                         </p>
 
-                        <Row className="align-items-center mt-4">
+                        <Row g-5 className="align-items-center mt-4">
                           <Col className="col-12 col-sm-9 mb-4 mb-sm-0">
                             <button
                               onClick={() => {
@@ -189,6 +189,7 @@ const CartPage = () => {
                     </h6>
 
                     <Row
+                      g-5
                       className="pt-4"
                       style={{
                         fontSize: "18px",
@@ -201,6 +202,7 @@ const CartPage = () => {
                     </Row>
 
                     <Row
+                      g-5
                       className="pt-2"
                       style={{
                         fontSize: "18px",
@@ -213,6 +215,7 @@ const CartPage = () => {
                     </Row>
 
                     <Row
+                      g-5
                       className="pt-2 align-items-center"
                       style={{
                         fontSize: "18px",
@@ -225,7 +228,7 @@ const CartPage = () => {
                       <Col className="me-auto">$1,000</Col>
                     </Row>
 
-                    <Row>
+                    <Row g-5>
                       <Col className="col-6 col-md-7"></Col>
                       <Col className="me-auto col-5">
                         <div className="order-border"></div>
@@ -233,6 +236,7 @@ const CartPage = () => {
                     </Row>
 
                     <Row
+                      g-5
                       className="pt-3"
                       style={{
                         fontSize: "18px",
@@ -294,7 +298,7 @@ const CartPage = () => {
                 <Form.Control type="Phone" placeholder="Phone" />
               </FloatingLabel>
 
-              <Row className="pt-4">
+              <Row g-5 className="pt-4">
                 <Col>
                   <FloatingLabel controlId="floatingPhone" label="CITY">
                     <Form.Control type="City" placeholder="City" />

@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import { FiSearch, FiShoppingCart, FiBell, FiHeart } from "react-icons/fi";
 
-const HeaderIcons = ({ showCart, showWishlist, showSearchbtn, title }) => {
+const HeaderIcons = ({
+  showCart,
+  showWishlist,
+  showSearchbtn,
+  showNotification,
+}) => {
   const { user } = useAuthStore();
 
   return (
@@ -16,13 +21,15 @@ const HeaderIcons = ({ showCart, showWishlist, showSearchbtn, title }) => {
             </Nav.Link>
           )}
 
-          <Nav.Link
-            className={` d-none d-md-block ${title ? "d-block" : ""}`}
-            as={Link}
-            to="/notifications"
-          >
-            <FiBell size={24} color="orange" />
-          </Nav.Link>
+          {showNotification && (
+            <Nav.Link
+              className={` d-none d-md-block ${showNotification ? "d-block" : ""}`}
+              as={Link}
+              to="/notifications"
+            >
+              <FiBell size={24} color="orange" />
+            </Nav.Link>
+          )}
 
           {showWishlist && (
             <Nav.Link className="mx-2" as={Link} to="/wishlist">

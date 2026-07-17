@@ -10,6 +10,7 @@ export const ProfilePic = () => {
       <button className="cover-btn">EDIT COVER</button>
 
       <Row
+        g-5
         className=" align-items-center gx-sm-1"
         style={{
           position: "relative",
@@ -31,6 +32,7 @@ export const ProfilePic = () => {
           </div>
 
           <Row
+            g-5
             className="align-items-center gx-1 gx-md-0"
             style={{
               position: "relative",
@@ -46,7 +48,7 @@ export const ProfilePic = () => {
 
         <Col className="col-7 col-sm-8 col-lg-9 py-md-5 py-sm-3 py-1">
           <div className=" d-flex flex-column">
-            <Row className="align-items-center">
+            <Row g-5 className="align-items-center">
               <Col className="col-8 mb-2">
                 {" "}
                 <p

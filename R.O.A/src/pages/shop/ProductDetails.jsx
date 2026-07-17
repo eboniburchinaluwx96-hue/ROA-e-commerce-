@@ -101,7 +101,7 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                   >
                     Sizes
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.sizes.map((s, i) => {
                       return (
                         <Col key={i} className="col-3">
@@ -133,7 +133,7 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                   >
                     Colors
                   </div>
-                  <Row>
+                  <Row g-5>
                     {product.colors.map((c, i) => {
                       return (
                         <Col key={i} className="col-3">
@@ -150,7 +150,7 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
                 </div>
               )}
 
-              <Row className="mt-4 mb-5 align-items-center">
+              <Row g-5 className="mt-4 mb-5 align-items-center">
                 <Col className="">
                   <div className="d-inline-flex align-items-center gap-2">
                     <p

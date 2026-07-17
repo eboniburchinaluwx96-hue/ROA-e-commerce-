@@ -34,7 +34,7 @@ export const Footer = () => {
               find your market, sell everywhere.
             </p>
 
-            <Row className="mt-4">
+            <Row g-5 className="mt-4 g-5">
               <Col>
                 <h6 style={{ color: "rgb(255, 238, 0)" }}>PLATFORM</h6>
                 <div className="d-flex flex-column gap-2">
@@ -42,6 +42,8 @@ export const Footer = () => {
                   <a href="">For Buyers</a>
                   <a href="">Pricing</a>
                   <a href="">Neighbourhood</a>
+                  <a href="">Categories</a>
+                  <a href="">Become a Seller</a>
                 </div>
               </Col>
 
@@ -71,9 +73,9 @@ export const Footer = () => {
       <footer className="bg-black py-3">
         <Container>
           <div
+            className="justify-content-center justify-content-sm-between"
             style={{
               display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
               flexWrap: "wrap",
               gap: "12px",
@@ -82,7 +84,7 @@ export const Footer = () => {
             <span
               style={{
                 color: "rgba(255, 255, 255, 0.29)",
-                fontSize: "clamp(9px, 5px + 1vw, 22px)",
+                fontSize: "clamp(15px, 5px + 1vw, 22px)",
               }}
             >
               © 2026 R.O.A. · Powering local stores online.

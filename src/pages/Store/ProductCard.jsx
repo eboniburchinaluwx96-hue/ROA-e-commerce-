@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
       <div style={{ position: "relative" }}>
         <Card.Img src={product.image} />
 
-        <Row style={{ position: "relative", top: -270, height: "0" }}>
+        <Row g-5 style={{ position: "relative", top: -270, height: "0" }}>
           <Col className=" col-auto ms-2 ms-md-4 ms-lg-3 g-lg-2 g-0 ">
             <div
               className={IsWish ? "wishlist-active" : ""}

@@ -5,7 +5,7 @@ import products from "../../../js/products";
 const ProductGrid = () => {
   return (
     <div className="mb-5">
-      <Row>
+      <Row g-5>
         {products.length > 0 ? (
           products.map((p) => (
             <Col key={p.id} xxs={12} xs={6} sm={4} md={3} lg={2}>

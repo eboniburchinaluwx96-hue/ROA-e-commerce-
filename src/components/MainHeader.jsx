@@ -10,10 +10,14 @@ import HeaderAuth from "./header/HeaderAuth";
 
 const MainHeader = ({
   title,
+  showNotification = true,
+  search = true,
+  hamburger = true,
   showAuth = true,
   showCart = true,
   showWishlist = false,
   showSearchbtn = true,
+  ownStore = false,
 }) => {
   const navigate = useNavigate();
 
@@ -41,7 +45,7 @@ const MainHeader = ({
     <>
       <Navbar
         fixed="top"
-        className={`header ${scrolled ? "header-scrolled" : ""} ${title ? "py-3" : ""}`}
+        className={`header py-2 ${scrolled ? "header-scrolled" : ""} ${title ? "py-3" : ""}`}
       >
         <Container>
           <div className=" d-flex align-items-center gap-3">
@@ -66,20 +70,20 @@ const MainHeader = ({
               </>
             ) : (
               <>
-                <HeaderHamburger />
+                {hamburger && <HeaderHamburger />}
                 <HeaderLogo />
               </>
             )}
           </div>
 
-          {!title && <HeaderSearch />}
+          {search && <HeaderSearch />}
 
           <div className=" nav-icons">
             <HeaderIcons
               showCart={showCart}
               showWishlist={showWishlist}
               showSearchbtn={showSearchbtn}
-              title
+              showNotification={showNotification}
             />
             {showAuth && (
               <HeaderAuth
@@ -88,6 +92,14 @@ const MainHeader = ({
                 onHide={() => setShowProfile(false)}
                 scrolled={scrolled}
               />
+            )}
+
+            {ownStore && (
+              <Link to="/login">
+                <div className="d-inline-flex gap-3 align-items-center">
+                  <button className="login-btn">Login</button>
+                </div>
+              </Link>
             )}
           </div>
         </Container>
