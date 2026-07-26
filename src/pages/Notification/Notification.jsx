@@ -1,11 +1,12 @@
 import { Container, Stack } from "react-bootstrap";
+import NavTop from "../../components/PageNav";
 
-function Messages() {
+function Notifications() {
   return (
     <Container>
-      <h1>NOTIFICATIONS</h1>
+      <NavTop title="Notifications" />
     </Container>
   );
 }
 
-export default Messages;
+export default Notifications;

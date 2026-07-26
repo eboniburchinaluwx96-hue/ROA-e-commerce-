@@ -5,7 +5,7 @@ const HeaderSearch = () => {
     <>
       {/* Desktop Search */}
       <div
-        className="d-none d-sm-block search-bar me-3"
+        className="d-none d-md-block search-bar me-3"
         style={{ flexShrink: 500 }}
       >
         <FormControl

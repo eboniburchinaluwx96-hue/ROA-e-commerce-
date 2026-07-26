@@ -9,13 +9,12 @@ import {
 } from "react-icons/fa";
 import { ProfileSlider } from "./components/ProfileSlider";
 import { ProfileInfo } from "./components/ProfileInfo";
-import Nav from "../../components/PageNav";
 import { ProfileEdit } from "./components/ProfileEdit";
 import { ProfilePic } from "./components/ProfilePic";
 import { Overview } from "./components/ProfileOverview";
 import { Settings } from "./components/ProfileSettings";
-import { Footer } from "../Home/component/Footer";
-import { useNavigate } from "react-router";
+import { Footer } from "../Home/components/Footer";
+import NavTop from "../../components/PageNav";
 
 const profile = [
   {
@@ -64,7 +63,7 @@ function ProfilePage() {
     <>
       <div className="profile-container">
         <Container>
-          <Nav title="My Profile" />
+          <NavTop title="My Profile" />
 
           <ProfilePic />
 

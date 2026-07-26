@@ -1,7 +1,6 @@
 import { Container, Row, Col, Form, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainHeader from "../../components/MainHeader";
-import { useState } from "react";
 import { Footer } from "./components/Footer";
 import { FaStar, FaStore, FaShoppingBasket } from "react-icons/fa";
 import { zoomIn, container, fadeUp } from "../../animation";
@@ -19,16 +18,18 @@ function HomePage() {
       <MainHeader showAuth={true} showCart={true} showSearchbtn={true} />
 
       <Container>
-        <div
-          className="align-items-center text-light text-center about-us text-light "
-          style={{
-            marginTop: "clamp(-40px, 20vh, 100px)",
-          }}
-        >
-          <div className="mb-4 hero1">YOUR MARKET.</div>
+        <div className="align-items-center text-light text-center about-us text-light ">
+          <div
+            className="mb-5 hero1"
+            style={{
+              fontStyle: "italic",
+            }}
+          >
+            YOUR MARKET
+          </div>
 
           <div
-            className="d-flex gap-md-4 flex-wrap justify-content-center "
+            className="md-5 "
             style={{
               color: "rgb(255, 238, 0)",
               fontStyle: "italic",
@@ -42,7 +43,7 @@ function HomePage() {
               viewport={{ once: true }}
             >
               <div className="d-flex gap-1">
-                {["W", "O", "R", "L", "D"].map((a) => {
+                {["W", "O", "R", "L", "D", "."].map((a) => {
                   return (
                     <motion.div variants={zoomIn} className="hero3" key={a}>
                       <div>{a}</div>
@@ -54,9 +55,14 @@ function HomePage() {
           </div>
         </div>
 
-        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-          <div className="d-flex my-5 gap-4 justify-content-center">
-            <Link to="">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          style={{ paddingBottom: "150px" }}
+        >
+          <div className="d-flex  gap-4 gap-lg-5 justify-content-center">
+            <Link to="/get-store">
               {" "}
               <button className="btn1 p-3">
                 <div className="d-flex align-items-center gap-3">
@@ -78,7 +84,7 @@ function HomePage() {
         </motion.div>
       </Container>
 
-      <section className="py-5" style={{ background: "#494708" }}>
+      <section style={{ background: "#494708", padding: "150px 0" }}>
         {" "}
         <Container>
           <Row
@@ -198,10 +204,11 @@ function HomePage() {
       <HowItWorks />
 
       <div
-        className="py-5 text-center"
+        className=" text-center"
         style={{
           color: " rgba(194, 194, 194, 0.83)",
           background: "#2c2a08",
+          padding: "150px 0",
         }}
       >
         <Container>
@@ -310,7 +317,7 @@ function HomePage() {
         style={{
           borderTopRightRadius: "170px",
           background: "#308f0465",
-          padding: "20px",
+          padding: "110px 0",
         }}
       >
         <Container>

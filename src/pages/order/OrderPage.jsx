@@ -25,7 +25,7 @@ import {
 import { Slider } from "./components/OrderPageSlider";
 import OrderDetails from "./components/OrderDetails";
 import { Prev } from "react-bootstrap/esm/PageItem";
-import { Footer } from "../Home/component/Footer";
+import { Footer } from "../Home/components/Footer";
 import MainHeader from "../../components/MainHeader";
 
 const SORT_OPTIONS = [
@@ -61,7 +61,12 @@ function OrderPage() {
 
   return (
     <>
-      <MainHeader title="Orders" showAuth={!true} showSearchbtn={!true} />
+      <MainHeader
+        title="Orders"
+        showAuth={!true}
+        showSearchbtn={!true}
+        search={false}
+      />
 
       <Container>
         <section className="orders">
@@ -72,8 +77,8 @@ function OrderPage() {
             <p className="mb-4">All your orders placed across R.O.A stores</p>
           </div>
 
-          <Row g-5 className="align-items-center">
-            <Col className="col-12 col-sm-8 ">
+          <Row className="align-items-center g-1 g-sm-4 my-4">
+            <Col className=" col-12 col-sm-8">
               <div
                 className="d-inline-flex align-items-center  gap-3 ps-3 my-4 w-100"
                 style={{ border: "1px solid  rgba(255, 238, 0, 0.42)" }}
@@ -89,8 +94,8 @@ function OrderPage() {
               </div>
             </Col>
 
-            <Col>
-              <div className="my-4">
+            <Col className="col-12">
+              <div>
                 <button
                   onClick={() => setSortShow(true)}
                   style={{
@@ -137,12 +142,11 @@ function OrderPage() {
           <Row g-5>
             <Col className="col-12 col-md-6 col-lg-4">
               <div
-                className="mt-5 "
+                className="mt-5 w-100"
                 style={{
                   border: "1px solid  rgba(255, 238, 0, 0.42)",
                   borderLeft: "5px solid #e2960a",
                   background: "#00000044",
-                  height: "400px",
                 }}
               >
                 <div
@@ -169,6 +173,7 @@ function OrderPage() {
                         style={{
                           background: "#6d48043b",
                           border: "1px solid #e2960a",
+                          fontSize: ".7rem",
                           color: "#e2960a",
                         }}
                       >
@@ -266,12 +271,11 @@ function OrderPage() {
 
             <Col className="col-12 col-md-6 col-lg-4">
               <div
-                className="mt-5 "
+                className="mt-5 w-100"
                 style={{
                   border: "1px solid  rgba(255, 238, 0, 0.42)",
                   borderLeft: "5px solid #34d30d",
                   background: "#00000044",
-                  height: "400px",
                 }}
               >
                 <div
@@ -298,6 +302,7 @@ function OrderPage() {
                         style={{
                           background: "#35d30d1c",
                           border: "1px solid #34d30d",
+                          fontSize: ".7rem",
                           color: "#34d30d",
                         }}
                       >

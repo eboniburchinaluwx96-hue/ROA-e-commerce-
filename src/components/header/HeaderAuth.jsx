@@ -16,6 +16,7 @@ import {
   FileArrowDown,
   Eye,
   Chat,
+  EyeSlash,
 } from "react-bootstrap-icons";
 import {
   FaChevronRight,
@@ -27,7 +28,6 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 
 const HeaderAuth = () => {
-  //const navigate = useNavigate();
   const [view, setView] = useState(false);
   const { user } = useAuthStore();
 
@@ -36,36 +36,42 @@ const HeaderAuth = () => {
   return (
     <>
       {user && (
-        <Stack
-          className="ps-2 ms-3 ms-sm-0 align-items-center"
-          direction="horizontal"
-          gap={1}
-          onClick={() => setShowProfile(true)}
-          style={{
-            background: "#eff3087c",
-            borderRadius: "10px",
-            fontSize: "11px",
-            color: "#eeeeee",
-            cursor: "pointer",
-          }}
-        >
-          {view ? <h6 className="">***</h6> : <p>&#8358; 1.77</p>}
-
-          <div
-            className="d-flex align-items-center gap-1"
-            style={{ overflow: "hidden" }}
+        <div>
+          {" "}
+          <Stack
+            className="ps-2 ms-3 ms-sm-0 align-items-center "
+            direction="horizontal"
+            gap={1}
+            onClick={() => setShowProfile(true)}
+            style={{
+              background: "#eff3087c",
+              borderRadius: "10px",
+              fontSize: "11px",
+              cursor: "pointer",
+            }}
           >
-            <Image
-              style={{
-                objectFit: "cover",
-              }}
-              roundedCircle
-              width={25}
-              height={28}
-              src="/images/profile.jpg"
-            />
-          </div>
-        </Stack>
+            {view ? (
+              <h6 className="text-white">***</h6>
+            ) : (
+              <p className="text-white text-wrap">&#8358; </p>
+            )}
+
+            <div
+              className="d-flex align-items-center gap-1"
+              style={{ overflow: "hidden" }}
+            >
+              <Image
+                style={{
+                  objectFit: "cover",
+                }}
+                roundedCircle
+                width={25}
+                height={28}
+                src="/images/profile.jpg"
+              />
+            </div>
+          </Stack>
+        </div>
       )}
 
       <Offcanvas
@@ -91,48 +97,62 @@ const HeaderAuth = () => {
         </div>
 
         <Offcanvas.Body className="profile-body p-0 mt-2">
-          <div className="wallet p-4 mx-2 mb-4">
+          <div className="wallet p-4 pb-5 mx-2 mb-4 text-white">
             <div className="d-flex align-items-center gap-3 fs-5 ">
               {" "}
               My Balance(NGN){" "}
-              <Eye
+              <div
                 onClick={() => setView((p) => !p)}
                 style={{ cursor: "pointer" }}
-              />{" "}
+              >
+                {view ? <EyeSlash /> : <Eye />}
+              </div>
+              <div className="d-flex">
+                <Link to="/transactions" className="ms-auto text-end">
+                  View all transactions
+                </Link>
+              </div>
             </div>
 
-            <div className="text-light  my-4">
+            <div className="  my-4 my-md-5">
               {view ? (
-                <h1 className="fs-1 fw-bolder">***</h1>
+                <h1 className="fs-1 fw-bolder text-white">***</h1>
               ) : (
-                <h1 className="fs-1 fw-bolder">
-                  1. <span style={{ fontSize: "17px" }}>24</span>
+                <h1
+                  className="fs-1 fw-bolder text-white"
+                  style={{ letterSpacing: 4 }}
+                >
+                  &#8358; 122,537. <span style={{ fontSize: "17px" }}>24</span>
                 </h1>
               )}
             </div>
 
-            <Stack direction="horizontal" gap={3} className="mb-3">
-              <button
-                className="text-light text-center w-100 p-2  "
-                style={{
-                  background: "#e00837",
-                  borderRadius: "20px",
-                  border: "1px solid #ffffffab",
-                }}
-              >
-                Deposit
-              </button>
+            <Stack direction="horizontal" gap={3} className="my-3">
+              <Link to="/deposit" className="w-100">
+                <button
+                  className="text-light text-center  p-2  w-100"
+                  style={{
+                    background: "#e00837",
+                    borderRadius: "20px",
+                    border: "1px solid #ffffffab",
+                  }}
+                >
+                  Top up
+                </button>
+              </Link>
 
-              <button
-                className="text-light text-center w-100 p-2  "
-                style={{
-                  background: "#7f08e0",
-                  border: "1px solid #ffffffab",
-                  borderRadius: "20px",
-                }}
-              >
-                Withdraw
-              </button>
+              <Link to="/withdraw" className="w-100">
+                <button
+                  className="text-light text-center w-100 p-2  "
+                  style={{
+                    background: "#7f08e0",
+                    border: "1px solid #ffffffab",
+                    borderRadius: "20px",
+                  }}
+                >
+                  Withdraw
+                </button>
+              </Link>
             </Stack>
           </div>
 

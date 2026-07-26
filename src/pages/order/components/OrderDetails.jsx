@@ -17,7 +17,6 @@ function OrderDetails({ show, onHide }) {
           "radial-gradient(circle,rgba(49, 49, 1, 0.993)20%, rgb(2, 44, 24))",
         width: "550px",
         color: "rgba(194, 194, 194, 0.83)",
-        marginTop: "70px",
       }}
       show={show}
       onHide={onHide}
@@ -32,10 +31,9 @@ function OrderDetails({ show, onHide }) {
               color: "#fff",
               background: "none",
               border: "none",
-              fontSize: "clamp(40px, 1.5vw, 20px)",
             }}
           >
-            x
+            X
           </button>
 
           <h3 className="mb-4">ORDER DETAIL</h3>

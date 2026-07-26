@@ -38,9 +38,9 @@ const cards = [
 
 export function WhyUs() {
   return (
-    <section style={{ background: "#fdfdfd73" }} className="pb-5">
+    <section style={{ background: "#fdfdfd73" }} className="py-5">
       <Container>
-        <div className="text-center py-5">
+        <div className="text-center ">
           <p
             className="text-dark"
             style={{
@@ -55,14 +55,14 @@ export function WhyUs() {
           </p>
         </div>
 
-        <Row g-5 className="g-5">
+        <Row g-5 className="g-5 my-3">
           {cards.map((c) => {
             return (
               <Col key={c} className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <Stack
                   direction="horizontal"
-                  gap={3}
-                  className="align-items-start p-3 why_us_card"
+                  gap={2}
+                  className="align-items-start px-3 py-3 py-lg-0 pt-lg-5  why_us_card"
                   style={{
                     boxShadow: "2px 12px 30px #000000b6",
                     borderRadius: "12px",

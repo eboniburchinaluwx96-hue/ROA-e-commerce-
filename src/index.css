@@ -5,3 +5,14 @@
   margin:0;
   padding:0
 }
+
+ @media  {
+  h1 { font-size: clamp(18px, 6vw, 40px) !important; }
+  h2 { font-size: clamp(17px, 5vw, 32px) !important; }
+  h3 { font-size: clamp(15.4px, 3.2vw, 29px) !important; }
+  h4 { font-size: clamp(14.8px, 3vw, 25px) !important; }
+  h5 { font-size: clamp(14px, 2.8vw, 23.5px) !important; }
+  h6 { font-size: clamp(13.8px, 2.2vw, 22px) !important; }
+  p  { font-size: clamp(13px, 2vw, 18px) !important; }
+  a  { font-size: clamp(13px, 2vw, 18px) !important; }
+   }

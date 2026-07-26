@@ -16,7 +16,7 @@ const HeaderIcons = ({
       {user && (
         <div className="header-icons">
           {showSearchbtn && (
-            <Nav.Link className="d-sm-none ms-auto">
+            <Nav.Link className="d-md-none ms-auto">
               <FiSearch size={24} color="white" />
             </Nav.Link>
           )}
@@ -25,7 +25,7 @@ const HeaderIcons = ({
             <Nav.Link
               className={` d-none d-md-block ${showNotification ? "d-block" : ""}`}
               as={Link}
-              to="/notifications"
+              to="/notification"
             >
               <FiBell size={24} color="orange" />
             </Nav.Link>

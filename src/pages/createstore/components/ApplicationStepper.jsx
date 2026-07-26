@@ -1,11 +1,10 @@
-export function ApplicationStepper({ step, setStep }) {
+export function ApplicationStepper({ step }) {
   return (
     <div className="d-flex mb-5" style={{ overflowX: "auto" }}>
-      {[1, 2, 3, 4, 5, 6, 7].map((num) => {
+      {[1, 2, 3, 4].map((num) => {
         return (
-          <div key={num} className="d-flex align-items-center">
+          <div key={num} className="d-flex align-items-center w-100">
             <div
-              onClick={() => setStep(num)}
               className={`d-flex align-items-center justify-content-center text-white px-2 ${step === num ? "step_active" : ""}`}
               style={{
                 border: "1px solid #facc15",
@@ -20,7 +19,7 @@ export function ApplicationStepper({ step, setStep }) {
               style={{
                 flex: "1",
                 padding: "3px",
-                width: "30px",
+                width: "100%",
                 background: "#facc15",
               }}
             />

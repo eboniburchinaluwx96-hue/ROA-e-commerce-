@@ -1,18 +1,21 @@
-import { Container, Badge, Button } from "react-bootstrap";
+import { Container, Badge, Button, Nav } from "react-bootstrap";
 import { BsArrowRight, BsPeople, BsShieldCheck, BsShop } from "react-icons/bs";
 
-export function HeroSection({ scrollIntoView }) {
+export function HeroSection({ setCreate, create }) {
   return (
-    <section className="hero_section py-5">
+    <section className="hero_section">
       <Container>
         <Badge className="hero-badge px-4 mb-5">
           <h6>Start selling on R.O.A</h6>
         </Badge>
 
-        <div className="mb-5">
-          <h1 className="text-white">Your store</h1>
-          <h1 className="text-white my-4 my-sm-3">Your brand</h1>
-          <h1 style={{ color: "#ffcc01" }}>Your earnings</h1>
+        <div
+          className="mb-5"
+          style={{ fontSize: "clamp(45px, 8vw, 300px)", fontWeight: 800 }}
+        >
+          <div className="text-white">Your store</div>
+          <div className="text-white my-4 my-sm-3">Your brand</div>
+          <div style={{ color: "#ffcc01" }}>Your earnings</div>
         </div>
 
         <p>
@@ -21,10 +24,19 @@ export function HeroSection({ scrollIntoView }) {
           across Nigeria.
         </p>
 
-        <Button onClick={scrollIntoView} className="hero-btn my-5" size="lg">
-          Create Store
-          <BsArrowRight className="ms-2" />{" "}
-        </Button>
+        <div
+          onClick={() => setCreate(!false)}
+          className="hero-btn my-5 p-3 fs-4 d-inline-block ms-2"
+          style={{ cursor: "pointer" }}
+        >
+          <Nav.Link
+            className={`text-dark ${create ? "d-none" : "d-block"}`}
+            href="#store_open"
+          >
+            Create Store
+            <BsArrowRight className="ms-2" />{" "}
+          </Nav.Link>
+        </div>
 
         <div className="hero-stat justify-content-center ">
           <div className="d-flex flex-column  ">

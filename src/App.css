@@ -1,33 +1,33 @@
 a {
   text-decoration: none;
-  color:#c2c2c2e5 !important ;
+  color:#d6cfcff5 !important ;
 }
 
 p{
   line-height: 30px;
   margin: 0;
-  color: #c2c2c2e5;
+  color: #d6cfcf;
 }
 
 h1,h2,h3,h4,h5,h6 {
-  line-height: 35px !important;
+  line-height: 40px ;
   margin: 0 !important;
   padding: 0 !important;
-  color: #c2c2c2e5;
+  color: #d6cfcf;
 }
 
 
 
 body {
-  background: radial-gradient(circle,rgba(49, 49, 1, 0.993)20%, #022c18) !important;
+  background: radial-gradient(circle,   #05270af6 ,#001a04,#05270af6 ,#001a04, #05270af6 ,#001a04, #05270af6 ,#001a04, #05270af6 ,#001a04, #05270af6 ,#001a04,#05270af6 ,#001a04,#05270af6 ,#001a04) !important;
   font-family: "outfit", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: 1rem;
   min-height:100vh; 
   scrollbar-width: 8px !important;
-  margin-top: 70px;
-  color: #c2c2c2e5 !important;
+  margin-top: 130px;
+  color: #d6cfcff5 !important;
 }
 
 

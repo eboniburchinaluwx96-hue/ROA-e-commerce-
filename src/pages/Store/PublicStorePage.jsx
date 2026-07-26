@@ -172,6 +172,19 @@ export default function StorePublicPage() {
                   {STORE.name}
                 </h1>
 
+                {/* Tagline */}
+                <p
+                  className="text-light mx-auto mt-3"
+                  style={{
+                    fontSize: "20px",
+                    lineHeight: 1.72,
+
+                    maxWidth: 480,
+                  }}
+                >
+                  {STORE.tagline}
+                </p>
+
                 {/* Meta */}
                 <p
                   style={{
@@ -184,18 +197,18 @@ export default function StorePublicPage() {
                   Since {STORE.joined}
                 </p>
 
-                {/* Tagline */}
-                <p
+                {/* description */}
+
+                <div
+                  className=" mx-auto px-2 py-1 my-5 d-inlne-flex "
                   style={{
-                    color: "rgba(255,255,255,0.74)",
-                    fontSize: "20px",
-                    lineHeight: 1.72,
-                    margin: "45px auto",
-                    maxWidth: 480,
+                    background: "linear-gradient(40deg, #f3f3aa9a, #baf7a75d)",
                   }}
                 >
-                  {STORE.tagline}
-                </p>
+                  <h6 className="text-light" style={{ lineHeight: 1 }}>
+                    {STORE.description || "your description shows here"}
+                  </h6>
+                </div>
 
                 {/* CTAs */}
                 <div
@@ -389,7 +402,7 @@ export default function StorePublicPage() {
             </span>
             <h3
               style={{
-                fontFamily: "'Syne',sans-serif",
+                fontFamily: "'Bebas+Neue',sans-serif",
                 fontWeight: 800,
                 color: "#fff",
                 fontSize: "1.5rem",

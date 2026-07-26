@@ -45,7 +45,7 @@ const MainHeader = ({
     <>
       <Navbar
         fixed="top"
-        className={`header py-2 ${scrolled ? "header-scrolled" : ""} ${title ? "py-3" : ""}`}
+        className={`header py-4 ${scrolled ? "header-scrolled" : ""} ${title ? "py-3" : ""}`}
       >
         <Container>
           <div className=" d-flex align-items-center gap-3">

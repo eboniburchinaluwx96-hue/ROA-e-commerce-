@@ -17,7 +17,7 @@ import {
   FiTruck,
   FiTwitter,
 } from "react-icons/fi";
-import Nav from "../../components/PageNav";
+import NavTop from "../../components/PageNav";
 
 const FAQS = [
   {
@@ -49,7 +49,7 @@ export default function Help_Support() {
     <>
       <Container>
         <section className="help_support">
-          <Nav title="Help & support" />
+          <NavTop title="Help & support" />
 
           <div
             style={{
@@ -65,7 +65,7 @@ export default function Help_Support() {
 
             <div
               className="d-flex align-items-center gap-2 mt-4 px-3 py-2"
-              style={{ border: "1px solid #c2c2c291", borderRadius: "15px" }}
+              style={{ border: "1px solid #d6cfcf91", borderRadius: "15px" }}
             >
               <FaSearch />{" "}
               <Form.Control
@@ -85,7 +85,7 @@ export default function Help_Support() {
               padding: "50px",
             }}
           >
-            <Row g-5 className="g-4">
+            <Row className="g-5">
               {[
                 {
                   Icon: FiShoppingBag,
@@ -131,7 +131,7 @@ export default function Help_Support() {
                 },
               ].map((t) => {
                 return (
-                  <Col className="col-6 col-sm-6 col-md-4">
+                  <Col className="col-12 col-sm-6 col-md-4">
                     <Stack
                       className="py-5 px-4"
                       style={{
@@ -199,7 +199,7 @@ export default function Help_Support() {
                   },
                 ].map((t) => {
                   return (
-                    <Col className=" col-6 col-lg-3">
+                    <Col xs={12} className=" col-6 col-lg-3">
                       <Stack
                         className="py-3 px-4"
                         style={{

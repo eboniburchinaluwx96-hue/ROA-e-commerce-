@@ -1,12 +1,12 @@
 .about-us {
-  font-size: clamp(4.5rem, 14vw, 10rem);
+  font-size: clamp(4.7rem, 15vw, 12rem);
   line-height: 1.3;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
   margin-bottom: 5rem;
-  color: #c2c2c2d4 !important;
+  color: #d6cfcfd4 !important;
 
   @keyframes fadeleft {
     from {
@@ -75,7 +75,7 @@
   border: 1px solid rgba(255, 238, 0, 0.62);
   background: transparent;
   border-radius: 25px;
-  color: #c2c2c2d4;
+  color: #d6cfcfd4;
   font-size: 14px;
   transform-origin: center;
   animation: zoom 1.5s ease-in-out infinite;
@@ -94,7 +94,7 @@
   }
 
   @media (min-width: 768px) {
-    height: 380px;
+    height: 410px;
   }
 }
 

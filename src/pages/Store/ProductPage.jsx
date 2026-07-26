@@ -48,7 +48,7 @@ export default function ProductPage({
                 </div>
                 <div
                   style={{
-                    fontFamily: "'Syne',sans-serif",
+                    fontFamily: "'Bebas+Neue',sans-serif",
                     fontWeight: 800,
                     color: "#fff",
                     fontSize: "clamp(1.25rem,3vw,1.75rem)",

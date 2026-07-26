@@ -2,6 +2,7 @@
   background: linear-gradient(135deg, #022c22 0%, #065f46 40%, #15803d 100%);
   overflow: hidden;
   position: relative;
+  padding: 100px 0;
 
   &::before {
     content: "";
@@ -86,10 +87,10 @@
   background: none !important;
   border-color: #facc1560 !important;
   color: #fff !important;
-  padding: 10px 15px !important;
+  padding: 13px 30px !important;
 
   &::placeholder {
-    color: #c2c2c2e5 !important;
+    color: #d6cfcff5 !important;
   }
 
   &:focus {
@@ -100,7 +101,7 @@
 .form-select {
   background: none !important;
   border-color: #facc1560 !important;
-  color: #c2c2c2d4 !important;
+  color: #d6cfcfd4 !important;
 
   option {
     background: none !important;

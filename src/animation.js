@@ -8,15 +8,15 @@ export const fadeUp = {
 };
 
 export const zoomIn = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0.7 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.3, ease: "easeInOut" },
+    transition: { duration: 1.1, ease: "easeInOut" },
   },
 };
 
 export const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 1.1, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.5, delayChildren: 0.9 } },
 };

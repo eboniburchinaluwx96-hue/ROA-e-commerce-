@@ -1,8 +1,7 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import MainHeader from "../../components/MainHeader";
-import { FaArrowLeft } from "react-icons/fa";
 import ProductGrid from "./component/WishlistProductGrid";
-import { Footer } from "../Home/component/Footer";
+import { Footer } from "../Home/components/Footer";
 
 export const Wishlist = () => {
   return (

@@ -22,7 +22,7 @@ export function Categories() {
           <h3 style={{ color: "#00ffb3" }}>Explore Popular Categories</h3>
 
           <motion.div
-            className="d-flex gap-4 flex-wrap py-4 my-5"
+            className="d-flex gap-4 flex-wrap py-5 "
             variants={container}
             initial="hidden"
             whileInView="visible"

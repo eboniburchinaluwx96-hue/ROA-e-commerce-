@@ -1,9 +1,10 @@
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Image } from "react-bootstrap";
 
 export function LivePreview({ store }) {
   return (
     <>
       <Card
+        className=""
         style={{
           overflowY: "auto",
           boxShadow: "-2px 1px 22px #0e0d0d",
@@ -11,10 +12,11 @@ export function LivePreview({ store }) {
         }}
       >
         <section
+          className="py-5 px-3"
           style={{
-            padding: "5rem 0 4rem",
-            position: "relative",
             overflow: "hidden",
+            position: "relative",
+            backgroundImage: `${store.bannerPreview}`,
           }}
         >
           <div
@@ -69,7 +71,6 @@ export function LivePreview({ store }) {
               pointerEvents: "none",
             }}
           />
-
           <Container fluid>
             <div>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -85,15 +86,17 @@ export function LivePreview({ store }) {
                         color: "#00E676",
                         border: "1px solid rgba(0,230,118,0.3)",
                         borderRadius: 20,
-                        padding: "10px 18px",
+                        padding: "8px 12px",
                         fontWeight: 700,
-                        fontSize: "13px",
+                        fontSize: "clamp(8px, 2vw, 13px)",
                         letterSpacing: 1.4,
-                        fontFamily: "'Outfit',sans-serif",
                         display: "inline-block",
                       }}
                     >
-                      ✦ &nbsp;VERIFIED SELLER &nbsp;·&nbsp; {store.handle}
+                      ✦ &nbsp;VERIFIED SELLER &nbsp;·&nbsp;{" "}
+                      {store.Handle
+                        ? `@ ${store.Handle}`
+                        : "your handle shows here"}
                     </span>
                   </div>
 
@@ -118,8 +121,8 @@ export function LivePreview({ store }) {
                       }}
                     >
                       <img
-                        src={store.logo}
-                        alt={store.logo}
+                        src={store.logoPreview}
+                        alt={store.logoPreview}
                         className="img-fluid"
                       />
                     </div>
@@ -139,118 +142,99 @@ export function LivePreview({ store }) {
 
                   {/* Store name */}
                   <h1
+                    className="fw-bold mt-1 mb-4"
                     style={{
-                      fontWeight: 800,
                       color: "#f0f6fc",
-                      fontSize: "clamp(2.7rem,6vw,3.8rem)",
-                      lineHeight: 1.2,
+                      fontSize: "clamp(2.1rem,4vw,3.8rem)",
+                      lineHeight: 2,
                       letterSpacing: "-0.99px",
-                      marginBottom: "11px",
                     }}
                   >
-                    {store.name}
+                    {store.Name || "your store name appears here"}
                   </h1>
+
+                  {/* Tagline */}
+                  <p
+                    className="mx-auto mb-4 text-light "
+                    style={{
+                      fontSize: "20px",
+                      lineHeight: 1.72,
+                    }}
+                  >
+                    {store.tagline || "your tagline appears here"}
+                  </p>
 
                   {/* Meta */}
                   <p
                     style={{
-                      color: "#c2c2c2e5 ",
-                      fontSize: "14px",
-                      marginBottom: "33px",
+                      color: "#d6cfcff5 ",
+                      fontSize: "clamp(11.3px, 3vw, 14px)",
+                      lineHeight: 1.7,
                     }}
                   >
-                    📍 {store.location} &nbsp;·&nbsp;
-                    {store.state} &nbsp;·&nbsp; {store.city}
+                    <span className="text-warning fs-5">
+                      {" "}
+                      {store.Category || "store category displays here"}
+                    </span>{" "}
+                    &nbsp;·&nbsp; 📍{store.state || "your state appears here"}{" "}
+                    &nbsp;·&nbsp;
+                    {store.city || "your country appears here"}
                   </p>
 
-                  {/* Tagline */}
-                  <p
+                  {/* description */}
+                  <div
+                    className=" mx-auto px-2 py-1 my-5 d-inline-flex "
                     style={{
-                      color: "#c2c2c2e5 ",
-                      fontSize: "20px",
-                      lineHeight: 1.72,
-                      margin: "45px auto",
-                      maxWidth: 480,
+                      background:
+                        "linear-gradient(40deg, #f3f3aa6e, #baf7a75d)",
                     }}
                   >
-                    {store.tagline}
-                  </p>
+                    <h6 className="text-light">
+                      {store.description || "your description shows here"}
+                    </h6>
+                  </div>
 
                   {/* CTAs */}
                   <div
-                    className="hero-ctas"
+                    className="hero-ctas d-flex gap-3 mb-3  "
                     style={{
-                      display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      gap: 12,
                       flexWrap: "wrap",
-                      marginBottom: "38px",
                     }}
                   >
-                    <button
+                    <div
                       style={{
                         background: "#00E676",
                         border: "none",
                         color: "#000",
                         borderRadius: 12,
-                        fontFamily: "'Outfit',sans-serif",
                         fontWeight: 700,
-                        fontSize: "0.92rem",
+                        fontSize: "0.7rem",
                         padding: "15px",
                         boxShadow: "0 8px 28px rgba(0,230,118,0.38)",
                         transition: "all 0.22s",
                       }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.transform = "translateY(-2px)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.transform = "none")
-                      }
                     >
                       Shop All STORE_PRODUCTS
-                    </button>
+                    </div>
 
-                    <button className="py-2" style={{ background: "#00E676" }}>
-                      {" "}
-                      "♡ Follow Store"
-                    </button>
+                    <div
+                      style={{
+                        background: "rgba(255,255,255,0.07)",
+                        border: "1px solid rgba(255,255,255,0.18)",
+                      }}
+                    >
+                      <h6 className=" fw-bold">♡ Follow Store</h6>
+                    </div>
                   </div>
 
                   {/* Stats strip */}
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: "22px",
                       borderTop: "1px solid rgba(255,255,255,0.07)",
-                      paddingTop: "22px",
-                      lineHeight: "10px",
                     }}
-                  >
-                    <div style={{ maxWidth: 780 }}>
-                      <div
-                        style={{
-                          fontWeight: 800,
-                          fontSize: "23px",
-                          color: "#f0f6fcf6",
-                          lineHeight: 1,
-                        }}
-                      >
-                        Delivery
-                      </div>
-                      <div
-                        style={{
-                          color: "rgba(255, 255, 255, 0.53)",
-                          fontSize: "10px",
-                          marginTop: 10,
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {store.delivery}
-                      </div>
-                    </div>
-                  </div>
+                  ></div>
                 </div>
               </div>
             </div>
