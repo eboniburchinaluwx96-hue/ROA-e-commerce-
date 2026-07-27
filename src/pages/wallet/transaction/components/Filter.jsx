@@ -1,6 +1,6 @@
 export function Filter({ filter, setFilter, FILTERS }) {
   return (
-    <div className="filter mb-4 d-flex gap-3 gap-md-4">
+    <div className="filter-tab mb-4 d-flex gap-3 gap-md-4">
       {FILTERS.map((f) => (
         <button
           className="px-3 "

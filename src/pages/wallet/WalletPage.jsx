@@ -28,10 +28,10 @@ const BANKS = [
 ];
 
 const PAYMENT_METHOD = [
-  { id: "card", Icon: "", label: "Debit card", sub: "Visa, Mastercard " },
-  { id: "transfer", Icon: "", label: "Bank transfer", sub: "Instant USSD " },
-  { id: "mobile", Icon: "", label: "Opay / Palmpay", sub: "Mobile wallet " },
-  { id: "ussd", Icon: "", label: "USSD", sub: "no internet needed " },
+  { id: "card", Icon: "💳", label: "Debit card", sub: "Visa, Mastercard " },
+  { id: "transfer", Icon: "🏦", label: "Bank transfer", sub: "Instant USSD " },
+  { id: "mobile", Icon: "📱", label: "Opay / Palmpay", sub: "Mobile wallet " },
+  { id: "ussd", Icon: "🔗", label: "USSD", sub: "no internet needed " },
 ];
 
 {

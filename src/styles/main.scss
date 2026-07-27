@@ -12,6 +12,7 @@
 @use "components/getstore";
 @use "components/help_support";
 @use "components/wallet";
+@use "components/notification";
 
 .mySwiper {
   color: rgba(255, 255, 255, 0.664);
@@ -65,5 +66,17 @@
     &:focus {
       box-shadow: none !important;
     }
+  }
+}
+
+.filter-tab {
+  scroll-behavior: smooth;
+
+  @media (max-width: 750px) {
+    overflow-x: auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

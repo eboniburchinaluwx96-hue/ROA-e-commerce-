@@ -19,7 +19,7 @@ export function SummaryCard({ summary }) {
         className="g-5 align-items-center pb-5"
         style={{ borderBottom: "0.5px solid rgba(255, 255, 255, 0.75)" }}
       >
-        <Col className="col-12 col-sm-6">
+        <Col className="col-12 col-md-5">
           <div>
             <h5
               style={{
@@ -46,7 +46,7 @@ export function SummaryCard({ summary }) {
         <Col>
           <div className="d-flex justify-content-md-end gap-4 gap-md-5">
             <button
-              className="px-1 px-md-4"
+              className="px-4 px-md-4"
               onClick={() => navigate("/wallet/topup")}
               style={{
                 background: "#4d4d1671",
@@ -58,7 +58,7 @@ export function SummaryCard({ summary }) {
               <h6 style={{ lineHeight: "15px" }}>Top up</h6>
             </button>
             <button
-              className="px-1 px-md-4"
+              className="px-4 px-md-4"
               onClick={() => navigate("/wallet/withdraw")}
               style={{
                 background: "rgba(11, 65, 48, 0.66)",

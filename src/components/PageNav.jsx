@@ -17,7 +17,7 @@ export default function NavTop({ title }) {
       }}
     >
       <Container>
-        <div className="d-flex align-items-center gap-5 p-4 py-4">
+        <div className="d-flex align-items-center gap-5 py-4">
           <div
             onClick={() => navigate(-1)}
             className="d-flex align-items-center "

@@ -10,7 +10,7 @@ export function SearchBar({ search, setSearch }) {
       <div
         style={{
           background: "#fff",
-          padding: "12.5px",
+          padding: "13.2px",
           borderTopLeftRadius: 5,
           borderBottomLeftRadius: 5,
         }}
@@ -18,7 +18,7 @@ export function SearchBar({ search, setSearch }) {
         <FaSearch size={25} color="black" />
       </div>
       <Form.Control
-        placeholder="search transactions..."
+        placeholder="search transaction..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}

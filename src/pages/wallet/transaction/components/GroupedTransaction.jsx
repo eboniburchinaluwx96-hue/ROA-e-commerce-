@@ -31,25 +31,24 @@ export function GroupedTransaction({
               return (
                 <Stack
                   direction="horizontal"
-                  gap={4}
-                  className="align-items-center"
                   key={tx.id}
                   onClick={() => setSelected(tx)}
+                  className="align-items-center pb-3 mb-3 pb-md-4 mb-md-4 pb-lg-5 mb-lg-5 gap-4 gap-md-5"
                   style={{
-                    borderBottom: "0.5px solid #35361f",
+                    borderBottom: "0.5px solid #787e0a",
                     cursor: "pointer",
                   }}
                 >
                   <div
-                    className="p-3 d-flex config-icon"
-                    style={{ background: config.bg }}
+                    className="p-3 d-flex "
+                    style={{ background: config.bg, borderRadius: 12 }}
                   >
-                    <config.Icon />
+                    <config.Icon style={{ color: config.color }} />
                   </div>
 
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <h6
-                      className="text-white fw-bold mb-2"
+                    <h4
+                      className="text-white fw-bold "
                       style={{
                         whiteSpace: "nowrap",
                         overflow: "hidden",
@@ -57,16 +56,17 @@ export function GroupedTransaction({
                       }}
                     >
                       {tx.title}
-                    </h6>
+                    </h4>
                     <p>{tx.subtitle}</p>
                   </div>
 
                   <div style={{ textAlign: "right", flexShrink: 0 }}>
                     <h5
-                      className="mb-2 fw-bold"
+                      className="fw-bold mb-1"
                       style={{
+                        letterSpacing: 1.1,
                         color: incoming
-                          ? "#13a86f"
+                          ? { "#13a86f": incoming === "REFUND" && "#378ADD" }
                           : failed
                             ? "#9e0f0f"
                             : "#bd9b12",
@@ -77,7 +77,7 @@ export function GroupedTransaction({
                     </h5>
 
                     <p
-                      className="p-1"
+                      className="px-2"
                       style={{
                         borderRadius: 10,
                         background:

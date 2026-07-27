@@ -4,24 +4,3 @@
     border-radius: 30px;
   }
 }
-
-.transaction {
-  .config-icon {
-    border-radius: 14px;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .filter {
-    scroll-behavior: smooth;
-
-    @media (max-width: 700px) {
-      overflow-x: auto;
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}

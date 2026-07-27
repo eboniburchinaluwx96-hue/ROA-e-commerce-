@@ -1,8 +1,15 @@
 import { useState } from "react";
 import CartPageHeader from "../../components/CartPageHeader";
 import { Link, useNavigate } from "react-router";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import { FaCheck, FaArrowLeft } from "react-icons/fa";
+import { Container, Row, Col, Image, Button, Stack } from "react-bootstrap";
+import {
+  FaCheck,
+  FaArrowLeft,
+  FaMapPin,
+  FaEnvelope,
+  FaClock,
+  FaTruck,
+} from "react-icons/fa";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 

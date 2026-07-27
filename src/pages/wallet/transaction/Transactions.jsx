@@ -80,9 +80,9 @@ export function Transactions() {
     const fetchTransactions = async () => {
       try {
         setLoading(true);
-        //  const { data } = await axios.get("/api/wallet/transactions");
-        //    setTxns(data.transactions);
-        //   setSummary(data.summary);
+        const { data } = await axios.get("/api/wallet/transactions");
+        setTxns(data.transactions);
+        setSummary(data.summary);
       } catch (err) {
         console.error(err);
       } finally {

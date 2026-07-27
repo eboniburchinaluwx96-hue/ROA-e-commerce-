@@ -97,23 +97,24 @@ const HeaderAuth = () => {
         </div>
 
         <Offcanvas.Body className="profile-body p-0 mt-2">
-          <div className="wallet p-4 pb-5 mx-2 mb-4 text-white">
-            <div className="d-flex align-items-center gap-3 fs-5 ">
-              {" "}
-              My Balance(NGN){" "}
-              <div
-                onClick={() => setView((p) => !p)}
-                style={{ cursor: "pointer" }}
-              >
-                {view ? <EyeSlash /> : <Eye />}
+          <div className="wallet p-4 pb-5 mx-2 mb-4 ">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="d-flex align-items-center gap-4 fs-5 ">
+                {" "}
+                My Balance(NGN){" "}
+                <div
+                  onClick={() => setView((p) => !p)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {view ? <EyeSlash /> : <Eye />}
+                </div>
               </div>
               <div className="d-flex">
-                <Link to="/transactions" className="ms-auto text-end">
+                <Link to="/transactions" className="">
                   View all transactions
                 </Link>
               </div>
             </div>
-
             <div className="  my-4 my-md-5">
               {view ? (
                 <h1 className="fs-1 fw-bolder text-white">***</h1>
@@ -253,12 +254,12 @@ const HeaderAuth = () => {
               style={{ marginLeft: "37px" }}
             >
               <button
-                className="w-100 text-center"
+                className="w-100 text-center "
                 style={{ borderBottomRightRadius: 0 }}
               >
                 <FaPhoneAlt
                   size={25}
-                  className="me-3"
+                  className="me-2"
                   style={{ color: "#00ff15" }}
                 />
                 Call Us
@@ -268,8 +269,8 @@ const HeaderAuth = () => {
                 className="w-100 text-center"
                 style={{ borderBottomLeftRadius: 0, borderTopLeftRadius: 0 }}
               >
-                <Chat size={25} className="me-3" style={{ color: "#00ff15" }} />
-                Call Us
+                <Chat size={25} className="me-2" style={{ color: "#00ff15" }} />
+                Message Us
               </button>
             </Stack>
           </div>

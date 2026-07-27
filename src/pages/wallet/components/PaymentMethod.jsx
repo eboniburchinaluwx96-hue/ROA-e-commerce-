@@ -19,7 +19,7 @@ export function PaymentMethod({ method, setMethod, PAYMENT_METHOD }) {
                 }}
               >
                 <Stack className="text-center">
-                  <h1>{m.icon}</h1>
+                  <h2 className="pt-3">{m.Icon}</h2>
                   <h3 className="my-4 fw-bold text-white">{m.label}</h3>
                   <h6>{m.sub}</h6>
                 </Stack>

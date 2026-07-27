@@ -1,0 +1,38 @@
+.notification {
+  .notif-tab {
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s;
+  }
+
+  .notif-read {
+    position: absolute;
+    left: 0;
+    top: -8%;
+    transform: translateY(0%);
+  }
+
+  .icon-tab {
+    position: relative;
+    width: 55;
+    aspect-ratio: 1/1;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    .badge-tab {
+      position: absolute;
+      width: 23;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: -2;
+      right: -2;
+      border: 3px solid #0a1a0a;
+    }
+  }
+}
