@@ -167,7 +167,7 @@ export function LivePreview({ store }) {
                   {/* Meta */}
                   <p
                     style={{
-                      color: "#d6cfcff5 ",
+                      color: "#b4b4b4b0 ",
                       fontSize: "clamp(11.3px, 3vw, 14px)",
                       lineHeight: 1.7,
                     }}

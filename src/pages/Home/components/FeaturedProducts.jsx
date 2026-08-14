@@ -1,6 +1,7 @@
-import { Container, Row, Col, Stack, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ProductPage from "../../../pages/shop/ProductPage";
+import ProductPage from "../../../components/product/ProductPage";
+import products from "../../../js/products";
 
 export function FeaturedProducts() {
   return (
@@ -13,10 +14,12 @@ export function FeaturedProducts() {
         </div>
         <div>
           <h5 className="text-start mt-5 mb-0">Trending products</h5>
+
           <ProductPage
             filter={!true}
-            showHeader={!true}
-            showFilterProduct={!true}
+            product={products}
+            count={false}
+            showWishlist={false}
           />
         </div>
 

@@ -221,7 +221,7 @@ function Notifications() {
               </div>
 
               <h3 className="text-light">
-                <b>Transactions</b>
+                <b>Notifications</b>
               </h3>
             </div>
 

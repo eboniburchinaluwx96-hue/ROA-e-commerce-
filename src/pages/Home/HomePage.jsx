@@ -29,7 +29,7 @@ function HomePage() {
           </div>
 
           <div
-            className="md-5 "
+            className="d-flex align-items-center gap-lg-3 flex-wrap justify-content-center "
             style={{
               color: "rgb(255, 238, 0)",
               fontStyle: "italic",

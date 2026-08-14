@@ -1,0 +1,79 @@
+.cta {
+  border: 0.5px solid #a5c70e69 !important;
+  background: #e6ff02 !important;
+}
+
+.nav_bar {
+  background: #058f333a;
+  backdrop-filter: blur(30px);
+  border-bottom: 1px solid #a5c70e65;
+  cursor: pointer;
+
+  div h3 {
+    font-style: italic;
+    font-weight: 800;
+    color: #e6ff02;
+  }
+
+  .form-control {
+    padding: 7px 10px !important;
+    color: #b4b4b4b0 !important ;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex-shrink: 1;
+  }
+}
+
+.dashboard {
+  border: 0.5px solid #a5c70e69;
+  border-left: 0;
+  border-bottom: 0;
+  display: flex;
+  gap: 0;
+
+  .side_bar {
+    cursor: pointer;
+    background: #058f333a;
+    backdrop-filter: blur(30px);
+
+    .icon {
+      &:hover {
+        color: #eeff02;
+      }
+    }
+  }
+
+  .alert {
+    border: 1px solid #c71818 !important;
+    background: #49030371 !important;
+
+    button {
+      border: 0.5px solid #a5c70e69 !important;
+      background: #e6ff02 !important;
+    }
+  }
+
+  .earning_card {
+    background: linear-gradient(45deg, #1e660cc0, #51ff0086);
+    border-radius: 20px;
+  }
+
+  .dashboard_body {
+    @media (min-width: 750px) and (max-width: 750px) {
+      margin-left: 120px;
+    }
+  }
+
+  .card {
+    background: #7df0b131;
+    backdrop-filter: blur(80px);
+    border: 0.5px solid #7df0b1c0;
+
+    h6 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}

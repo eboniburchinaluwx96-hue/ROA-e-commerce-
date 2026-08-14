@@ -36,10 +36,9 @@ const HeaderAuth = () => {
   return (
     <>
       {user && (
-        <div>
-          {" "}
+        <Container>
           <Stack
-            className="ps-2 ms-3 ms-sm-0 align-items-center "
+            className="ps-2 align-items-center "
             direction="horizontal"
             gap={1}
             onClick={() => setShowProfile(true)}
@@ -48,6 +47,7 @@ const HeaderAuth = () => {
               borderRadius: "10px",
               fontSize: "11px",
               cursor: "pointer",
+              overflow: "hidden",
             }}
           >
             {view ? (
@@ -71,7 +71,7 @@ const HeaderAuth = () => {
               />
             </div>
           </Stack>
-        </div>
+        </Container>
       )}
 
       <Offcanvas
@@ -97,9 +97,9 @@ const HeaderAuth = () => {
         </div>
 
         <Offcanvas.Body className="profile-body p-0 mt-2">
-          <div className="wallet p-4 pb-5 mx-2 mb-4 ">
+          <div className="wallet px-3 pt-4 pb-5 mx-2 mb-4 ">
             <div className="d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center gap-4 fs-5 ">
+              <div className="d-flex align-items-center gap-3 ">
                 {" "}
                 My Balance(NGN){" "}
                 <div
@@ -109,10 +109,8 @@ const HeaderAuth = () => {
                   {view ? <EyeSlash /> : <Eye />}
                 </div>
               </div>
-              <div className="d-flex">
-                <Link to="/transactions" className="">
-                  View all transactions
-                </Link>
+              <div className="text-end">
+                <Link to="/transactions">View all transactions</Link>
               </div>
             </div>
             <div className="  my-4 my-md-5">

@@ -1,523 +1,702 @@
-import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Image, Nav, Stack } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { STORE, STORE_PRODUCTS } from "../../js/store.js";
 // import WhatsAppFloat from "./WhatsappFloat";
-import ProductPage from "./ProductPage.jsx";
-import MainHeader from "../../components/MainHeader.jsx";
+import ProductPage from "../../components/product/ProductPage.jsx";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeUp } from "../../animation";
+import {
+  FiHeadphones,
+  FiLoader,
+  FiSearch,
+  FiShoppingCart,
+} from "react-icons/fi";
+import {
+  FaArrowLeft,
+  FaBus,
+  FaLocationArrow,
+  FaMoneyBill,
+  FaMoneyCheck,
+  FaWhatsapp,
+} from "react-icons/fa";
+import {
+  Envelope,
+  Instagram,
+  Shield,
+  ShieldCheck,
+  TwitterX,
+} from "react-bootstrap-icons";
 
-const CATEGORIES = [
-  "All products",
-  "Basketball",
-  "Socks & Hosiery",
-  "Apparel",
-  "Footwear",
-  "Accessories",
-  "Outdoor & Camping",
-  "Gym Equipment",
+const STORE_STATS = [
+  { value: `${STORE.totalProducts}`, label: "Products" },
+  { value: `${STORE.followers}`, label: "Followers" },
+  { value: `${STORE.delivery}`, label: "Delivery" },
+];
+
+const STORE_POLICIES = [
+  {
+    Icon: FaBus,
+    color: "#e0ee19",
+    tag: "Delivery",
+    value: `${STORE.shipping}`,
+  },
+  {
+    Icon: FiLoader,
+    tag: "Returns",
+    color: "#1927ee",
+    value: `${STORE.returns}`,
+  },
+  {
+    Icon: Shield,
+    color: "#ee19ee",
+    tag: "Warranty",
+    value: `${STORE.warranty}`,
+  },
+  {
+    Icon: FaMoneyBill,
+    color: "#19eec0",
+    tag: "Payment",
+    value: `${STORE.payment}`,
+  },
+  {
+    Icon: FiHeadphones,
+    color: "#19ee35",
+    tag: "Support",
+    value: `${STORE.support}`,
+  },
+  {
+    Icon: FaLocationArrow,
+    color: "#c0ee19",
+    tag: "Location",
+    value: `${STORE.location}`,
+  },
+];
+
+const STORE_CONTACT = [
+  {
+    Icon: FaWhatsapp,
+    color: "#19ee19",
+    bg: "#19ee193a",
+    tag: "Whatsapp",
+    value: `${STORE.whatsapp}`,
+  },
+  {
+    Icon: Envelope,
+    color: "#7c19ee",
+    bg: "#7c19ee3a",
+    tag: "Email",
+    value: `${STORE.email}`,
+  },
+  {
+    Icon: Instagram,
+    color: "#ee193c",
+    bg: "#ee193c2d",
+    tag: "instagram",
+    value: `${STORE.instagram}`,
+  },
+  {
+    Icon: TwitterX,
+    color: "#ee193c",
+    bg: "#ee193c2d",
+    tag: "Twitter / X",
+    value: `${STORE.twitterX}`,
+  },
 ];
 
 export default function StorePublicPage() {
-  const [category, setCategory] = useState("All products");
   const [followed, setFollowed] = useState(false);
+  const [tab, setTab] = useState("PRODUCTS");
+  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
 
-  const filtered =
-    category === "All products"
-      ? STORE_PRODUCTS
-      : STORE_PRODUCTS.filter((p) => p.category === category);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    const storeHero = document.querySelector(".store_Image");
+
+    if (storeHero) {
+      observer.observe(storeHero);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
-      <MainHeader />
+      <AnimatePresence>
+        {" "}
+        {scrolled && (
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0, ease: "easeInOut" }}
+          >
+            {" "}
+            <div
+              className="scroll_active fixed-top"
+              style={{
+                backgroundImage: `linear-gradient( #042c09e1 ) , url(${STORE.cover}) `,
+              }}
+            >
+              {/* Topbar */}
+
+              <Container>
+                <div className="d-flex gap-4 gap-md-5  align-items-center py-3 scroll_content">
+                  {" "}
+                  <div
+                    onClick={() => navigate(-1)}
+                    className="d-flex align-items-center "
+                    style={{
+                      background: "#fff",
+                      borderRadius: "50%",
+                      padding: "10px",
+                    }}
+                  >
+                    <FaArrowLeft size={18} color="black" />
+                  </div>
+                  <div className="d-flex gap-3 gap-sm-3 align-items-center ">
+                    <Image
+                      roundedCircle
+                      width={50}
+                      height={50}
+                      style={{ objectFit: "cover" }}
+                      src="public/images/profile.jpg"
+                    />
+
+                    <h2
+                      className="fw-bold"
+                      style={{
+                        color: "#f0f6fc",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {STORE.name}
+                    </h2>
+                  </div>{" "}
+                  <div className="d-flex gap-2 gap-sm-3 align-items-center ms-auto me-3">
+                    <FiSearch size={24} />
+
+                    <Nav.Link as={Link} to="/cart">
+                      <FiShoppingCart size={24} />
+                      <span
+                        className="px-1 fw-bold"
+                        style={{
+                          background: "#d7e600",
+                          color: "#000",
+                          top: 20,
+                          fontSize: "15px",
+                          position: "absolute",
+                          borderRadius: "50%",
+                        }}
+                      >
+                        3
+                      </span>
+                    </Nav.Link>
+                  </div>
+                </div>
+              </Container>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── HERO ── */}
-      <section
-        style={{
-          padding: "5rem 0 4rem",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: -55,
-            right: -150,
-            width: 540,
-            height: 540,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle,rgba(196, 230, 0, 0.28) ,transparent 58%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: 100,
-            left: 230,
-            width: 520,
-            height: 540,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle,rgba(180, 200, 0, 0.15),transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "5%",
-            left: "-20%",
-            width: "90%",
-            height: "90%",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle,rgba(0,230,118,0.1)5% ,transparent 60%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: -380,
-            width: "90%",
-            height: "90%",
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle,rgba(0,230,118,0.1) ,transparent 60%)",
-            pointerEvents: "none",
-          }}
-        />
-
-        <Container fluid>
-          <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div
-                className="hero-in"
-                style={{ maxWidth: 780, width: "100%", textAlign: "center" }}
-              >
-                {/* Badge pill */}
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <span
-                    style={{
-                      background: "rgba(0,230,118,0.12)",
-                      color: "#00E676",
-                      border: "1px solid rgba(0,230,118,0.3)",
-                      borderRadius: 20,
-                      padding: "10px 18px",
-                      fontWeight: 700,
-                      fontSize: "13px",
-                      letterSpacing: 1.4,
-                      fontFamily: "'Outfit',sans-serif",
-                      display: "inline-block",
-                    }}
-                  >
-                    ✦ &nbsp;VERIFIED SELLER &nbsp;·&nbsp; {STORE.handle}
-                  </span>
-                </div>
-
-                {/* Logo with glow ring + status dot */}
-                <div
+      <section>
+        <div className="store_Image">
+          <div
+            style={{
+              overflow: "hidden",
+              position: "relative",
+            }}
+          >
+            <Image
+              src={STORE.cover}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "clamp(250px, 40vw, 450px)",
+              }}
+            />
+            <div
+              style={{
+                background:
+                  " linear-gradient(180deg, #05270a00 , #001a0400, #05270a00, #001a04)",
+                position: "absolute",
+                bottom: 0,
+                paddingTop: "60px",
+                width: "100%",
+              }}
+            />
+            {/* Badge pill */}
+            {STORE.verified && (
+              <div>
+                <small
+                  className="p-2 my-3 mx-sm-4 px-sm-4 me-3 d-flex align-items-center gap-2"
                   style={{
-                    position: "relative",
+                    background: "rgba(2, 22, 12, 0.82)",
+                    color: "#00E676",
+                    border: "1px solid rgba(0,230,118,0.3)",
+                    borderRadius: 20,
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    letterSpacing: 1,
                     display: "inline-block",
-                    marginBottom: "10px",
+                    zIndex: 1,
                   }}
                 >
-                  <div
-                    style={{
-                      width: 96,
-                      height: 96,
-                      borderRadius: 24,
-                      overflow: "hidden",
-                      margin: "0 auto",
-                      border: "2.5px solid rgba(0,230,118,0.35)",
-                      boxShadow:
-                        "0 0 0 5px rgba(0,230,118,0.07),0 18px 50px rgba(0,0,0,0.65)",
-                      background: "#111",
-                    }}
-                  >
-                    <img
-                      src={STORE.logo}
-                      alt={STORE.name}
-                      className="img-fluid"
-                    />
-                  </div>
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: 4,
-                      right: 4,
-                      width: 16,
-                      height: 16,
-                      borderRadius: "50%",
-                      background: STORE.isOpen ? "#00E676" : "#EF4444",
-                      border: "2.5px solid #0d1117",
-                    }}
-                  />
-                </div>
-
-                {/* Store name */}
-                <h1
-                  style={{
-                    fontWeight: 800,
-                    color: "#f0f6fc",
-                    fontSize: "clamp(2.7rem,6vw,3.8rem)",
-                    lineHeight: 1.2,
-                    letterSpacing: "-0.99px",
-                    marginBottom: "11px",
-                  }}
-                >
-                  {STORE.name}
-                </h1>
-
-                {/* Tagline */}
-                <p
-                  className="text-light mx-auto mt-3"
-                  style={{
-                    fontSize: "20px",
-                    lineHeight: 1.72,
-
-                    maxWidth: 480,
-                  }}
-                >
-                  {STORE.tagline}
-                </p>
-
-                {/* Meta */}
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.67)",
-                    fontSize: "14px",
-                    marginBottom: "33px",
-                  }}
-                >
-                  {STORE.handle} &nbsp;·&nbsp; 📍 {STORE.location} &nbsp;·&nbsp;
-                  Since {STORE.joined}
-                </p>
-
-                {/* description */}
-
-                <div
-                  className=" mx-auto px-2 py-1 my-5 d-inlne-flex "
-                  style={{
-                    background: "linear-gradient(40deg, #f3f3aa9a, #baf7a75d)",
-                  }}
-                >
-                  <h6 className="text-light" style={{ lineHeight: 1 }}>
-                    {STORE.description || "your description shows here"}
-                  </h6>
-                </div>
-
-                {/* CTAs */}
-                <div
-                  className="hero-ctas"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginBottom: "38px",
-                  }}
-                >
-                  <button
-                    style={{
-                      background: "#00E676",
-                      border: "none",
-                      color: "#000",
-                      borderRadius: 12,
-                      fontFamily: "'Outfit',sans-serif",
-                      fontWeight: 700,
-                      fontSize: "0.92rem",
-                      padding: "15px",
-                      boxShadow: "0 8px 28px rgba(0,230,118,0.38)",
-                      cursor: "pointer",
-                      transition: "all 0.22s",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.transform = "translateY(-2px)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.transform = "none")
-                    }
-                  >
-                    Shop All STORE_PRODUCTS
-                  </button>
-                  <button
-                    onClick={() => setFollowed((f) => !f)}
-                    style={{
-                      background: followed
-                        ? "rgba(0,230,118,0.12)"
-                        : "rgba(255,255,255,0.07)",
-                      border: `1px solid ${followed ? "rgba(0,230,118,0.35)" : "rgba(255,255,255,0.18)"}`,
-                      color: followed ? "#00E676" : "#fff",
-                      borderRadius: 12,
-                      fontFamily: "'Outfit',sans-serif",
-                      fontWeight: 600,
-                      fontSize: "0.92rem",
-                      padding: "15px 30px",
-                      cursor: "pointer",
-                      transition: "all 0.22s",
-                    }}
-                  >
-                    {followed ? "✓ Following" : "♡ Follow Store"}
-                  </button>
-                </div>
-
-                {/* Stats strip */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "22px",
-                    borderTop: "1px solid rgba(255,255,255,0.07)",
-                    paddingTop: "22px",
-                    lineHeight: "10px",
-                  }}
-                >
-                  {STORE.stats.map(({ value, label }) => (
-                    <div key={label} style={{ maxWidth: 780 }}>
-                      <div
-                        style={{
-                          fontWeight: 800,
-                          fontSize: "23px",
-                          color: "#f0f6fcf6",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {value}
-                      </div>
-                      <div
-                        style={{
-                          color: "rgba(255, 255, 255, 0.53)",
-                          fontSize: "10px",
-                          marginTop: 10,
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  <ShieldCheck /> verified store
+                </small>
               </div>
+            )}
+
+            {/* store category */}
+
+            <small
+              className="p-2 my-3 mx-sm-4 px-sm-4  ms-3"
+              style={{
+                background: "#131602d1",
+                color: "#d7fd00d1",
+                border: "1px solid #9db804d1",
+                borderRadius: 20,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                letterSpacing: 1,
+                display: "inline-block",
+              }}
+            >
+              {STORE.category}
+            </small>
+          </div>
+
+          <Container>
+            {" "}
+            <div
+              className="text-center"
+              style={{
+                marginTop: " clamp(-50px, 10vw, -200px)",
+              }}
+            >
+              {/* Logo with glow ring + status dot */}
+              <div
+                style={{
+                  position: "relative",
+                  display: "inline-block",
+                }}
+              >
+                <div className="store-logo-wrapper">
+                  <img src={STORE.logo} className="store-logo" />
+                </div>
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: 4,
+                    right: 4,
+                    width: 20,
+                    height: 20,
+                    borderRadius: "50%",
+                    background:
+                      STORE.status === "active" ? "#00E676" : "#d60606",
+                    border: "2.5px solid #0d1117",
+                  }}
+                />
+              </div>
+
+              {/* Store name */}
+              <span
+                className="my-4 mb-md-2"
+                style={{
+                  fontWeight: 800,
+                  color: "#f0f6fc",
+                  display: "block",
+                  fontSize: "clamp(1.95rem, 6vw, 4.7em)",
+                  lineHeight: 1.2,
+                }}
+              >
+                {STORE.name}
+              </span>
+            </div>
+          </Container>
+        </div>
+
+        <Container>
+          <div className="text-center pb-5">
+            {/* Meta */}
+            <h6
+              className="my-5"
+              style={{
+                lineHeight: 1.72,
+              }}
+            >
+              {STORE.handle} &nbsp;·&nbsp; 📍 {STORE.state} , {STORE.country}{" "}
+              &nbsp;·&nbsp; {STORE.joined}
+            </h6>
+
+            {/* Tagline */}
+            <h6
+              className="my-5 "
+              style={{
+                lineHeight: 1.72,
+              }}
+            >
+              {STORE.tagline}
+            </h6>
+
+            {/* open */}
+            {STORE.isOpen && (
+              <div className="d-flex align-items-center gap-2 justify-content-center pb-4">
+                {" "}
+                <span
+                  className=" inline-flex"
+                  style={{
+                    background: "#9cfc64",
+                    borderRadius: "100%",
+                    padding: "3px",
+                  }}
+                />
+                <p style={{ color: "#9cfc64" }}>
+                  Open now &nbsp;·&nbsp; Responds within 1 hr
+                </p>
+              </div>
+            )}
+
+            {/* CTAs */}
+
+            <div>
+              <button
+                onClick={() => setFollowed((f) => !f)}
+                className="text-dark text-center py-2 w-50 my-sm-3 my-md-5"
+                style={{
+                  background: followed ? "#00E676" : "transparent",
+                  border: followed ? "none" : "#00e677d8",
+                  borderRadius: 12,
+                  fontSize: "0.92rem",
+                  boxShadow: "0 8px 28px rgba(0,230,118,0.38)",
+                  transition: "all 0.22s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-2px)")
+                }
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "none")}
+              >
+                {followed ? "following..." : " ♡ Follow Store"}
+              </button>
             </div>
           </div>
         </Container>
       </section>
+
+      {/* Stats strip */}
+      <Container>
+        <div
+          style={{
+            border: "1px solid rgba(224, 253, 0, 0.74)",
+            borderRadius: "100%",
+          }}
+        />
+        <div className="py-5 d-flex gap-5 justify-content-center flex-wrap">
+          {STORE_STATS.map(({ value, label }) => (
+            <div key={label} className="d-flex flex-column text-center">
+              <h5
+                className="fw-bold mb-1"
+                style={{
+                  color: "#b5f506f6",
+                  lineHeight: 1,
+                }}
+              >
+                {value}
+              </h5>
+              <p style={{ letterSpacing: 1 }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
 
       {/* ── TRUST STRIP ── */}
 
-      <div className="trust-chip-container">
-        {STORE.trust.map((t) => (
-          <span key={t} className="trust-chip">
-            ✓ &nbsp;{t}
-          </span>
-        ))}
-      </div>
-
-      {/* ── PROMO BANNER ── */}
-      <div
-        style={{
-          background:
-            "linear-gradient(90deg,rgba(0,230,118,0.1),rgba(0,200,83,0.05),rgba(0,230,118,0.1))",
-          borderBottom: "1px solid rgba(0,230,118,0.12)",
-          padding: "20px 0",
-          textAlign: "center",
-        }}
-      >
+      <div className="trust-chip-container py-5 ">
         <Container>
-          <Row g-5 className="align-items-center">
-            <Col
-              className="col-7"
-              style={{
-                color: "#00E676",
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "0.89rem",
-                fontWeight: 600,
-                margin: 0,
-                lineHeight: "17px",
-              }}
-            >
-              🔥 &nbsp;Flash Sale — Up to 30% off selected items this week only
-            </Col>
-            <Col
-              style={{
-                color: "rgba(255,255,255,0.56)",
-                fontSize: "0.85rem",
-                fontFamily: "'Outfit',sans-serif",
-              }}
-            >
-              Ends Sunday midnight
-            </Col>
-          </Row>
+          <div className="d-flex gap-4 flex-wrap justify-content-center">
+            {["Verified Seller", "Secure Checkout", "24h Support"].map((t) => (
+              <span key={t} className="trust-chip py-1 px-3">
+                ✓ &nbsp;{t}
+              </span>
+            ))}
+          </div>
         </Container>
       </div>
 
-      {/* ── STORE_PRODUCTS ── */}
-      <section id="store-products">
-        <ProductPage
-          setCategory={setCategory}
-          category={category}
-          filtered={filtered}
-          CATEGORIES={CATEGORIES}
-        />
-      </section>
+      {/* ── PROMO BANNER ── */}
 
-      {/* ── ABOUT ── */}
-      <section
-        style={{
-          background: "rgba(18,18,18,0.85)",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          padding: "3.5rem 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-            gap: 32,
-            alignItems: "start",
-          }}
-        >
-          <div>
-            <span
+      <div style={{ background: "#3c3d01" }}>
+        <Container>
+          <div
+            className="py-3 d-flex "
+            style={{ overflowX: "auto", color: "#fbff00" }}
+          >
+            🔥🔥 Flash Sale — Up to 30% off selected items this week only
+          </div>
+        </Container>
+      </div>
+
+      <Container>
+        <div className="filter-tab d-flex gap-4 gap-sm-5 my-5 ">
+          {[
+            "PRODUCTS",
+            "ABOUT",
+
+            /* "REVIEWS"*/
+          ].map((s) => {
+            return (
+              <div
+                className="px-3 py-1"
+                key={s}
+                onClick={() => setTab(s)}
+                style={{
+                  cursor: "pointer",
+                  border: `0.5px solid ${tab === s ? "#fbff00" : "#f0f0f0da"}`,
+                  background: tab === s ? "#57580f70" : "",
+                  color: tab === s ? "#d3e016" : "",
+                  borderRadius: "18px",
+                }}
+              >
+                {" "}
+                <span>{s}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── STORE_PRODUCTS ── */}
+        {tab === "PRODUCTS" && (
+          <>
+            {" "}
+            <h6
+              className="mb-3 mb-sm-5"
               style={{
                 color: "#00E676",
                 fontWeight: 700,
-                fontSize: "0.7rem",
-                letterSpacing: 2,
-                textTransform: "uppercase",
-                fontFamily: "'Outfit',sans-serif",
-                display: "block",
-                marginBottom: 8,
+                letterSpacing: 1,
               }}
             >
-              About
-            </span>
-            <h3
+              STORE CATALOGUE
+            </h6>
+            <ProductPage
+              filter={true}
+              product={STORE_PRODUCTS}
+              count={!false}
+            />
+          </>
+        )}
+
+        {/* ── ABOUT ── */}
+
+        {tab === "ABOUT" && (
+          <>
+            {" "}
+            {/* about store */}
+            <div
+              className="mt-5 p-4"
               style={{
-                fontFamily: "'Bebas+Neue',sans-serif",
-                fontWeight: 800,
-                color: "#fff",
-                fontSize: "1.5rem",
-                marginBottom: "1rem",
+                border: "1px solid rgba(233, 229, 4, 0.4)",
+                background: "rgba(12, 12, 12, 0.29)",
               }}
             >
-              {STORE.name}
-            </h3>
-            <p
-              style={{
-                color: "rgba(255,255,255,0.55)",
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "0.875rem",
-                lineHeight: 1.82,
-                marginBottom: "1.4rem",
-              }}
-            >
-              {STORE.about}
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {STORE.trust.map((t) => (
-                <span key={t} className="trust-chip">
-                  ✓ &nbsp;{t}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: 20,
-              padding: "1.6rem 1.5rem",
-            }}
-          >
-            <h5 style={{ color: "#fff", fontWeight: 700, fontSize: "20px" }}>
-              Store Information
-            </h5>
-            <p
-              style={{
-                color: "rgba(255,255,255,0.28)",
-                fontSize: "12.8px",
-                margin: "13px 0",
-              }}
-            >
-              Everything you need to know before you buy
-            </p>
-            {STORE.policies.map(({ label, value }) => (
-              <div key={label} className="policy-row">
-                <span
-                  style={{ color: "rgba(255,255,255,0.44)", fontSize: "15px" }}
-                >
-                  {label}
-                </span>
-                <span
-                  style={{ color: "#fff", fontSize: "13.4px", fontWeight: 500 }}
-                >
-                  {value}
-                </span>
+              <div
+                style={{
+                  color: "rgb(255, 251, 5)",
+                }}
+              >
+                ABOUT THIS STORE
+                <div
+                  style={{
+                    borderBottom: "1px solid  rgba(233, 229, 4, 0.4)",
+                    padding: "11px",
+                  }}
+                ></div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+              <p className="py-4">{STORE.about}</p>
+            </div>
+            {/* store policies*/}
+            <div
+              className="mt-5 p-4"
+              style={{
+                border: "1px solid rgba(233, 229, 4, 0.4)",
+                background: "rgba(12, 12, 12, 0.29)",
+              }}
+            >
+              <div
+                style={{
+                  color: "rgb(255, 251, 5)",
+                }}
+              >
+                STORE POLICIES
+                <div
+                  className="mb-4"
+                  style={{
+                    borderBottom: "1px solid  rgba(233, 229, 4, 0.4)",
+                    padding: "11px",
+                  }}
+                ></div>
+                {STORE_POLICIES.map((p) => {
+                  return (
+                    p.value && (
+                      <Stack
+                        key={p.value}
+                        className="my-5 gap-4 gap-sm-5 "
+                        direction="horizontal"
+                      >
+                        <p.Icon
+                          style={{
+                            color: p.color,
+                            fontSize: "clamp(21px, 2vw, 24px)",
+                          }}
+                        />
+                        <span style={{ color: "#b4b4b4b0", fontSize: "18px" }}>
+                          {p.tag}
+                        </span>
+                        <p
+                          className="text-white ms-auto text-end"
+                          style={{ lineHeight: 1.4 }}
+                        >
+                          {p.value}
+                        </p>
+                      </Stack>
+                    )
+                  );
+                })}
+              </div>
+            </div>
+            {/* store contact info*/}
+            <div
+              className="mt-5 p-4"
+              style={{
+                border: "1px solid rgba(233, 229, 4, 0.4)",
+                background: "rgba(12, 12, 12, 0.29)",
+              }}
+            >
+              <div
+                style={{
+                  color: "rgb(255, 251, 5)",
+                }}
+              >
+                CONTACT STORE
+                <div
+                  className="mb-4"
+                  style={{
+                    borderBottom: "1px solid  rgba(233, 229, 4, 0.4)",
+                    padding: "11px",
+                  }}
+                ></div>
+                {STORE_CONTACT.map((s) => {
+                  return (
+                    <div key={s.value}>
+                      {" "}
+                      {s.value && (
+                        <Stack
+                          className="my-5 align-items-start"
+                          direction="horizontal"
+                          gap={5}
+                        >
+                          <s.Icon
+                            className="d-flex align-items-center justify-content-center p-2"
+                            size={35}
+                            style={{
+                              color: s.color,
+                              borderRadius: "9px",
+                              background: s.bg,
+                            }}
+                          />
+                          <div className="d-sm-none">
+                            {" "}
+                            <span
+                              style={{ color: "#b4b4b4b08e", fontSize: "18px" }}
+                            >
+                              {s.tag}
+                            </span>
+                            <p className="text=white">{s.value}</p>
+                          </div>
+                          <span
+                            className="d-none d-sm-block"
+                            style={{ color: "#b4b4b4b0", fontSize: "18px" }}
+                          >
+                            {s.tag}
+                          </span>
+                          <p className="text=white d-none d-sm-block ms-auto">
+                            {s.value}
+                          </p>
+                        </Stack>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
+      </Container>
 
       {/* ── FOOTER ── */}
       <footer
+        className="py-4 mt-5"
         style={{
-          background: "#0d1117",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          padding: "1.4rem 0",
+          background: "#010500",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 8,
-          }}
-        >
-          <span
+        <Container>
+          <div
             style={{
-              color: "rgba(255,255,255,0.2)",
-              fontSize: "0.75rem",
-              fontFamily: "'Outfit',sans-serif",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 8,
             }}
           >
-            © 2026 SHOPHAUS · Powering local stores online
-          </span>
-          <div style={{ display: "flex", gap: 22 }}>
-            {["Store Policies", "Shipping Info", "Report Store"].map((link) => (
-              <a
-                key={link}
-                href="#"
-                style={{
-                  color: "rgba(255,255,255,0.26)",
-                  fontSize: "0.75rem",
-                  fontFamily: "'Outfit',sans-serif",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#00E676")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(255,255,255,0.26)")
-                }
-              >
-                {link}
-              </a>
-            ))}
+            <span
+              style={{
+                color: "rgba(255,255,255,0.2)",
+                fontSize: "1rem",
+              }}
+            >
+              © 2026 R. O . A Powering local stores online
+            </span>
+            <div style={{ display: "flex", gap: 22 }}>
+              {["Support?", "Report Store"].map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  style={{
+                    color: "rgba(255,255,255,0.26)",
+                    fontSize: "0.75rem",
+                    fontFamily: "'Outfit',sans-serif",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#00E676")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(255,255,255,0.26)")
+                  }
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
       </footer>
 
       {/* <WhatsAppFloat store={STORE.whatsapp} /> */}

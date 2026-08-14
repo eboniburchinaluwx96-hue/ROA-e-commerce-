@@ -1,5 +1,6 @@
 import { Container, Image, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaEnvelope,
@@ -15,6 +16,8 @@ import { Overview } from "./components/ProfileOverview";
 import { Settings } from "./components/ProfileSettings";
 import { Footer } from "../Home/components/Footer";
 import NavTop from "../../components/PageNav";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeUp } from "../../animation";
 
 const profile = [
   {
@@ -56,17 +59,90 @@ const profile = [
 ];
 
 function ProfilePage() {
+  const navigate = useNavigate();
   const [overview, setOverview] = useState(true);
   const [wishlist, setWishlist] = useState(false);
   const [orders, setOrders] = useState(false);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    const profilePic = document.querySelector(".profileImage");
+
+    if (profilePic) {
+      observer.observe(profilePic);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
-      <div className="profile-container">
+      <div className="profile-container ">
+        <AnimatePresence>
+          {" "}
+          {scrolled && (
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0, ease: "easeInOut" }}
+            >
+              {" "}
+              <div
+                className="scroll_active fixed-top"
+                style={{
+                  backgroundImage: `linear-gradient( #042c09e1 ) , url("/images/profile.jpg") `,
+                }}
+              >
+                {/* Topbar */}
+
+                <Container>
+                  <div className="d-flex gap-4 gap-md-5 align-items-center py-3 scroll_content">
+                    {" "}
+                    <div
+                      onClick={() => navigate(-1)}
+                      className="d-flex align-items-center "
+                      style={{
+                        background: "#fff",
+                        borderRadius: "50%",
+                        padding: "10px",
+                      }}
+                    >
+                      <FaArrowLeft size={15} color="black" />
+                    </div>
+                    <Image
+                      roundedCircle
+                      width={70}
+                      height={70}
+                      style={{ objectFit: "cover" }}
+                      src="/images/profile.jpg"
+                    />
+                    <div>
+                      <h1 className="text-white fw-bold">Adeolu Samuel</h1>
+
+                      <h6 className="">@Samklefboy12</h6>
+                    </div>
+                  </div>
+                </Container>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <Container>
-          <NavTop title="My Profile" />
-
-          <ProfilePic />
-
+          <div className="profileImage">
+            <ProfilePic />
+          </div>
           {/* profile */}
           <div
             className="mt-5 px-4"
@@ -98,8 +174,7 @@ function ProfilePage() {
             })}
           </div>
 
-          <ProfileInfo />
-
+          {/* profile slider */}
           <ProfileSlider
             overview={overview}
             setOverview={setOverview}
@@ -108,9 +183,7 @@ function ProfilePage() {
             orders={orders}
             setOrders={setOrders}
           />
-
           {overview && <Overview />}
-
           <Settings />
         </Container>
 

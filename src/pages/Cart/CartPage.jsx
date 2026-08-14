@@ -22,7 +22,7 @@ const CartPage = () => {
   // const [deleteCart, setDeleteCart] = useState(null);
 
   return (
-    <Container>
+    <>
       <CartPageHeader />
 
       <div
@@ -655,7 +655,46 @@ const CartPage = () => {
           </footer>
         </>
       )}
-    </Container>
+
+      {/* Search + Sort bar */}
+      {/*  <div
+        style={{
+          padding: "12px 16px",
+          background: "#111a11",
+          borderBottom: "0.5px solid #1a2a1a",
+        }}
+      >
+        <div style={{ display: "flex", gap: 8 }}>
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              background: "#1a2a1a",
+              borderRadius: 10,
+              padding: "9px 12px",
+            }}
+          >
+            <i className="ti ti-search" style={{ color: "#555" }} />
+            <input
+              placeholder="Search products..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                fontSize: 13,
+                color: "#ddd",
+                width: "100%",
+                fontFamily: "'Plus Jakarta Sans',sans-serif",
+              }}
+            />
+          </div>
+        </div>
+      </div> */}
+    </>
   );
 };
 

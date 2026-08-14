@@ -39,7 +39,7 @@ const MobileMenu = ({ show, handleClose }) => {
 
           {/* 🧾 SHOP */}
           <div className="flex-column py-3 ">
-            <Link to="/shopping">
+            <Link to="/shop">
               <FiShoppingBag
                 className="me-3"
                 size={24}

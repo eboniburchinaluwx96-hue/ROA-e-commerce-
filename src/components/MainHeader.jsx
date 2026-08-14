@@ -45,7 +45,7 @@ const MainHeader = ({
     <>
       <Navbar
         fixed="top"
-        className={`header py-4 ${scrolled ? "header-scrolled" : ""} ${title ? "py-3" : ""}`}
+        className={`header py-3 ${scrolled ? "header-scrolled py-3" : ""} ${title ? "py-3" : ""}`}
       >
         <Container>
           <div className=" d-flex align-items-center gap-3">
@@ -55,7 +55,7 @@ const MainHeader = ({
                   className="d-inline-flex"
                   onClick={() => navigate(-1)}
                   style={{
-                    background: "#ffffff42",
+                    background: "#fffffff1",
                     borderRadius: "50%",
                     padding: "10px",
                     cursor: "pointer",
@@ -65,7 +65,7 @@ const MainHeader = ({
                 </div>
 
                 <div className="text-light" style={{ letterSpacing: 1 }}>
-                  <h4>Hello Samuel</h4>
+                  <h2 className="text-white">Hello Samuel</h2>
                 </div>
               </>
             ) : (

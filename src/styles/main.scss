@@ -13,6 +13,7 @@
 @use "components/help_support";
 @use "components/wallet";
 @use "components/notification";
+@use "components/dashboard";
 
 .mySwiper {
   color: rgba(255, 255, 255, 0.664);
@@ -72,9 +73,7 @@
 .filter-tab {
   scroll-behavior: smooth;
 
-  @media (max-width: 750px) {
-    overflow-x: auto;
-  }
+  overflow-x: auto;
 
   &::-webkit-scrollbar {
     display: none;

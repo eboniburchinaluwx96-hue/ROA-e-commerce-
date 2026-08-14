@@ -1,19 +1,19 @@
 a {
   text-decoration: none;
-  color:#d6cfcff5 !important ;
+  color:#b4b4b4b0 !important ;
 }
 
 p{
   line-height: 30px;
   margin: 0;
-  color: #d6cfcf;
+  color: #b4b4b4b0;
 }
 
 h1,h2,h3,h4,h5,h6 {
   line-height: 40px ;
   margin: 0 !important;
   padding: 0 !important;
-  color: #d6cfcf;
+  color: #b4b4b4b0;
 }
 
 
@@ -26,8 +26,8 @@ body {
   font-size: 1rem;
   min-height:100vh; 
   scrollbar-width: 8px !important;
-  margin-top: 130px;
-  color: #d6cfcff5 !important;
+ 
+  color: #b4b4b4b0  ;
 }
 
 
