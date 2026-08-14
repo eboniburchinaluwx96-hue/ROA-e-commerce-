@@ -54,14 +54,14 @@
     border-radius: 15px !important;
     box-shadow: none !important;
 
+    &:focus {
+      box-shadow: none !important;
+    }
+
     &:checked {
       background-color: #a8ff059f !important;
       border-radius: 10px;
       border: none;
-
-      &:focus {
-        box-shadow: none !important;
-      }
     }
 
     &:focus {
@@ -78,4 +78,37 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.form-check-input {
+  width: 1.5em !important;
+  height: 1.5em !important;
+  margin-right: 10px;
+
+  .form-check-input:checked {
+    background: #a8ff059f !important;
+    border: none !important;
+  }
+}
+
+.form-check {
+  &:focus {
+    box-shadow: none !important;
+  }
+  .form-check-input {
+    &:focus {
+      box-shadow: none !important;
+    }
+    &:checked {
+      background-color: #a8ff059f !important;
+      border: none;
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+.form-check-label {
+  font-size: 20px;
 }

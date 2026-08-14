@@ -56,7 +56,10 @@ export default function ProductPage({
   filter = true,
   product,
   count = true,
+  Store = true,
+  Shop = true,
   showWishlist = true,
+  showBtn = true,
 }) {
   // const [search, setSearch] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -112,9 +115,11 @@ export default function ProductPage({
 
   const category = ["All", ...new Set(product.flatMap((p) => p.category))];
 
+  const STORE_FILTER = ["All", "Active", "Out of stock"];
+
   return (
     <>
-      <Container className="product-page">
+      <div className="product-page">
         {/* FILTERS */}
         {filter && (
           <ProductFilter
@@ -123,6 +128,9 @@ export default function ProductPage({
             category={category}
             setSort={setSort}
             sort={sort}
+            STORE_FILTER={STORE_FILTER}
+            Shop={Shop}
+            Store={Store}
           />
         )}
 
@@ -144,6 +152,9 @@ export default function ProductPage({
           handleWishlist={handleWishlist}
           PRODUCT_TYPE_CONFIG={PRODUCT_TYPE_CONFIG}
           showWishlist={showWishlist}
+          showBtn={showBtn}
+          Store={Store}
+          Shop={Shop}
         />
 
         {/* DETAILS (desktop animated switching) */}
@@ -164,7 +175,7 @@ export default function ProductPage({
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
         />
-      </Container>
+      </div>
     </>
   );
 }

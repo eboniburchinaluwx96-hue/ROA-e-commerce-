@@ -10,6 +10,8 @@ const ProductGrid = ({
   handleAddToCart,
   handleWishlist,
   showWishlist,
+  Shop,
+  Store,
 }) => {
   return (
     <div>
@@ -23,7 +25,8 @@ const ProductGrid = ({
             md={3}
             lg={2}
             className=""
-            onClick={() => selectProduct(p)}
+            onClick={Shop && (() => selectProduct(p))}
+            style={{ cursor: "pointer" }}
           >
             <ProductCard
               product={p}
@@ -33,6 +36,8 @@ const ProductGrid = ({
               handleAddToCart={handleAddToCart}
               handleWishlist={handleWishlist}
               showWishlist={showWishlist}
+              Store={Store}
+              Shop={Shop}
             />
           </Col>
         ))}

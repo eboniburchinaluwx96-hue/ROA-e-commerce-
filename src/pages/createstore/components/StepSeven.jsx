@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 
-export function StepSeven({ setStep, handleChange, storeData }) {
+export function StepSeven({ setStep, handleChange, formData }) {
   return (
     <>
       <h3 className=" fs-3 mb-2">Store Policies</h3>
@@ -11,7 +11,7 @@ export function StepSeven({ setStep, handleChange, storeData }) {
           <Form.Label>Return Policy</Form.Label>
           <Form.Control
             name="returnPolicy"
-            value={storeData.returnPolicy}
+            value={formData.returnPolicy}
             onChange={handleChange}
             as="textarea"
             rows={4}
@@ -22,7 +22,7 @@ export function StepSeven({ setStep, handleChange, storeData }) {
           <Form.Label>Refund Policy</Form.Label>
           <Form.Control
             name="refundPolicy"
-            value={storeData.refundPolicy}
+            value={formData.refundPolicy}
             onChange={handleChange}
             as="textarea"
             rows={4}
@@ -33,7 +33,7 @@ export function StepSeven({ setStep, handleChange, storeData }) {
           <Form.Label>Warranty Information</Form.Label>
           <Form.Control
             name="warrantyInfo"
-            value={storeData.warrantyInfo}
+            value={formData.warrantyInfo}
             onChange={handleChange}
             as="textarea"
             rows={3}

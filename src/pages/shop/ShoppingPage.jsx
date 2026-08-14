@@ -1,4 +1,5 @@
 import MainHeader from "../../components/MainHeader";
+import { Container } from "react-bootstrap";
 // import axios from "axios";
 // import { useEffect, useState } from "react";
 import ProductPage from "../../components/product/ProductPage";
@@ -34,9 +35,11 @@ export const ShoppingPage = () => {
         showSearchbtn={true}
         showWishlist={true}
       />
-      <div style={{ marginTop: "120px" }}>
-        <ProductPage filter={true} product={products} count={true} />
-      </div>
+      <Container>
+        <div style={{ marginTop: "120px" }}>
+          <ProductPage product={products} Store={false} />
+        </div>
+      </Container>
     </>
   );
 };

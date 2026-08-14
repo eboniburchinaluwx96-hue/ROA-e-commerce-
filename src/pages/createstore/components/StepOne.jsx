@@ -4,7 +4,7 @@ import { BsArrowRight, BsSortDown } from "react-icons/bs";
 
 export function StepOne({
   setStep,
-  storeData,
+  formData,
   handleChange,
   errors,
   setErrors,
@@ -14,27 +14,27 @@ export function StepOne({
   const validate = () => {
     const newErrors = {};
 
-    if (!storeData.Name.trim()) {
+    if (!formData.Name.trim()) {
       newErrors.Name = "store name is required";
     }
 
-    if (!storeData.Slug.trim()) {
+    if (!formData.Slug.trim()) {
       newErrors.Slug = "store slug is required";
     }
 
-    if (!storeData.Handle.trim()) {
+    if (!formData.Handle.trim()) {
       newErrors.Handle = "store handle is required";
     }
 
-    if (!storeData.Category.trim()) {
+    if (!formData.Category.trim()) {
       newErrors.category = "please choose a category";
     }
 
-    if (!storeData.tagline.trim()) {
+    if (!formData.tagline.trim()) {
       newErrors.tagline = " tagline is required";
     }
 
-    if (!storeData.description.trim()) {
+    if (!formData.description.trim()) {
       newErrors.description = "store description is required";
     }
 
@@ -58,7 +58,7 @@ export function StepOne({
         <Form.Label className="">Store Name *</Form.Label>
         <Form.Control
           name="Name"
-          value={storeData.Name}
+          value={formData.Name}
           onChange={handleChange}
           required
           type="text"
@@ -79,7 +79,7 @@ export function StepOne({
           <InputGroup.Text>r.o.a/store/</InputGroup.Text>
           <Form.Control
             name="Slug"
-            value={storeData.Slug}
+            value={formData.Slug}
             onChange={handleChange}
             required
             placeholder="annointed-chips"
@@ -95,7 +95,7 @@ export function StepOne({
         <Form.Label className="mt-5">Handle *</Form.Label>
         <Form.Control
           name="Handle"
-          value={storeData.Handle}
+          value={formData.Handle}
           onChange={handleChange}
           required
           type="text"
@@ -114,7 +114,7 @@ export function StepOne({
         <Form.Label className=" mt-5">Business Category *</Form.Label>
         <Form.Select
           name="Category"
-          value={storeData.Category}
+          value={formData.Category}
           onChange={handleChange}
           required
           isInvalid={errors.Category}
@@ -149,7 +149,7 @@ export function StepOne({
         <Form.Label className=" mt-5">Store Tagline *</Form.Label>
         <Form.Control
           name="tagline"
-          value={storeData.tagline}
+          value={formData.tagline}
           onChange={handleChange}
           type="text"
           isInvalid={!!errors.tagline}
@@ -168,7 +168,7 @@ export function StepOne({
         <Form.Label className=" mt-5">Store Description *</Form.Label>
         <Form.Control
           name="description"
-          value={storeData.description}
+          value={formData.description}
           onChange={handleChange}
           required
           as="textarea"

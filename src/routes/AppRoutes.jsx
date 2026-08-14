@@ -16,6 +16,9 @@ const PublicStore = lazy(() => import("../pages/Store/PublicStorePage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const Notifications = lazy(() => import("../pages/Notification/Notification"));
 const MenuSettings = lazy(() => import("../pages/menu settings/MenuSettings"));
+const AddEditProduct = lazy(
+  () => import("../pages/Store/Dashboard/Add_Edit_Product/AddEditProduct"),
+);
 
 function AppRoutes() {
   return (
@@ -38,6 +41,7 @@ function AppRoutes() {
           <Route path="/withdraw" element={<Withdraw />} />
           <Route path="/deposit" element={<TopUp />} />
           <Route path="/transactions" element={<Transactions />} />
+          <Route path="/add_product" element={<AddEditProduct />} />
         </Routes>
       </Suspense>
     </>

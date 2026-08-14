@@ -43,7 +43,7 @@ const BANKS = [
   { code: "057", name: "Zenith Bank" },
 ];
 
-export function StepFive({ setStep, handleChange, storeData }) {
+export function StepFive({ setStep, handleChange, formData }) {
   return (
     <>
       <h3 className=" fs-3 mb-2">Payment Details</h3>
@@ -53,7 +53,7 @@ export function StepFive({ setStep, handleChange, storeData }) {
           <Form.Label>Bank Name *</Form.Label>
           <Form.Select
             name="bankName"
-            value={storeData.bankName}
+            value={formData.bankName}
             onChange={handleChange}
             required
           >
@@ -72,7 +72,7 @@ export function StepFive({ setStep, handleChange, storeData }) {
           <Form.Label>Account Name *</Form.Label>
           <Form.Control
             name="accountName"
-            value={storeData.accountName}
+            value={formData.accountName}
             onChange={handleChange}
             required
           />
@@ -82,7 +82,7 @@ export function StepFive({ setStep, handleChange, storeData }) {
           <Form.Label>Account Number *</Form.Label>
           <Form.Control
             name="accountNo"
-            value={storeData.accountNo}
+            value={formData.accountNo}
             onChange={handleChange}
             required
           />

@@ -1,9 +1,18 @@
 export const fadeUp = {
-  hidden: { opacity: 0, y: -100 },
+  hidden: { opacity: 0, y: -20 },
   visible: {
-    opacity: 100,
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.2, ease: "easeInOut" },
+    transition: { duration: 0.4, ease: "easeInOut" },
+  },
+};
+
+export const fadedown = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 

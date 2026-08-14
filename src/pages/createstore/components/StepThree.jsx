@@ -5,7 +5,7 @@ import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 export function StepThree({
   setStep,
   handleChange,
-  storeData,
+  formData,
   errors,
   setErrors,
 }) {
@@ -14,19 +14,19 @@ export function StepThree({
   const validate = () => {
     const newErrors = {};
 
-    if (!storeData.country.trim()) {
+    if (!formData.country.trim()) {
       newErrors.Name = "store name is required";
     }
 
-    if (!storeData.state.trim()) {
+    if (!formData.state.trim()) {
       newErrors.state = "please choosea a state";
     }
 
-    if (!storeData.city.trim()) {
+    if (!formData.city.trim()) {
       newErrors.city = "your city is required";
     }
 
-    if (!storeData.address.trim()) {
+    if (!formData.address.trim()) {
       newErrors.address = "store address is required";
     }
 
@@ -49,7 +49,7 @@ export function StepThree({
         <Form.Label className="">Country</Form.Label>
         <Form.Select
           name="country"
-          value={storeData.country}
+          value={formData.country}
           onChange={handleChange}
         >
           <option defaultValue value="nigeria">
@@ -62,7 +62,7 @@ export function StepThree({
         <Form.Label>State *</Form.Label>
         <Form.Select
           name="state"
-          value={storeData.state}
+          value={formData.state}
           onChange={handleChange}
           isInvalid={!!errors.state}
           onClick={() => setSelect(!false)}
@@ -105,7 +105,7 @@ export function StepThree({
         <Form.Label className="">City *</Form.Label>
         <Form.Control
           name="city"
-          value={storeData.city}
+          value={formData.city}
           onChange={handleChange}
           isInvalid={errors.city}
         />
@@ -121,7 +121,7 @@ export function StepThree({
         <Form.Label className="">Address *</Form.Label>
         <Form.Control
           name="address"
-          value={storeData.address}
+          value={formData.address}
           onChange={handleChange}
           required
           as="textarea"

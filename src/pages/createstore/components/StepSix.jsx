@@ -43,7 +43,7 @@ const BANKS = [
   { code: "057", name: "Zenith Bank" },
 ];
 
-export function StepSix({ setStep, handleChange, storeData }) {
+export function StepSix({ setStep, handleChange, formData }) {
   return (
     <>
       <h3 className=" fs-3 mb-2">Contact & Social</h3>
@@ -53,7 +53,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>Website</Form.Label>
           <Form.Control
             name="website"
-            value={storeData.website}
+            value={formData.website}
             onChange={handleChange}
           />
         </Form.Group>
@@ -62,7 +62,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>Business Email *</Form.Label>
           <Form.Control
             name="email"
-            value={storeData.email}
+            value={formData.email}
             onChange={handleChange}
             type="email"
             required
@@ -73,7 +73,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>Facebook</Form.Label>
           <Form.Control
             name="facebook"
-            value={storeData.facebook}
+            value={formData.facebook}
             onChange={handleChange}
             type="text"
             placeholder="paste your facebook accont link here"
@@ -84,7 +84,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>Instagram</Form.Label>
           <Form.Control
             name="instagram"
-            value={storeData.instagram}
+            value={formData.instagram}
             onChange={handleChange}
             type="text"
             placeholder="paste your instagram accont link here"
@@ -95,7 +95,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>TikTok</Form.Label>
           <Form.Control
             name="tiktok"
-            value={storeData.tiktok}
+            value={formData.tiktok}
             onChange={handleChange}
             type="text"
             placeholder="paste your tiktok accont link here"
@@ -106,7 +106,7 @@ export function StepSix({ setStep, handleChange, storeData }) {
           <Form.Label>Whatsapp</Form.Label>
           <Form.Control
             name="whatsapp"
-            value={storeData.whatsapp}
+            value={formData.whatsapp}
             onChange={handleChange}
             type="text"
             placeholder="paste your whatsapp accont link here"

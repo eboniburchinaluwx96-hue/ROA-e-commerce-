@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 
-export function StepFour({ handleChange, storeData }) {
+export function StepFour({ handleChange, formData }) {
   return (
     <>
       <h3 className=" fs-3 mb-2">Delivery</h3>
@@ -10,7 +10,7 @@ export function StepFour({ handleChange, storeData }) {
         <Form.Label>Delivery Range </Form.Label>
         <Form.Control
           name="delivery"
-          value={storeData.delivery}
+          value={formData.delivery}
           onChange={handleChange}
           required
           type="text"

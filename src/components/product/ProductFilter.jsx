@@ -10,12 +10,23 @@ const SORT_OPTIONS = [
   "Top rated",
 ];
 
+const STORE_SORT_OPTIONS = [
+  "Newest first",
+  "Best selling",
+  "Low stock",
+  "Price: low to high",
+  "Price: high to low",
+];
+
 function ProductFilter({
   selectedCategory,
   setSelectedCategory,
   category,
   setSort,
   sort,
+  STORE_FILTER,
+  Shop,
+  Store,
 }) {
   const [sortOpen, setSortOpen] = useState(false);
 
@@ -29,20 +40,13 @@ function ProductFilter({
   );
 
   return (
-    <Row className="align-items-center g-2">
+    <Row className="align-items-center g-2 ">
       <Col className=" col-9 col-sm-8 ">
         {/* Category filter chips */}
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            overflowX: "auto",
-          }}
-          className="hide-scrollbar"
-        >
-          {category.map((f) => (
+        <div className="hide-scrollbar filter-tab d-flex gap-3 gap-sm-5">
+          {((Shop && category) || (Store && STORE_FILTER)).map((f) => (
             <button
-              className="px-3 py-1 "
+              className="px-3 "
               key={f}
               onClick={() => setSelectedCategory(f)}
               style={{
@@ -77,7 +81,7 @@ function ProductFilter({
           >
             {" "}
             <div className="d-flex align-items-center gap-2">
-              <SortAlphaDown size={21} />
+              <SortAlphaDown size={15} />
               <div className="d-none d-sm-block">
                 {sort.split(":")[0].split(" ").slice(0, 2).join(" ")}
               </div>
@@ -109,22 +113,24 @@ function ProductFilter({
           </Modal.Header>
           <Modal.Body>
             <Form>
-              {SORT_OPTIONS.map((opt) => {
-                return (
-                  <Form.Check
-                    className="py-2"
-                    style={{ fontSize: "20px" }}
-                    key={opt}
-                    id={opt}
-                    type="radio"
-                    label={opt}
-                    name="sortGroup"
-                    value={opt}
-                    checked={sort === opt}
-                    onChange={(e) => handleSort(e.target.value)}
-                  />
-                );
-              })}
+              {((Shop && SORT_OPTIONS) || (Store && STORE_SORT_OPTIONS)).map(
+                (opt) => {
+                  return (
+                    <Form.Check
+                      className="py-2"
+                      style={{ fontSize: "20px" }}
+                      key={opt}
+                      id={opt}
+                      type="radio"
+                      label={opt}
+                      name="sortGroup"
+                      value={opt}
+                      checked={sort === opt}
+                      onChange={(e) => handleSort(e.target.value)}
+                    />
+                  );
+                },
+              )}
             </Form>
           </Modal.Body>
         </Modal>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FiSearch, FiShoppingCart, FiBell, FiHeart } from "react-icons/fi";
 import { FaArrowLeft } from "react-icons/fa";
 
-export default function NavTop({ title }) {
+export default function NavTop({ title, showSearchBtn = true }) {
   const navigate = useNavigate();
 
   return (
@@ -18,8 +18,8 @@ export default function NavTop({ title }) {
       }}
     >
       <Container>
-        <div className="d-flex align-items-center justify-content-between py-4">
-          <div className="d-flex gap-3 align-items-center">
+        <div className="d-flex align-items-center justify-content-between py-2 py-sm-3">
+          <div className="d-flex gap-3 gap-sm-5 align-items-center">
             {" "}
             <div
               onClick={() => navigate(-1)}
@@ -36,9 +36,11 @@ export default function NavTop({ title }) {
               <b>{title}</b>
             </h4>
           </div>
-          <div>
-            <FiSearch size={24} />
-          </div>
+          {showSearchBtn && (
+            <div>
+              <FiSearch size={24} />
+            </div>
+          )}
         </div>
       </Container>
     </div>

@@ -49,9 +49,7 @@ export default function Notifications() {
           <FiMail size={18} />
         </div>
 
-        <div className="flex-column">
-          <h6 className="text-light">Email notifications</h6>
-        </div>
+        <h6 className="text-light">Email notifications</h6>
 
         <Form.Check className="ms-auto" type="switch" />
       </Stack>
