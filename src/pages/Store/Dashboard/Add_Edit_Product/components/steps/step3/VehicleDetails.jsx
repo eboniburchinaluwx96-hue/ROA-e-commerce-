@@ -104,11 +104,11 @@ export function VehicleDetails({
     <>
       <motion.div variants={container} initial="hidden" animate="visible">
         <motion.div variants={fadedown} className="mb-3">
-          <h3 className=" fs-3 mb-3 fw-bold">Vehicle details</h3>
-          <p>
+          <h3 className=" fs-1 mb-3 fw-bold">Vehicle details</h3>
+          <h5>
             Provide accurate details so serious buyers can make informed
             decisions.
-          </p>
+          </h5>
         </motion.div>
 
         {/* make */}

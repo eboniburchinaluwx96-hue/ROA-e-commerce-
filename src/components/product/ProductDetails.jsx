@@ -17,8 +17,8 @@ export default function ProductDetails({ product, onHide, show, onClose }) {
     <Offcanvas
       show={show}
       onHide={onHide}
-      placement="end"
-      className="product-details offcanvas-product-details"
+      placement={window.innerWidth < 750 ? "bottom" : "start"}
+      className="product-details offcanvas-product-details d-none d-sm-flex"
     >
       <Offcanvas.Body className="p-0">
         <Container className="text-white p-0">

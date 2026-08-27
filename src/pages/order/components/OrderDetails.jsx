@@ -1,668 +1,885 @@
-import { Container, Image, Row, Col, Offcanvas } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form, Row, Col, Container, Offcanvas, Modal } from "react-bootstrap";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { fadedown, container } from "../../../../../animation";
+import OrderStatusBadge from "../../Store/Dashboard/orders/components/OrderStatusBadge";
+import OrderTimeline from "../../Store/Dashboard/orders/components/OrderTimeline";
 import {
-  FaDownload,
-  FaCheck,
-  FaStar,
-  FaStore,
-  FaChevronRight,
-} from "react-icons/fa";
-import { Slider } from "./OrderDetailsSlider";
+  ChevronRight,
+  Lock,
+  ShieldCheck,
+  Star,
+  Wallet,
+  Whatsapp,
+  X,
+} from "react-bootstrap-icons";
+import { FiShoppingBag } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-function OrderDetails({ show, onHide }) {
+function OrderDetails({ order, onHide, show, loading, handleCancel }) {
+  const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          background: "#0a1a0a",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              width: 36,
+              height: 36,
+              border: "2px solid #1a2a1a",
+              borderTopColor: "#c7c94c",
+              borderRadius: "50%",
+              animation: "spin 0.7s linear infinite",
+              margin: "0 auto 10px",
+            }}
+          />
+          <p>Loading order...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!order) return null;
+
+  const canCancel = order.status === "PENDING";
+  const isDelivered = order.status === "DELIVERED";
+  const isCancelled = order.status === "CANCELLED";
+
   return (
     <Offcanvas
       style={{
         background:
-          "radial-gradient(circle,rgba(49, 49, 1, 0.993)20%, rgb(2, 44, 24))",
-        width: "550px",
-        color: "rgba(194, 194, 194, 0.83)",
+          "radial-gradient(circle,  #05270af6, #001a04, #05270af6 , #001a04 )",
+        scrollbarWidth: "thin",
+        msOverflowStyle: "none",
+        width: "80%",
+        paddingBottom: 70,
       }}
       show={show}
       onHide={onHide}
-      placement="start"
+      placement={window.innerWidth < 750 ? "bottom" : "start"}
     >
-      <Offcanvas.Body className="order-details">
-        <Container>
-          <button
+      <Offcanvas.Header
+        className="py-3 py-lg-4 sticky-top d-flex align-items-center justify-content-between"
+        style={{
+          zIndex: 20,
+          background: "rgba(10,26,10,0.97)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          borderBottom: "0.5px solid #a3a108",
+        }}
+      >
+        {" "}
+        {/* TOPBAR */}{" "}
+        <div className="d-flex align-items-center gap-4 gap-sm-5">
+          <div
             onClick={onHide}
-            className="d-flex ms-auto"
             style={{
-              color: "#fff",
-              background: "none",
-              border: "none",
+              width: 30,
+              height: 30,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
             }}
           >
-            X
-          </button>
-
-          <h3 className="mb-4">ORDER DETAIL</h3>
-          <h5
-            style={{
-              color: "rgb(255, 251, 5)",
-              marginTop: "12px",
-              letterSpacing: 2,
-            }}
-          >
-            <span style={{ color: "#fff", fontSize: "32px" }}>Order</span>{" "}
-            <span style={{ fontSize: "32px" }}>#ROA</span> -2026-00892
-          </h5>
-
-          <div className="d-flex align-items-center gap-3 my-2">
-            <h6>Placed 15 Jun 2026</h6>
-
-            <div
-              style={{
-                borderRadius: "50%",
-                background: "rgba(194, 194, 194, 0.83)",
-                padding: "3px",
-              }}
-            ></div>
-
-            <div className="d-flex align-items-center gap-1">
-              <h6>3 items</h6>
-
-              <div
-                style={{
-                  borderRadius: "50%",
-                  background: "rgba(194, 194, 194, 0.83)",
-                  padding: "2px",
-                }}
-              ></div>
-
-              <h6>2 sellers</h6>
-            </div>
-
-            <div
-              style={{
-                borderRadius: "50%",
-                background: "rgba(194, 194, 194, 0.83)",
-                padding: "3px",
-              }}
-            ></div>
+            <X className="text-white fs-5" />
           </div>
-
-          <div className="d-flex align-items-center gap-5 p-2 ">
-            <div
-              className="d-inline-flex align-items-center gap-2 px-3 py-1"
-              style={{
-                background: "#6d48043b",
-                border: "1px solid #e2960a",
-                color: "#e2960a",
-              }}
+          <div>
+            <p className="mb-2 mb-sm-3" style={{ lineHeight: 1 }}>
+              Order details
+            </p>
+            <h6
+              className="text-white"
+              style={{ letterSpacing: 1.5, lineHeight: 1 }}
             >
-              <div
-                style={{
-                  background: " #e2960a",
-                  borderRadius: "50%",
-                  padding: "3px",
-                }}
-              ></div>
-              <div>IN TRANSIT</div>
-            </div>
+              {order.orderNumber}
+            </h6>
           </div>
-
-          <Row g-5 className="my-4 align-items-center">
-            <Col>
-              <button
+        </div>
+        <span className="ms-auto ">
+          <OrderStatusBadge status={order.status} />
+        </span>
+      </Offcanvas.Header>
+      <Offcanvas.Body className="p-0 py-4">
+        <Container>
+          <motion.div variants={container} initial="hidden" animate="visible">
+            {/* ORDER TIMELINE */}
+            <motion.div variants={fadedown} className="my-5 py-3">
+              <div
+                className="p-3 px-sm-4 "
                 style={{
-                  background: "none",
-                  color: "rgba(194, 194, 194, 0.83)",
-                  padding: " 5px 10px",
+                  background: "#111a11",
+                  border: "0.5px solid #1a2a1a",
+                  borderRadius: 14,
                 }}
               >
-                <div className="d-flex align-items-center gap-2">
-                  <FaDownload />
-                  <h6>RECEIPT</h6>
+                <h6 style={{ color: "#ebe700" }}>Order tracking</h6>
+                <div className=" py-4">
+                  <OrderTimeline
+                    currentStatus={order.status}
+                    timestamps={order.timestamps || {}}
+                  />
                 </div>
-              </button>
-            </Col>
+              </div>
+            </motion.div>
 
-            <Col>
-              <button
-                style={{
-                  background: "none",
-                  color: "rgba(194, 194, 194, 0.83)",
-                  padding: " 5px 10px",
-                }}
-              >
-                <div className="d-flex align-items-center gap-2">
-                  <h6>TRACK</h6>
-                </div>
-              </button>
-            </Col>
-
-            <Col>
-              <button
-                style={{
-                  background: "rgb(255, 251, 5)",
-                  color: "#000",
-                  padding: " 5px 10px",
-                }}
-              >
-                <div className="d-flex align-items-center gap-2">
-                  <h6>REORDER ALL</h6>
-                </div>
-              </button>
-            </Col>
-          </Row>
-
-          {/* Order products info card */}
-
-          <div
-            className="my-5"
-            style={{
-              border: "1px solid rgba(255, 238, 0, 0.275)",
-              borderBottom: "0",
-            }}
-          >
-            <div
-              className="px-4 py-2 "
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <h6
-                style={{
-                  color: "rgb(255, 238, 0)",
-                  letterSpacing: 1.2,
-                }}
-              >
-                ITEMS ORDERED (2)
-              </h6>
-            </div>
-
-            {/* ORDER ITEMS */}
-
-            <div
-              className="p-4 item-order"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <Row g-5>
-                <Col className="col-3 col-sm-3 col-md-1 col-lg-2 ">
-                  <Slider />
-                </Col>
-
-                <Col>
-                  <div className="d-flex flex-column ">
-                    <h5 className="text-light">
-                      <b>Ankara Bomber Jacket</b>
-                    </h5>
-                    <h5 style={{ color: "rgb(255, 238, 0)" }}>&#8358;31,000</h5>
-                    <p>
-                      Navy Blue
-                      <span>
-                        <b>.</b>
-                      </span>{" "}
-                      Qty 1
-                    </p>
-
-                    <h6 className="my-2" style={{ color: "#33ff00" }}>
-                      <FaCheck className="me-2" />
-                      DELIVERED - MON 16 JUN
+            {/* ESTIMATED DELIVERY */}
+            {order.status === "IN_TRANSIT" && order.estimatedAt && (
+              <motion.div variants={fadedown} className="my-5 py-3">
+                <div
+                  className="d-flex align-items-center justify-content-between  p-3 px-sm-4"
+                  style={{
+                    background: "linear-gradient(135deg, #1a4a1a, #2d7a0a)",
+                    borderRadius: 14,
+                    padding: 14,
+                  }}
+                >
+                  <div>
+                    <h6 style={{ color: "#ebe700" }}>Estimated delivery</h6>
+                    <h6 className="text-white fw-bold py-4">
+                      {new Date(order.estimatedAt).toLocaleDateString("en-NG", {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long",
+                      })}
                     </h6>
-
-                    <div
-                      className="d-flex gap-2 pb-4"
-                      style={{
-                        borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                      }}
-                    >
-                      <button
-                        style={{
-                          background: "none",
-                          padding: "7px",
-                          color: "rgba(194, 194, 194, 0.83)",
-                        }}
-                      >
-                        REORDER
-                      </button>
-
-                      <button
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 3,
-                          background: "none",
-                          borderColor: "rgb(255, 238, 0)",
-                          padding: "7px",
-                          color: "rgb(255, 238, 0)",
-                        }}
-                      >
-                        <FaStar /> LEAVE A REVIEW
-                      </button>
-                    </div>
-
-                    <div className="d-flex gap-5 my-3 align-items-center">
-                      <div className="flex-column">
-                        <a href="">
-                          <h5 className="text-warning d-flex align-items-center">
-                            {" "}
-                            <FaStore className="me-2" size={19} /> Adunola's
-                            Boutique
-                          </h5>
-                        </a>
-
-                        <div className="d-flex align-items-center gap-1">
-                          <small>Fashion</small>
-
-                          <div
-                            style={{
-                              borderRadius: "50%",
-                              background: "rgba(194, 194, 194, 0.83)",
-                              padding: "2px",
-                            }}
-                          ></div>
-
-                          <small>Lagos</small>
-                        </div>
-                      </div>
-
-                      <button
-                        style={{
-                          background: "none",
-                          color: "rgba(194, 194, 194, 0.83)",
-                          padding: "8px",
-                        }}
-                      >
-                        CHAT
-                      </button>
-                    </div>
                   </div>
-                </Col>
-              </Row>
-            </div>
-
-            <div
-              className="p-4 item-order"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <Row g-5>
-                <Col className="col-3 col-sm-3 col-md-1 col-lg-2 ">
-                  <Slider />
-                </Col>
-
-                <Col>
-                  <div className="d-flex flex-column ">
-                    <h5 className="text-light">
-                      <b>Ankara Bomber Jacket</b>
-                    </h5>
-                    <h5 style={{ color: "rgb(255, 238, 0)" }}>&#8358;31,000</h5>
-                    <p>
-                      Navy Blue
-                      <span>
-                        <b>.</b>
-                      </span>{" "}
-                      Qty 1
-                    </p>
-
-                    <h6 className="my-2" style={{ color: "#33ff00" }}>
-                      <FaCheck className="me-2" />
-                      DELIVERED - MON 16 JUN
-                    </h6>
-
-                    <div
-                      className="d-flex gap-2 pb-4"
-                      style={{
-                        borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                      }}
-                    >
-                      <button
-                        style={{
-                          background: "none",
-                          padding: "7px",
-                          color: "rgba(194, 194, 194, 0.83)",
-                        }}
-                      >
-                        REORDER
-                      </button>
-
-                      <button
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 3,
-                          background: "none",
-                          borderColor: "rgb(255, 238, 0)",
-                          padding: "7px",
-                          color: "rgb(255, 238, 0)",
-                        }}
-                      >
-                        <FaStar /> LEAVE A REVIEW
-                      </button>
-                    </div>
-
-                    <div className="d-flex gap-5 my-3 align-items-center">
-                      <div className="flex-column">
-                        <a href="">
-                          <h5 className="text-warning d-flex align-items-center">
-                            {" "}
-                            <FaStore className="me-2" size={19} /> Adunola's
-                            Boutique
-                          </h5>
-                        </a>
-
-                        <div className="d-flex align-items-center gap-1">
-                          <small>Fashion</small>
-
-                          <div
-                            style={{
-                              borderRadius: "50%",
-                              background: "rgba(194, 194, 194, 0.83)",
-                              padding: "2px",
-                            }}
-                          ></div>
-
-                          <small>Lagos</small>
-                        </div>
-                      </div>
-
-                      <button
-                        style={{
-                          background: "none",
-                          color: "rgba(194, 194, 194, 0.83)",
-                          padding: "8px",
-                        }}
-                      >
-                        CHAT
-                      </button>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-          {/* items ordered info card */}
-
-          <div
-            style={{
-              border: "1px solid rgba(255, 238, 0, 0.275)",
-            }}
-          >
-            <div
-              className=" d-flex justify-content-between px-4 py-2 "
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <h6
-                style={{
-                  color: "rgb(255, 238, 0)",
-                  letterSpacing: 1.2,
-                }}
-              >
-                ITEMS ORDERED (2)
-              </h6>
-
-              <a href="">
-                <h6>REPORT ISSUE</h6>
-              </a>
-            </div>
-
-            <div
-              className="px-4"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Recipient</h6>
-                <p className="text-light">Amara Obi</p>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Address</h6>
-
-                <p className="text-light">
-                  {" "}
-                  15, ifelodun St, Ijagemo Ikotun, <br />
-                  lagos.
-                </p>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Phone</h6>
-                <p className="text-light">+234 813 *** ****</p>
-              </div>
-
-              <div className="d-flex justify-content-between py-2">
-                <h6>Note</h6>
-                <p style={{ fontStyle: "italic" }}>
-                  Leave at gate if no answer
-                </p>
-              </div>
-            </div>
-
-            {/* Summary info */}
-
-            <div
-              className=" d-flex justify-content-between px-4 py-3 "
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <h6
-                style={{
-                  color: "rgb(255, 238, 0)",
-                  letterSpacing: 1.2,
-                }}
-              >
-                SUMMARY
-              </h6>
-            </div>
-
-            <div className="px-4 ">
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Subtotal</h6>
-                <p className="text-light"> &#8358;71,400</p>
-              </div>
-
-              <div className="d-flex justify-content-between py-2">
-                <h6>Discount</h6>
-                <p style={{ color: "rgb(51, 255, 0)" }}>&#8358;5,500</p>
-              </div>
-
-              <div className="d-flex justify-content-between py-2">
-                <h6>Delivery</h6>
-                <p style={{ color: "rgb(51, 255, 0)" }}> Free</p>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>VAT(75%)</h6>
-                <p className="text-light"> &#8358;4,943</p>
-              </div>
-
-              <div className="d-flex justify-content-between py-3">
-                <h6>Total</h6>
-                <p style={{ color: "rgb(255, 238, 0)" }}> &#8358;65,900</p>
-              </div>
-            </div>
-          </div>
-
-          {/* payment info card */}
-
-          <div
-            className="my-5"
-            style={{
-              border: "1px solid rgba(255, 238, 0, 0.275)",
-            }}
-          >
-            <div
-              className="  px-4 py-2 "
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <h6
-                style={{
-                  color: "rgb(255, 238, 0)",
-                  letterSpacing: 1.2,
-                }}
-              >
-                PAYMENT
-              </h6>
-            </div>
-
-            <div className="px-4">
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Method</h6>
-                <h6 className="text-light">Visa **** 4821</h6>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Status</h6>
-                <p style={{ color: "rgb(51, 255, 0)" }}>
-                  <FaCheck /> Successful{" "}
-                </p>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Transaction ID</h6>
-                <p style={{ color: "#5e5c5c" }}>
-                  <FaCheck /> TXN-ROA-20260615- <br className="me-auto" />{" "}
-                  44821X
-                </p>
-              </div>
-
-              <div
-                className="d-flex justify-content-between py-2"
-                style={{
-                  borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-                }}
-              >
-                <h6>Date</h6>
-                <div className="text-light d-flex align-items-center gap-1">
-                  <p>15 jun 2026</p>
-                  <div
+                  <FaStore
                     style={{
-                      background: "#fff",
-                      padding: "2px",
-                      borderRadius: "50%",
+                      fontSize: 32,
+                      color: "rgba(255,255,255,0.3)",
                     }}
                   />
-                  <p>11:43 AM</p>
                 </div>
-              </div>
+              </motion.div>
+            )}
 
-              <div className="d-flex justify-content-between py-4">
-                <h6>Total</h6>
-                <p style={{ color: "rgb(255, 238, 0)" }}>&#8358;65,900</p>
-              </div>
-            </div>
-          </div>
+            {/* CANCELLED NOTICE */}
+            {isCancelled && (
+              <motion.div variants={fadedown} className="my-5 py-3">
+                <div
+                  className="p-3 px-sm-4"
+                  style={{
+                    background: "rgba(192, 58, 43, 0.14)",
+                    border: "0.5px solid rgba(192, 58, 43, 0.6)",
+                    borderRadius: 14,
+                  }}
+                >
+                  <div className="d-flex align-items-center gap-4 mb-2">
+                    <X style={{ fontSize: 18, color: "#c0392b" }} />
+                    <h6
+                      style={{
+                        color: "#c0392b",
+                      }}
+                    >
+                      Order cancelled
+                    </h6>
+                  </div>
 
-          {/* help */}
+                  <p
+                    style={{
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Reason: {order.cancellationReason}
+                  </p>
 
-          <div
-            className="my-5"
-            style={{
-              border: "1px solid rgba(255, 238, 0, 0.275)",
-            }}
-          >
-            <div
-              className="  px-4 py-2 "
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              <h6
+                  <div
+                    className="d-flex align-items-center gap-2"
+                    style={{
+                      marginTop: 10,
+                      background: "rgba(29,158,117,0.06)",
+                      border: "0.5px solid rgba(29,158,117,0.2)",
+                      borderRadius: 8,
+                      padding: "8px 12px",
+                    }}
+                  >
+                    <FaStore
+                      className="mb-1"
+                      style={{ fontSize: 14, color: "#1D9E75" }}
+                    />
+                    <span style={{ fontSize: 12, color: "#1D9E75" }}>
+                      ₦{order.total?.toLocaleString()} refunded to your r.o.a.
+                      wallet
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* DELIVERED — rate prompt */}
+            {isDelivered && !order.hasReviewed && (
+              <motion.div variants={fadedown} className="my-5 py-3">
+                <div
+                  className="p-3 px-sm-4"
+                  onClick={() => navigate(`/orders/${order.id}/review`)}
+                  style={{
+                    background: "#c9c74c15",
+                    border: "0.5px solid #c9c74c60",
+                    borderRadius: 14,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div className="d-flex align-items-center gap-3">
+                    <div
+                      style={{
+                        width: 38,
+                        height: 38,
+                        borderRadius: 10,
+                        background: "#c9c74c1a",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Star
+                        style={{
+                          fontSize: 20,
+                          color: "rgba(201, 199, 76, 0.94)",
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <h6
+                        className="mb- mb-sm-2 mb-lg-3"
+                        style={{
+                          color: "#dfdb17",
+                        }}
+                      >
+                        How was your experience?
+                      </h6>
+                      <p> Rate {order.store?.name} and help other buyers</p>
+                    </div>
+                  </div>
+                  <ChevronRight
+                    className="text-white"
+                    style={{ fontSize: 22 }}
+                  />
+                </div>
+              </motion.div>
+            )}
+
+            {/* ORDER ITEMS */}
+            <motion.div variants={fadedown} className="my-5 py-3">
+              <div
                 style={{
-                  color: "rgb(255, 238, 0)",
-                  letterSpacing: 1.2,
+                  background: "#111a11",
+                  border: "0.5px solid #1a2a1a",
+                  borderRadius: 14,
+                  overflow: "hidden",
                 }}
               >
-                NEED HELP?
-              </h6>
-            </div>
+                {/* Store header */}
+                <div
+                  className="p-3 px-sm-4 d-flex align-items-center gap-4"
+                  onClick={() => navigate(`/store/${order.storeId}`)}
+                  style={{
+                    borderBottom: "0.5px solid #1a2a1a",
+                    cursor: "pointer",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "clamp(45px, 3px + 5vw, 60px)",
+                      height: "clamp(45px, 3px + 5vw, 60px)",
+                      borderRadius: 10,
+                      background: "#1a2a1a",
+                      overflow: "hidden",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {order.store?.logo ? (
+                      <img
+                        src={order.store.logo}
+                        alt={order.store.name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <i
+                        className="ti ti-store"
+                        style={{ fontSize: 16, color: "#888" }}
+                      />
+                    )}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <p
+                      className="text-white mb-2 mb-lg-3"
+                      style={{
+                        fontWeight: 600,
+                      }}
+                    >
+                      {order.store?.name}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: 11,
+                      }}
+                    >
+                      Tap to visit store
+                    </p>
+                  </div>
+                  <ChevronRight
+                    className="text-white"
+                    style={{ fontSize: 15 }}
+                  />
+                </div>
 
-            <Link
-              to=""
-              className="d-flex gap-4 py-3 px-4 justify-content-between"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              Report a problem
-              <FaChevronRight className=" d-flex ms-auto" />
-            </Link>
+                {/* Items */}
+                {order.items?.map((orderItem, i) => (
+                  <div
+                    className="p-3 px-sm-4 d-flex align-items-center gap-3"
+                    key={i}
+                    style={{
+                      borderTop: i > 0 ? "0.5px solid #1a2a1a" : "none",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 60,
+                        height: 60,
+                        borderRadius: 10,
+                        background: "#1a2a1a",
+                        flexShrink: 0,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {orderItem.product?.images?.[0] ? (
+                        <img
+                          src={orderItem.product.images[0]}
+                          alt={orderItem.product.name}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FiShoppingBag
+                            style={{
+                              fontSize: 25,
+                              color: "rgba(255,255,255,0.15)",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
 
-            <Link
-              to=""
-              className="d-flex gap-4 py-3 px-4 justify-content-between"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              Request a return
-              <FaChevronRight className=" d-flex ms-auto" />
-            </Link>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p
+                        className="text-white mb-2"
+                        style={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {orderItem.product?.name}
+                      </p>
+                      {orderItem.variant && (
+                        <div className="d-flex flex-wrap gap-2 mb-1">
+                          {Object.entries(orderItem.variant).map(([k, v]) => (
+                            <p
+                              key={k}
+                              style={{
+                                background: "rgba(255,255,255,0.05)",
+                                borderRadius: 5,
+                                padding: "1px 6px",
+                              }}
+                            >
+                              {k}: {v}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p>
+                          ₦{orderItem.price?.toLocaleString()} x{" "}
+                          {orderItem.quantity}
+                        </p>
+                        <p
+                          className="fw-bold"
+                          style={{
+                            color: "#1D9E75",
+                            letterSpacing: 1.5,
+                          }}
+                        >
+                          ₦
+                          {(
+                            orderItem.price * orderItem.quantity
+                          ).toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
 
-            <Link
-              to=""
-              className="d-flex gap-4 py-3 px-4 justify-content-between"
-              style={{
-                borderBottom: "1px solid rgba(255, 238, 0, 0.22)",
-              }}
-            >
-              Request a refund
-              <FaChevronRight className=" d-flex ms-auto" />
-            </Link>
+                {/* Buy again row */}
+                {isDelivered && (
+                  <div
+                    className="p-3 px-sm-4"
+                    style={{
+                      borderTop: "0.5px solid #1a2a1a",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        navigate(`/product/${order.items?.[0]?.productId}`)
+                      }
+                      style={{
+                        width: "100%",
+                        padding: "10px 0",
+                        background: "transparent",
+                        border: "0.5px solid #c9c63d80",
+                        borderRadius: 10,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: "#cac715",
+                      }}
+                    >
+                      Buy again
+                    </button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
 
-            <Link
-              to=""
-              className="d-flex gap-4 py-3 px-4 justify-content-between"
-              style={{}}
-            >
-              contact support
-              <FaChevronRight className=" d-flex ms-auto" />
-            </Link>
-          </div>
+            {/* PAYMENT BREAKDOWN */}
+            <motion.div variants={fadedown} className="my-5 py-3">
+              <div
+                className="p-3 px-sm-4"
+                style={{
+                  background: "#111a11",
+                  border: "0.5px solid #1a2a1a",
+                  borderRadius: 14,
+                }}
+              >
+                <h6 style={{ color: "#ebe700" }}>Payment summary</h6>
+                {[
+                  {
+                    label: "Subtotal",
+                    val: `₦${order.subtotal?.toLocaleString()}`,
+                    color: "#ddd",
+                  },
+                  {
+                    label: "Delivery fee",
+                    val: order.deliveryFee
+                      ? `₦${order.deliveryFee?.toLocaleString()}`
+                      : "Free",
+                    color: "#ddd",
+                  },
+                  {
+                    label: "Discount",
+                    val: order.discount
+                      ? `-₦${order.discount?.toLocaleString()}`
+                      : "—",
+                    color: "#1D9E75",
+                  },
+                  {
+                    label: "Total paid",
+                    val: `₦${order.total?.toLocaleString()}`,
+                    color: "#d6da0e",
+                    bold: true,
+                  },
+                ].map((row, i) => (
+                  <div
+                    key={row.label}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "9px 0",
+                      borderTop: i === 3 ? "0.5px solid #1a2a1a" : "none",
+                      marginTop: i === 3 ? 4 : 0,
+                    }}
+                  >
+                    <p>{row.label}</p>
+                    <span
+                      style={{
+                        fontSize: row.bold ? 15 : 13,
+                        color: row.color,
+                        fontWeight: row.bold ? 700 : 500,
+                      }}
+                    >
+                      {row.val}
+                    </span>
+                  </div>
+                ))}
+
+                <div
+                  className="d-flex align-items-center gap-3"
+                  style={{
+                    marginTop: 10,
+                    padding: "8px 12px",
+                    background: "rgba(29,158,117,0.06)",
+                    border: "0.5px solid rgba(29,158,117,0.2)",
+                    borderRadius: 8,
+                  }}
+                >
+                  <ShieldCheck style={{ fontSize: 13, color: "#1D9E75" }} />
+                  <p style={{ color: "#1D9E75", lineHeight: 1.2 }}>
+                    Paid via {order.paymentMethod} · Protected by r.o.a.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* DELIVERY ADDRESS */}
+            <motion.div variants={fadedown} className="my-5 py-3">
+              <div
+                style={{
+                  background: "#111a11",
+                  border: "0.5px solid #1a2a1a",
+                  borderRadius: 14,
+                  padding: 14,
+                }}
+              >
+                <h6 style={{ color: "#ebe700" }}>Delivery address</h6>
+                <div
+                  style={{
+                    background: "#0a1a0a",
+                    border: "0.5px solid #1a2a1a",
+                    borderRadius: 10,
+                    padding: 12,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 8,
+                    }}
+                  >
+                    <i
+                      className="ti ti-map-pin"
+                      style={{
+                        fontSize: 16,
+                        color: "#c9a84c",
+                        flexShrink: 0,
+                        marginTop: 1,
+                      }}
+                    />
+                    <div>
+                      <p
+                        style={{
+                          fontSize: 13,
+                          color: "#ddd",
+                          lineHeight: 1.6,
+                          margin: 0,
+                        }}
+                      >
+                        {order.deliveryAddress?.street}
+                        <br />
+                        {order.deliveryAddress?.city},{" "}
+                        {order.deliveryAddress?.state}
+                      </p>
+                      {order.deliveryNote && (
+                        <p
+                          style={{
+                            fontSize: 12,
+                            color: "rgba(255,255,255,0.35)",
+                            marginTop: 6,
+                            marginBottom: 0,
+                          }}
+                        >
+                          📝 {order.deliveryNote}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ORDER INFO */}
+            <motion.div variants={fadedown} className="my-5 py-3">
+              <div
+                style={{
+                  background: "#111a11",
+                  border: "0.5px solid #1a2a1a",
+                  borderRadius: 14,
+                  padding: 14,
+                }}
+              >
+                <h6 style={{ color: "#ebe700" }}>Order information</h6>
+                {[
+                  { label: "Order number", val: order.orderNumber },
+                  {
+                    label: "Placed on",
+                    val: new Date(order.createdAt).toLocaleString("en-NG", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }),
+                  },
+                  { label: "Payment method", val: order.paymentMethod },
+                  ...(order.estimatedAt
+                    ? [
+                        {
+                          label: "Estimated delivery",
+                          val: new Date(order.estimatedAt).toLocaleDateString(
+                            "en-NG",
+                            { day: "numeric", month: "long", year: "numeric" },
+                          ),
+                        },
+                      ]
+                    : []),
+                  ...(order.deliveredAt
+                    ? [
+                        {
+                          label: "Delivered on",
+                          val: new Date(order.deliveredAt).toLocaleDateString(
+                            "en-NG",
+                            { day: "numeric", month: "long", year: "numeric" },
+                          ),
+                        },
+                      ]
+                    : []),
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      padding: "10px 0",
+                      borderBottom: "0.5px solid #1a2a1a",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 12,
+                        color: "rgba(255,255,255,0.35)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {row.label}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 12,
+                        color: "#ddd",
+                        fontWeight: 500,
+                        textAlign: "right",
+                        maxWidth: "60%",
+                      }}
+                    >
+                      {row.val}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* CANCEL REASON — if cancelled */}
+            {order.status === "CANCELLED" && order.cancellationReason && (
+              <motion.div variants={fadedown} className="my-5 py-3">
+                <div
+                  className="px-3 px-sm-4 py-2"
+                  style={{
+                    background: "rgba(192,57,43,0.06)",
+                    border: "0.5px solid rgba(192,57,43,0.2)",
+                    borderRadius: 14,
+                  }}
+                >
+                  <h6 style={{ color: "#c0392b" }}>Cancellation reason</h6>
+                  <p
+                    className="mt-2"
+                    style={{
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {order.cancellationReason}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
         </Container>
+        {/* ---- BOTTOM ACTION BAR ---- */}
+        {(isActionable || isCancellable) && (
+          <div
+            className="d-flex gap-3 gap-lg-5"
+            style={{
+              position: "sticky",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              background: "rgba(10,26,10,0.97)",
+              backdropFilter: "blur(10px)",
+              borderTop: "0.5px solid #a3a108",
+              padding: "12px 16px",
+              zIndex: 20,
+            }}
+          >
+            {/* Cancel button */}
+            {isCancellable && (
+              <button
+                type="button"
+                onClick={() => setCancelModal(true)}
+                disabled={actionLoad}
+                style={{
+                  flex: 1,
+                  padding: 13,
+                  background: "transparent",
+                  border: "0.5px solid rgba(192,57,43,0.3)",
+                  borderRadius: 12,
+                  fontWeight: 600,
+                }}
+              >
+                <p style={{ color: "#e91f09" }}>Cancel order</p>
+              </button>
+            )}
+
+            {/* Primary action */}
+            {nextAction && (
+              <button
+                type="button"
+                onClick={() => handleStatusUpdate(order.id, nextAction.next)}
+                disabled={actionLoad}
+                style={{
+                  flex: 2,
+                  padding: 13,
+                  background: nextAction.color,
+                  border: "none",
+                  borderRadius: 12,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  cursor: actionLoad ? "not-allowed" : "pointer",
+                  opacity: actionLoad ? 0.7 : 1,
+                  transition: "all 0.2s",
+                }}
+              >
+                <p
+                  style={{
+                    color: nextAction.next === "DELIVERED" ? "#fff" : "#1a1a00",
+                  }}
+                >
+                  {actionLoad ? "Updating..." : nextAction.label}
+                </p>
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* CANCEL ORDER MODAL */}
+        {cancelModal && (
+          <Modal
+            show={cancelModal}
+            onHide={() => setCancelModal(false)}
+            centered
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header>
+              <Modal.Title className="ms-auto">
+                <X
+                  className="text-white fs-2"
+                  onClick={() => setCancelModal(false)}
+                  style={{ cursor: "pointer" }}
+                />
+              </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <p className="mb-2 text-white">Cancel this order?</p>
+              <p
+                style={{
+                  marginBottom: 16,
+                  lineHeight: 1.6,
+                }}
+              >
+                The buyer will be notified and the payment will be refunded to
+                their r.o.a. wallet.
+              </p>
+
+              <Form.Label> Reason for cancellation</Form.Label>
+              <Form.Control
+                placeholder="e.g. Item out of stock, unable to fulfil order..."
+                value={cancelNote}
+                onChange={(e) => setCancelNote(e.target.value)}
+                as="textarea"
+                rows={3}
+                style={{
+                  resize: "none",
+                }}
+              />
+            </Modal.Body>
+
+            <Modal.Footer>
+              <div className="d-flex gap-4 w-100">
+                <button
+                  className="p-2 text-center"
+                  type="button"
+                  onClick={() => setCancelModal(false)}
+                  style={{
+                    flex: 1,
+                    background: "transparent",
+                    border: "0.5px solid rgba(255,255,255,0.1)",
+                    borderRadius: 12,
+                    fontWeight: 600,
+                  }}
+                >
+                  <p>Keep order</p>
+                </button>
+                <button
+                  className="p-2 text-center fw-bold"
+                  type="button"
+                  onClick={() => handleStatusUpdate("CANCELLED", cancelNote)}
+                  disabled={actionLoad}
+                  style={{
+                    flex: 1,
+
+                    background: "rgba(192,57,43,0.15)",
+                    border: "0.5px solid rgba(192,57,43,0.3)",
+                    borderRadius: 12,
+
+                    color: "#c0392b",
+                  }}
+                >
+                  {actionLoad ? "Cancelling..." : "Yes, cancel order"}
+                </button>
+              </div>
+            </Modal.Footer>
+          </Modal>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );

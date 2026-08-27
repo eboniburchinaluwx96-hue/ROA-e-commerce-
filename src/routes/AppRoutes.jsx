@@ -30,7 +30,7 @@ function AppRoutes() {
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/shop" element={<ShoppingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/public-store" element={<PublicStore />} />
+          <Route path="/store/:storeId" element={<PublicStore />} />
           <Route path="/get-store" element={<GetStore />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/profile" element={<ProfilePage />} />
@@ -42,6 +42,10 @@ function AppRoutes() {
           <Route path="/deposit" element={<TopUp />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/add_product" element={<AddEditProduct />} />
+          <Route
+            path="/seller/products/:id/edit"
+            element={<AddEditProduct />}
+          />
         </Routes>
       </Suspense>
     </>

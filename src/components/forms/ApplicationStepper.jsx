@@ -1,9 +1,14 @@
 import { useEffect, useRef } from "react";
 
-const ADD_PRODUCT_STEPPER = [1, 2, 3, 4, 5, 6, 7];
+const STEPS_BY_TYPE = {
+  REGULAR: [1, 2, 3, 4, 5, 6, 7],
+  VEHICLE: [1, 2, 3, 5, 6, 7],
+  REAL_ESTATE: [1, 2, 3, 5, 6, 7],
+};
 
-export function ApplicationStepper({ step, setStep, addProduct }) {
+export function ApplicationStepper({ step, setStep, addProduct, formData }) {
   const stepRefs = useRef({});
+  const productStepper = STEPS_BY_TYPE[formData.type || [1]];
 
   useEffect(() => {
     stepRefs.current[step]?.scrollIntoView({
@@ -17,7 +22,7 @@ export function ApplicationStepper({ step, setStep, addProduct }) {
       className="d-flex mb-5"
       style={{ overflowX: "auto", scrollbarWidth: "none" }}
     >
-      {(addProduct ? ADD_PRODUCT_STEPPER : [1, 2, 3, 4]).map((num) => {
+      {(addProduct ? productStepper : [1, 2, 3, 4]).map((num) => {
         return (
           <div
             key={num}

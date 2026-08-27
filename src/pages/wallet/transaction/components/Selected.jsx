@@ -3,16 +3,16 @@ import { motion } from "framer-motion";
 import { fadeUp } from "../../../../animation";
 
 export function Selected({
-  setSelected,
+  setShowDetails,
   TX_CONFIG,
   show,
   isIncoming,
   isFailed,
-  selected,
+  txn,
 }) {
-  const incoming = isIncoming[selected.type];
-  const failed = isFailed[selected.type];
-  const config = TX_CONFIG[selected.type];
+  const incoming = isIncoming[txn.type];
+  const failed = isFailed[txn.type];
+  const config = TX_CONFIG[txn.type];
 
   return (
     <motion.div
@@ -23,14 +23,14 @@ export function Selected({
     >
       <offCanvas
         show={show}
-        onHide={() => setSelected(false)}
+        onHide={() => setShowDetails(false)}
         placement="bottom"
         style={{ height: "80%", background: "#000000b3" }}
       >
         <offCanvas.Header>
           <p
             className="d-flex ms-auto text-white fs-5"
-            onClick={() => setSelected(false)}
+            onClick={() => setShowDetails(false)}
           >
             X
           </p>
@@ -48,7 +48,7 @@ export function Selected({
               >
                 <config.Icon />
               </div>
-              <p className="text-white fw-bold mb-3">{selected.title}</p>
+              <p className="text-white fw-bold mb-3">{txn.title}</p>
               <h2
                 className="mb-4 "
                 style={{
@@ -58,29 +58,29 @@ export function Selected({
                 }}
               >
                 {incoming ? "+" : failed ? "" : "-"} ₦
-                {selected.amount.toLocaleString()}
+                {txn.amount.toLocaleString()}
               </h2>
               <p
                 className="p-1"
                 style={{
                   borderRadius: 10,
                   background:
-                    selected.status === "COMPLETED"
+                    txn.status === "COMPLETED"
                       ? "#1d9e751a"
-                      : selected.status === "PENDING"
+                      : txn.status === "PENDING"
                         ? "#c9a84c1a"
                         : "#c0392b1a",
                   color:
-                    selected.status === "COMPLETED"
+                    txn.status === "COMPLETED"
                       ? "#13a86f"
-                      : selected.status === "PENDING"
+                      : txn.status === "PENDING"
                         ? "#bd9b12"
                         : "#9e0f0f",
                 }}
               >
-                {selected.status === "COMPLETED"
+                {txn.status === "COMPLETED"
                   ? "Completed"
-                  : selected.status === "PENDING"
+                  : txn.status === "PENDING"
                     ? "Pending"
                     : "Failed"}
               </p>
@@ -89,13 +89,13 @@ export function Selected({
             <div className="px-2" style={{ background: "#1a2a1a" }}>
               {[
                 { label: "Type", val: config.label },
-                { label: "Description", val: selected.description },
+                { label: "Description", val: txn.description },
                 {
                   label: "Date & time",
-                  val: new Date(selected.createdAt).toLocaleString("en-NG"),
+                  val: new Date(txn.createdAt).toLocaleString("en-NG"),
                 },
-                { label: "Reference", val: selected.reference, gold: true },
-                { label: "Status", val: selected.status },
+                { label: "Reference", val: txn.reference, gold: true },
+                { label: "Status", val: txn.status },
               ].map((row) => (
                 <div
                   className="d-flex justify-content-between"

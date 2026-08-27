@@ -8,13 +8,14 @@ import {
   FaDownload,
   FaShoppingBag,
   FaStore,
-} from "react-Icons/fa";
+} from "react-icons/fa";
 import { useState, useMemo, useEffect } from "react";
 import { SummaryCard } from "./components/SummaryCard";
 import { SearchBar } from "./components/Searchbar";
 import { Filter } from "./components/Filter";
 import { GroupedTransaction } from "./components/GroupedTransaction";
 import { Selected } from "./components/Selected";
+import { getTransactionsByUser } from "../../../dummyData";
 
 // transaction types config
 const TX_CONFIG = {
@@ -64,7 +65,8 @@ export function Transactions() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [selectedTxn, setSelectedTxn] = useState(null);
   const [txns, setTxns] = useState([]);
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState({
@@ -75,8 +77,14 @@ export function Transactions() {
     outCount: 0,
   });
 
+  const handleSelectedTnx = (txn) => {
+    setShowDetails(true);
+    setSelectedTxn(txn);
+  };
+
   // fetch on mount
-  useEffect(() => {
+  {
+    /*  useEffect(() => {
     const fetchTransactions = async () => {
       try {
         setLoading(true);
@@ -90,6 +98,14 @@ export function Transactions() {
       }
     };
     fetchTransactions();
+  }, [txns]); */
+  }
+
+  // In NotificationsPage.jsx
+  useEffect(() => {
+    const myTrans = getTransactionsByUser("user-001");
+    setTxns(myTrans);
+    setLoading(false);
   }, []);
 
   // filter and search
@@ -201,20 +217,21 @@ export function Transactions() {
           TX_CONFIG={TX_CONFIG}
           isFailed={isFailed}
           isIncoming={isIncoming}
-          setSelected={setSelected}
+          setSelected={setShowDetails}
           loading={loading}
+          handleSelectedTnx={handleSelectedTnx}
         />
       </Container>
 
       {/* Detail bottom sheet */}
-      {selected && (
+      {showDetails && (
         <Selected
-          show={() => setSelected(true)}
-          setSelected={setSelected}
+          show={() => setShowDetails(true)}
+          txn={selectedTxn}
           TX_CONFIG={TX_CONFIG}
           isFailed={isFailed}
           isIncoming={isIncoming}
-          selected={selected}
+          setShowDetails={setShowDetails}
         />
       )}
     </>

@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { FaArrowDown, FaArrowUp } from "react-Icons/fa";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 export function SummaryCard({ summary }) {
   const navigate = useNavigate();
@@ -119,7 +119,7 @@ export function SummaryCard({ summary }) {
                     color: s.color,
                   }}
                 >
-                  ₦{s.amount.toLocaleString()}
+                  ₦ {s.amount.toLocaleString()}
                 </p>
 
                 <p>{s.count} transactions</p>

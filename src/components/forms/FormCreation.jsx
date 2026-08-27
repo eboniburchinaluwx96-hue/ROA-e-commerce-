@@ -7,7 +7,7 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ApplicationForm } from "./ApplicationForm";
 import { ApplicationStepper } from "./ApplicationStepper";
 import { LivePreview } from "../../pages/createstore/components/LivePreview";
@@ -16,7 +16,8 @@ import { fadeUp, zoomIn } from "../../animation";
 import { motion } from "framer-motion";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { ArrowLeft } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function FormCreation({
   formData,
@@ -26,10 +27,12 @@ export default function FormCreation({
   title,
   isEditMode,
 }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
   const [isPublish, setIsPublish] = useState(false);
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleBack = () => {
     if (
@@ -43,15 +46,29 @@ export default function FormCreation({
   };
 
   // ---- submit to backend ----
-  {
-    /* const handleSubmit = async (publishStatus) => {
+  const handleSubmit = async (publishStatus) => {
     try {
       setLoading(true);
 
       const payload = {
         ...formData,
+
+        //type cannot change in edit mode
+        ...(isEditMode && { type: undefined }),
+
+        //parse numbers properlybefore sending
+        price: parseFloat(formData.price) || 0,
+        oldPrice: parseFloat(formData.oldPrice) || null,
+        costPrice: parseFloat(formData.costPrice) || null,
+        stock: parseInt(formData.stock) || null,
+
         status: publishStatus, // "ACTIVE" or "DRAFT"
       };
+
+      //remove undefined fields before sending
+      Object.keys(payload).forEach(
+        (key) => payload[key] === undefined && delete payload[key],
+      );
 
       if (isEditMode) {
         await axios.put(`/api/store/products/${id}`, payload);
@@ -60,23 +77,21 @@ export default function FormCreation({
       }
 
       // success — navigate to products list
-      navigate("/dashboard/products", {
+      navigate("/dashboard", {
         state: {
           message: isEditMode
-            ? "Product updated successfully"
+            ? "Product updated successfully  ✓"
             : publishStatus === "DRAFT"
-            ? "Product saved as draft"
-            : "Product published successfully 🎉"
-        }
+              ? "Product saved as draft"
+              : "Product published successfully 🎉",
+        },
       });
-
     } catch (err) {
-      console.error(err);
+      console.error("Submit error", err);
     } finally {
       setLoading(false);
     }
-  }; */
-  }
+  };
 
   {
     /* if (fetching) {
@@ -121,6 +136,7 @@ export default function FormCreation({
           listingMeta: data.listingMeta
             ? { ...prev.listingMeta, ...data.listingMeta }
             : prev.listingMeta,
+            hasVariants:Boolean(data.productVariants?.length),
         }));
 
         // skip to step 2 in edit mode
@@ -128,7 +144,7 @@ export default function FormCreation({
         setstep(2);
 
       } catch (err) {
-        console.error(err);
+        console.error("Failes to fetch product:",err);
       } finally {
         setFetching(false);
       }
@@ -178,6 +194,8 @@ export default function FormCreation({
                 getStore={getStore}
                 addProduct={addProduct}
                 handleBack={handleBack}
+                handleSubmit={handleSubmit}
+                loading={loading}
               />
             </Col>
 

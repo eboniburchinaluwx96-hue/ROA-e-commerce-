@@ -5,7 +5,7 @@ export function GroupedTransaction({
   TX_CONFIG,
   isFailed,
   isIncoming,
-  setSelected,
+  handleSelectedTnx,
   loading,
 }) {
   return (
@@ -32,7 +32,7 @@ export function GroupedTransaction({
                 <Stack
                   direction="horizontal"
                   key={tx.id}
-                  onClick={() => setSelected(tx)}
+                  onClick={() => handleSelectedTnx(tx)}
                   className="align-items-center pb-3 mb-3 pb-md-4 mb-md-4 pb-lg-5 mb-lg-5 gap-4 gap-md-5"
                   style={{
                     borderBottom: "0.5px solid #787e0a",

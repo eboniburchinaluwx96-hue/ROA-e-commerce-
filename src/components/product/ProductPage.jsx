@@ -74,7 +74,7 @@ export default function ProductPage({
     setSelectedProduct(product);
     setShowDetails(true);
 
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 750) {
       setShowDrawer(true);
       setShowDetails(false);
     }

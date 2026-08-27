@@ -1,5 +1,6 @@
 import { Card, CardBody, Row, Col } from "react-bootstrap";
 import { FaHeart, FaStore, FaShoppingCart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({
   product,
@@ -11,6 +12,8 @@ export default function ProductCard({
   Store,
   Shop,
 }) {
+  const navigate = useNavigate();
+
   const productTypeConfig = PRODUCT_TYPE_CONFIG[product.type || "REGULAR"];
 
   const discount = product.oldPrice
@@ -155,7 +158,7 @@ export default function ProductCard({
         )}
 
         {/* CAR specs */}
-        {Shop && product.type === "CAR" && product.listingMeta && (
+        {Shop && product.type === "VEHICLE" && product.listingMeta && (
           <div className="d-flex gap-4 mb-3 flex-wrap align-items-center">
             {[
               product.listingMeta.year,
@@ -180,9 +183,33 @@ export default function ProductCard({
           </div>
         )}
 
+        {/* REAL ESTATE specs preview */}
+        {Shop && product.type === "REAL_ESTATE" && product.listingMeta && (
+          <div className="d-flex mb-3 gap-4">
+            {product.listingMeta.bedrooms && (
+              <p>🛏 {product.listingMeta.bedrooms}</p>
+            )}
+            {product.listingMeta.bathrooms && (
+              <p>🚿 {product.listingMeta.bathrooms}</p>
+            )}
+            {product.listingMeta.listingType && (
+              <p
+                className="px-2 "
+                style={{
+                  borderRadius: 20,
+                  background: "rgba(27,27,143,0.3)",
+                  color: "#aaf",
+                }}
+              >
+                {product.listingMeta.listingType}
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Price */}
         <div
-          className="d-flex align-items-center mt-3 mb-4 gap-2 gap-md-3 flex-wrap "
+          className="d-flex flex-wrap align-items-center mt-3 mb-4 gap-2 gap-md-3 flex-wrap "
           style={{ overflow: "hidden", lineHeight: 1 }}
         >
           <div className="price">&#8358; {product.price.toLocaleString()}</div>
@@ -190,6 +217,21 @@ export default function ProductCard({
             <small className="old-price " style={{ color: "#b4b4b4b0" }}>
               &#8358; {product.oldPrice.toLocaleString()}
             </small>
+          )}
+
+          {Shop && product.type === "CAR" && product.listingMeta.negotiable && (
+            <span
+              className="my-2"
+              style={{
+                fontSize: 10,
+                color: "#1D9E75",
+                background: "rgba(29,158,117,0.1)",
+                borderRadius: 5,
+                padding: "2px 7px",
+              }}
+            >
+              Negotiable
+            </span>
           )}
         </div>
 
@@ -242,9 +284,19 @@ export default function ProductCard({
           (Store && (
             <div>
               {[
-                { a: "Edit", bg: "#149ec0e0", border: null },
-                { a: "Pause", bg: "transparent", border: "#ffffff96" },
-                { a: "Delete", bg: "#f00800de", border: null },
+                {
+                  a: "Edit",
+                  bg: "#149ec0e0",
+                  border: null,
+                  nav: `/seller/products/${product.id}/edit`,
+                },
+                {
+                  a: "Pause",
+                  bg: "transparent",
+                  border: "#ffffff96",
+                  nav: null,
+                },
+                { a: "Delete", bg: "#f00800de", border: null, nav: null },
               ].map((cta) => {
                 return !lowStock ? (
                   <button
@@ -260,6 +312,8 @@ export default function ProductCard({
                   </button>
                 ) : (
                   <button
+                    type="button"
+                    onClick={() => navigate(cta.nav)}
                     className=" py-1  mx-auto my-4 d-flex w-100 justify-content-center "
                     style={{
                       background: "#f00800",

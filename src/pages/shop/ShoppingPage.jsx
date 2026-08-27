@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 // import axios from "axios";
 // import { useEffect, useState } from "react";
 import ProductPage from "../../components/product/ProductPage";
-import products from "../../js/products";
+import { PRODUCTS } from "../../dummyData";
 
 export const ShoppingPage = () => {
   // const [products, setProducts] = useState([]);
@@ -37,7 +37,7 @@ export const ShoppingPage = () => {
       />
       <Container>
         <div style={{ marginTop: "120px" }}>
-          <ProductPage product={products} Store={false} />
+          <ProductPage product={PRODUCTS} Store={false} />
         </div>
       </Container>
     </>

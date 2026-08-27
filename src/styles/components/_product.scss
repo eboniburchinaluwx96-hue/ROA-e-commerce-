@@ -3,19 +3,6 @@
   backdrop-filter: blur(100px) !important;
   border: none !important;
   background: rgba(77, 85, 1, 0.13);
-
-  .offcanvas-body::-webkit-scrollbar-track {
-    background: transparent !important;
-    width: 12px;
-  }
-
-  .offcanvas-body::-webkit-scrollbar-thumb {
-    background: rgba(85, 85, 85, 0.3);
-  }
-
-  .offcanvas-body::-webkit-scrollbar {
-    width: 12px;
-  }
 }
 
 .product-card {

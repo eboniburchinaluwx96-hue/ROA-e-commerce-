@@ -7,6 +7,10 @@ import { ProductType } from "../../pages/Store/Dashboard/Add_Edit_Product/compon
 import { useState } from "react";
 import { BasicInfo } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/BasicInfo";
 import { StepThreeCombination } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/step3/StepThreeCombination";
+import { Variants } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/Variants";
+import { Price } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/Price";
+import { ImagesUpload } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/ImagesUpload";
+import { Preview } from "../../pages/Store/Dashboard/Add_Edit_Product/components/steps/Preview";
 
 //import { StepFive } from "./StepFive";
 //import { StepSix } from "./StepSix";
@@ -21,6 +25,8 @@ export function ApplicationForm({
   getStore,
   addProduct,
   handleBack,
+  handleSubmit,
+  loading,
 }) {
   const [errors, setErrors] = useState({});
 
@@ -162,6 +168,48 @@ export function ApplicationForm({
               handleBack={handleBack}
             />
           )}
+
+          {step === 4 && (
+            <Variants
+              setStep={setStep}
+              handleChange={handleChange}
+              formData={formData}
+              errors={errors}
+              validateStep={validateStep}
+              handleBack={handleBack}
+            />
+          )}
+
+          {step === 5 && (
+            <Price
+              setStep={setStep}
+              handleChange={handleChange}
+              formData={formData}
+              errors={errors}
+              validateStep={validateStep}
+              handleBack={handleBack}
+            />
+          )}
+
+          {step === 6 && (
+            <ImagesUpload
+              setStep={setStep}
+              handleChange={handleChange}
+              formData={formData}
+              errors={errors}
+              validateStep={validateStep}
+              handleBack={handleBack}
+            />
+          )}
+
+          {step === 7 && (
+            <Preview
+              handleSubmit={handleSubmit}
+              loading={loading}
+              formData={formData}
+              handleBack={handleBack}
+            />
+          )}
         </Form>
       )}
 
@@ -198,25 +246,26 @@ export function ApplicationForm({
           )}
 
           {step === 4 && (
-            <StepFour
-              setStep={setStep}
-              handleChange={handleChange}
-              formData={formData}
-              errors={errors}
-              setErrors={setErrors}
-            />
+            <>
+              <StepFour
+                setStep={setStep}
+                handleChange={handleChange}
+                formData={formData}
+                errors={errors}
+                setErrors={setErrors}
+              />
+              <Button
+                onClick={() => setIsPublish(!false)}
+                className="px-5 fs-3 text-dark d-flex mt-5 ms-auto "
+                type="submit"
+                style={{ background: "#ffee00", border: "none" }}
+              >
+                publish
+              </Button>
+            </>
           )}
         </Form>
       )}
-
-      <Button
-        onClick={() => setIsPublish(!false)}
-        className={`px-5 fs-3 text-dark d-flex mt-5 ms-auto ${step === 4 ? "d-block" : "d-none"}`}
-        type="submit"
-        style={{ background: "#ffee00", border: "none" }}
-      >
-        publish
-      </Button>
 
       {/* 
       {step === 5 && (

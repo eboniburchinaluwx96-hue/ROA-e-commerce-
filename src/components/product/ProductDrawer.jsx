@@ -18,7 +18,7 @@ export default function ProductDrawer({ show, onHide, product, onClose }) {
       show={show}
       onHide={onHide}
       placement="bottom"
-      className="product-details h-100 w-100"
+      className="product-details h-100 w-100 d-flex d-sm-none"
     >
       <Offcanvas.Body className="p-0">
         <Container className="text-white p-0">

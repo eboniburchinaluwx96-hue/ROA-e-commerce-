@@ -73,8 +73,8 @@ export function BasicInfo({
       <motion.div variants={container} initial="hidden" animate="visible">
         <motion.div variants={fadedown} className="mb-5">
           {/* heading */}
-          <h3 className=" fs-3 mb-3 fw-bold">Basic Information</h3>
-          <p> Tell buyers what you are selling. Be clear and specific.</p>
+          <h3 className=" fs-1 mb-3 fw-bold">Basic Information</h3>
+          <h5> Tell buyers what you are selling. Be clear and specific.</h5>
         </motion.div>
 
         {/* title */}

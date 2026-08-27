@@ -22,6 +22,8 @@ import {
 import { FilterTabs } from "./components/FilterTabs";
 import { GroupedTransaction } from "./components/GroupedNotification";
 
+import { getNotificationsByUser } from "../../dummyData";
+
 // notification type config
 const NOTIF_CONFIG = {
   ORDER_ON_DELIVERING: {
@@ -96,6 +98,22 @@ const FILTERS = [
   { key: "wishlist", label: "Wishlist", types: ["WISHLIST_RESTOCK"] },
 ];
 
+ // fetch from backend
+{  useEffect(() => {
+    const fetch = async () => {
+      try {
+        setLoading(true);
+        //   const { data } = await axios.get("/api/notifications");
+     //   setNotifications(/* data */);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetch();
+  }, []);}
+
 // date grouping
 function getDateLabel(dateString) {
   const today = new Date().toDateString();
@@ -112,27 +130,17 @@ function getDateLabel(dateString) {
   });
 }
 
-function Notifications() {
+export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // fetch from backend
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setLoading(true);
-        //   const { data } = await axios.get("/api/notifications");
-        setNotifications(/* data */);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetch();
-  }, []);
+ useEffect(() => {
+  const myNotifs = getNotificationsByUser("user-001");
+  setNotifications(myNotifs);
+  setLoading(false);
+}, [notifications]);
 
   // filter count per tab
   const filterCounts = useMemo(() => {

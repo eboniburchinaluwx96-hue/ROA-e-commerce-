@@ -10,6 +10,7 @@ import HeaderAuth from "./header/HeaderAuth";
 
 const MainHeader = ({
   title,
+  orders,
   showNotification = true,
   search = true,
   hamburger = true,
@@ -48,24 +49,46 @@ const MainHeader = ({
         className={`header py-3 ${scrolled ? "header-scrolled py-3" : ""} ${title ? "py-3" : ""}`}
       >
         <Container>
-          <div className=" d-flex align-items-center gap-3">
+          <div className=" d-flex align-items-center gap-4 gap-">
             {title ? (
               <>
-                <div
-                  className="d-inline-flex"
-                  onClick={() => navigate(-1)}
-                  style={{
-                    background: "#fffffff1",
-                    borderRadius: "50%",
-                    padding: "10px",
-                    cursor: "pointer",
-                  }}
-                >
-                  <FaArrowLeft size={15} className="text-dark" />
-                </div>
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center gap-4">
+                    {" "}
+                    <div
+                      className="d-inline-flex p-1 p-sm-2 px-2 px-sm-3 "
+                      onClick={() => navigate(-1)}
+                      style={{
+                        background: "#ffffffd7",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <FaArrowLeft size={18} className="text-dark" />
+                    </div>
+                    {title === "order" ? (
+                      <h4
+                        className="fw-bold fs-5 fs-sm-4 text-white"
+                        style={{ letterSpacing: 1 }}
+                      ></h4>
+                    ) : (
+                      <h4
+                        className="text-white fw-bold fs-5 fs-sm-4"
+                        style={{ letterSpacing: 1 }}
+                      >
+                        Hello Samuel
+                      </h4>
+                    )}
+                  </div>
 
-                <div className="text-light" style={{ letterSpacing: 1 }}>
-                  <h2 className="text-white">Hello Samuel</h2>
+                  <p
+                    className="p-1"
+                    style={{
+                      color: "#eaee09",
+                    }}
+                  >
+                    12 total orders
+                  </p>
                 </div>
               </>
             ) : (

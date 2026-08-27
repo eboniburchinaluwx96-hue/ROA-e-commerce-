@@ -61,8 +61,8 @@ export function RegularDetails({
       <motion.div variants={container} initial="hidden" animate="visible">
         {/* Heading */}
         <motion.div variants={fadedown} className="mb-5">
-          <h3 className=" fs-3 mb-3 fw-bold">Product details</h3>
-          <p> Classify your product so buyers can find it easily.</p>
+          <h3 className=" fs-1 mb-3 fw-bold">Product details</h3>
+          <h5> Classify your product so buyers can find it easily.</h5>
         </motion.div>
 
         {/* category */}

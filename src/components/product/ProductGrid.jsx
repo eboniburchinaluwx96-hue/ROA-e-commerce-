@@ -24,7 +24,6 @@ const ProductGrid = ({
             sm={4}
             md={3}
             lg={2}
-            className=""
             onClick={Shop && (() => selectProduct(p))}
             style={{ cursor: "pointer" }}
           >

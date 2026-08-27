@@ -1,9 +1,8 @@
 import { Container } from "react-bootstrap";
 import MainHeader from "../../components/MainHeader";
-
 import { Footer } from "../Home/components/Footer";
-import products from "../../js/products";
 import ProductPage from "../../components/product/ProductPage";
+import { getWishlistByUser } from "../../dummyData";
 
 export const WishlistPage = () => {
   return (
@@ -56,7 +55,7 @@ export const WishlistPage = () => {
 
           <ProductPage
             filter={!true}
-            product={products}
+            product={getWishlistByUser("user-001")}
             count={false}
             showWishlist={!false}
           />

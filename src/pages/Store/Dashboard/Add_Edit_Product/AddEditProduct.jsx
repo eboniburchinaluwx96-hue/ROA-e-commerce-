@@ -44,8 +44,8 @@ export default function AddEditProduct() {
       listingType: "",
       propertyType: "",
       bedrooms: "",
-      bathrooms: "",
-      toilets: "",
+      bathrooms: 1,
+      toilets: 1,
       furnished: "",
       floor: "",
       sizeInSqm: "",
@@ -58,6 +58,8 @@ export default function AddEditProduct() {
 
     //step 4
     variants: {},
+    productVariants: [],
+    hasVariants: false,
 
     //step 5
     price: "",
@@ -66,13 +68,13 @@ export default function AddEditProduct() {
     stock: "",
     lowStockAlert: 5,
     sku: "",
+    priceDisplay: "Show exact price",
 
     //step 6
     images: [],
 
     //step 7
     status: "ACTIVE",
-    scheduleAt: "",
   });
   const { id } = useParams();
   const isEditMode = Boolean(id);

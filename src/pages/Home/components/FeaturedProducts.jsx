@@ -16,6 +16,7 @@ export function FeaturedProducts() {
           <h5 className="text-start mt-5 mb-0">Trending products</h5>
 
           <ProductPage
+            Store={false}
             filter={!true}
             product={products}
             count={false}

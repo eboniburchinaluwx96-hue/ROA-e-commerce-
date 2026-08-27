@@ -7,8 +7,8 @@ import {
   FaArrowLeft,
   FaMapPin,
   FaEnvelope,
-  FaClock,
   FaTruck,
+  FaShoppingBasket,
 } from "react-icons/fa";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";

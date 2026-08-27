@@ -101,16 +101,18 @@ const HeaderAuth = () => {
             <div className="d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center gap-3 ">
                 {" "}
-                My Balance(NGN){" "}
+                <h6>My Balance(NGN)</h6>
                 <div
                   onClick={() => setView((p) => !p)}
                   style={{ cursor: "pointer" }}
                 >
-                  {view ? <EyeSlash /> : <Eye />}
+                  {view ? <EyeSlash size={18} /> : <Eye size={18} />}
                 </div>
               </div>
               <div className="text-end">
-                <Link to="/transactions">View all transactions</Link>
+                <Link to="/transactions">
+                  <h6>View all transactions</h6>
+                </Link>
               </div>
             </div>
             <div className="  my-4 my-md-5">
@@ -231,17 +233,14 @@ const HeaderAuth = () => {
 
           <div className="customer_service mx-2 my-4 p-4">
             <Stack className="justify-content-between" direction="horizontal">
-              <div className="text-light">
-                <FaHandshake className="profile_icons me-3" />
-                Customer Service
+              <div className="text-light d-flex gap-1">
+                <FaHandshake size={25} className="profile_icons me-3" />
+                CUSTOMER SERVICE
               </div>
               <FaChevronRight className="text-light " />
             </Stack>
 
-            <p
-              className="my-3"
-              style={{ color: "#a5a5a5a4", marginLeft: "37px" }}
-            >
+            <p className="my-3" style={{ marginLeft: "37px" }}>
               Our customer service team are dedicated to cater all your requests
               anywhere,anytime,anyhow
             </p>
@@ -276,7 +275,7 @@ const HeaderAuth = () => {
           <div className="logout mx-2 mb-4 p-4" style={{ cursor: "pointer" }}>
             <div className="d-flex gap-3 text-light">
               <FaSignOutAlt className="profile_icons" />
-              Logout
+              LOGOUT
             </div>
           </div>
         </Offcanvas.Body>

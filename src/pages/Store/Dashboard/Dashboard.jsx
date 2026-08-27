@@ -3,13 +3,12 @@ import {
   Stack,
   Row,
   Col,
-  Card,
-  CardBody,
+  Form,
   FormControl,
   Alert,
   Image,
+  Offcanvas,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import NavTop from "../../../components/PageNav";
 import { Link } from "react-router-dom";
 import {
@@ -32,89 +31,43 @@ import {
   FaArrowLeft,
   FaCheck,
   FaMoneyBill,
+  FaSearch,
   FaShoppingBasket,
   FaStore,
 } from "react-icons/fa";
 import { useState } from "react";
 import ProductPage from "../../../components/product/ProductPage";
-import products from "../../../js/products";
+import { ArrowRight, Check, Clock, Textarea, X } from "react-bootstrap-icons";
+import { TopNav } from "./components/TopNav";
+import StoreOrders from "./orders/StoreOrders";
+import { motion } from "framer-motion";
+import { getProductsByStore } from "../../../dummyData";
 
 export const Dashboard = () => {
-  const navigate = useNavigate();
   const [alert, setAlert] = useState(true);
   const [selectedTab, setSelectedTab] = useState("Overview");
+
+  const orderTab = selectedTab === "Orders";
+
+  const [showDetails, setShowDetails] = useState(true);
 
   return (
     <>
       {/*   <NavTop title="Dashbaord" /> */}
-      <div
-        className=" py-2 py-lg-3 fixed-top"
-        style={{
-          background: "#058f333a",
-          backdropFilter: "blur(30px)",
-          borderBottom: "1px solid #a5c70e65",
-        }}
-      >
-        <Container>
-          <div className="d-flex align-items-center gap-3 gap-sm-4 nav_bar py-1">
-            <h3
-              style={{
-                lineHeight: 1.5,
-                color: "#ffee02",
-                fontStyle: "oblique",
-              }}
-            >
-              Annointed Chips
-            </h3>
+      <span className={`${orderTab ? "d-none" : "d-block"}`}>
+        {" "}
+        <TopNav />
+      </span>
 
-            <Image
-              roundedCircle
-              style={{
-                objectFit: "cover",
-                width: "clamp(20px, 5vw, 55px)",
-                aspectRatio: "1/1",
-              }}
-              src="public/images/profile.jpg"
-            />
-
-            <div className="ms-auto gap-2 gap-sm-5 d-flex  align-items-center ">
-              <FiArrowLeft
-                style={{
-                  fontSize: "clamp(30px, 4vw, 35px)",
-                  cursor: "pointer",
-                }}
-                color="white"
-                onClick={() => navigate(-1)}
-              />
-
-              <FiBell
-                style={{
-                  fontSize: "clamp(22px, 3vw, 30px)",
-                  color: "#ffee02",
-                  cursor: "pointer",
-                }}
-              />
-              <FiSettings
-                style={{
-                  fontSize: "clamp(22px, 3vw, 30px)",
-                  color: "#ffee02",
-                  cursor: "pointer",
-                }}
-              />
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      <section className="dashboard mt-5">
+      <section className="dashboard pt-5">
         {" "}
         <div>
-          <div className="fixed-bottom d-xxl-none side_bar">
+          <div
+            className="fixed-bottom d-xxl-none side_bar"
+            style={{ background: "#023810", borderTop: "1px solid #a5c70e69" }}
+          >
             <Container>
-              <div
-                className=" py-3 px-3 "
-                style={{ borderTop: "1px solid #a5c70e69" }}
-              >
+              <div className=" py-3 px-3 ">
                 <div className="d-flex  align-items-center  justify-content-between">
                   {[
                     { Icon: FiHome, a: "Overview" },
@@ -200,7 +153,6 @@ export const Dashboard = () => {
         <Container>
           <div className="dashboard_body " style={{ paddingBottom: "200px" }}>
             {/* Overview session */}
-
             {selectedTab === "Overview" && (
               <>
                 <Alert
@@ -418,24 +370,28 @@ export const Dashboard = () => {
             )}
 
             {/* product tab session */}
-
             {selectedTab === "Products" && (
               <div>
-                <div
-                  className="mb-5 mt-4 mt-sm-5 pt-md-5 pt-3 "
+                <Link
+                  className="py-3 px-4 position-fixed ms-2 ms-sm-3 ms-md-4"
+                  to="/add_product"
                   style={{
-                    top: 55,
-                    display: "flex",
+                    background: "rgb(0, 255, 0)",
+                    bottom: 100,
+                    zIndex: 1,
+                    borderRadius: 22,
                   }}
                 >
-                  <div className="ms-auto ">
-                    <Link to="/add_product">
-                      <button className="px-2 px-sm-3 py-1 py-sm-2 d-flex align-items-center gap-1 btn_button">
-                        <FiPlus /> Add new product
-                      </button>
-                    </Link>
+                  <div
+                    className="d-flex align-items-center justify-content-center p-1 bg-dark"
+                    style={{ borderRadius: 12 }}
+                  >
+                    <FiPlus
+                      className="fs-1"
+                      style={{ color: "#e7eb03" }}
+                    />{" "}
                   </div>
-                </div>
+                </Link>
 
                 <div className="my-5">
                   <div
@@ -454,11 +410,505 @@ export const Dashboard = () => {
                 <div>
                   <ProductPage
                     Shop={false}
-                    product={products}
+                    product={getProductsByStore("store-001")}
                     showWishlist={false}
                   />
                 </div>
+
+                <Offcanvas
+                  style={{
+                    background:
+                      "radial-gradient(circle,  #05270af6, #001a04, #05270af6 , #001a04 )",
+                    scrollbarWidth: "thin",
+                    msOverflowStyle: "none",
+                    width: "clamp(600px, 10px + 55vw, 800px)",
+                    height: "100%",
+                    paddingBottom: 70,
+                  }}
+                  show={showDetails}
+                  onHide={() => setShowDetails(false)}
+                  placement={window.innerWidth < 750 ? "bottom" : "start"}
+                >
+                  <div
+                    className="py-3 py-lg-4"
+                    style={{
+                      zIndex: 20,
+                      background: "rgba(10,26,10,0.97)",
+                      backdropFilter: "blur(10px)",
+                      WebkitBackdropFilter: "blur(10px)",
+                      borderBottom: "0.5px solid #a3a108",
+                    }}
+                  >
+                    {" "}
+                    {/* TOPBAR */}
+                    <Offcanvas.Header className="px-sm-5 py-0">
+                      <div className="d-flex align-items-center gap-4 gap-sm-5 ">
+                        <div
+                          onClick={() => setShowDetails(false)}
+                          style={{
+                            width: 30,
+                            height: 30,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <X className="text-white fs-5" />
+                        </div>
+                        <div>
+                          <p className="mb-2 mb-sm-3" style={{ lineHeight: 1 }}>
+                            Order details
+                          </p>
+                          <h5
+                            className="text-white"
+                            style={{ letterSpacing: 1.5, lineHeight: 1 }}
+                          >
+                            ROA-345hu75
+                          </h5>
+                        </div>
+                      </div>
+                      <p className="ms-auto">Delivered</p>
+                    </Offcanvas.Header>
+                  </div>
+                  <Offcanvas.Body className="p-0 p-4">
+                    {/* ORDER TIMELINE */}
+                    <div
+                      className="p-3 px-sm-4 "
+                      style={{
+                        background: "#111a11",
+                        border: "0.5px solid #1a2a1a",
+                        borderRadius: 14,
+                      }}
+                    >
+                      <div>
+                        <h5 style={{ color: "#ebe700" }}>Order tracking</h5>
+                      </div>
+                      <div className=" py-4">
+                        <div className="d-flex  align-items-start gap-4">
+                          {/* Left — icon + line */}
+                          <div
+                            className="d-flex flex-column align-items-center "
+                            style={{
+                              flexShrink: 0,
+                            }}
+                          >
+                            <div
+                              className="d-flex align-items-center  justify-content-center"
+                              style={{
+                                width: "clamp(45px, 3px + 5vw, 60px)",
+                                aspectRatio: 1 / 1,
+                                borderRadius: "50%",
+                                background: "#1D9E75",
+
+                                border: `2px solid "#1D9E75"  ,
+                                            }`,
+                                transition: "all 0.3s",
+                              }}
+                            >
+                              <FaStore
+                                style={{
+                                  fontSize: 20,
+                                  color: "#fff",
+                                }}
+                              />
+                            </div>
+
+                            {/* Connecting line */}
+
+                            <div
+                              style={{
+                                width: 5,
+                                flex: 1,
+                                minHeight: 40,
+                                background: "#1D9E75",
+                                margin: "5px 0",
+                                transition: "background 0.3s",
+                              }}
+                            />
+                          </div>
+
+                          {/* Right — label + timestamp */}
+                          <div>
+                            <h6
+                              className="mb-1 mb-sm-2"
+                              style={{
+                                fontWeight: 600,
+                                color: "#e7eb0af5",
+                                lineHeight: 1,
+                                display: "inline-block",
+                              }}
+                            >
+                              step.label
+                            </h6>
+                            <p>"Pending"</p>
+                          </div>
+                        </div>
+                        <div className="d-flex  align-items-start gap-4">
+                          {/* Left — icon + line */}
+                          <div
+                            className="d-flex flex-column align-items-center "
+                            style={{
+                              flexShrink: 0,
+                            }}
+                          >
+                            <div
+                              className="d-flex align-items-center  justify-content-center"
+                              style={{
+                                width: 45,
+                                height: 45,
+                                borderRadius: "50%",
+                                background: "#1D9E75",
+
+                                border: `2px solid "#1D9E75"  ,
+                                            }`,
+                                transition: "all 0.3s",
+                              }}
+                            >
+                              <FaStore
+                                style={{
+                                  fontSize: 20,
+                                  color: "#fff",
+                                }}
+                              />
+                            </div>
+
+                            {/* Connecting line */}
+
+                            <div
+                              style={{
+                                width: 5,
+                                flex: 1,
+                                minHeight: 40,
+                                background: "#1D9E75",
+                                margin: "5px 0",
+                                transition: "background 0.3s",
+                              }}
+                            />
+                          </div>
+
+                          {/* Right — label + timestamp */}
+                          <div>
+                            <h6
+                              className="mb-1"
+                              style={{
+                                fontWeight: 600,
+                                color: "#c8ca3af3",
+                                lineHeight: 1,
+                                display: "inline-block",
+                              }}
+                            >
+                              step.label
+                            </h6>
+                            <p>"Pending"</p>
+                          </div>
+                        </div>
+                        <div className="d-flex  align-items-start gap-4">
+                          {/* Left — icon + line */}
+                          <div
+                            className="d-flex flex-column align-items-center "
+                            style={{
+                              flexShrink: 0,
+                            }}
+                          >
+                            <div
+                              className="d-flex align-items-center  justify-content-center"
+                              style={{
+                                width: 45,
+                                height: 45,
+                                borderRadius: "50%",
+                                background: "#1D9E75",
+
+                                border: `2px solid "#1D9E75"  ,
+                                            }`,
+                                transition: "all 0.3s",
+                              }}
+                            >
+                              <FaStore
+                                style={{
+                                  fontSize: 20,
+                                  color: "#fff",
+                                }}
+                              />
+                            </div>
+
+                            {/* Connecting line */}
+
+                            <div
+                              style={{
+                                width: 5,
+                                flex: 1,
+                                minHeight: 40,
+                                background: "#1D9E75",
+                                margin: "5px 0",
+                                transition: "background 0.3s",
+                              }}
+                            />
+                          </div>
+
+                          {/* Right — label + timestamp */}
+                          <div>
+                            <h6
+                              className="mb-1"
+                              style={{
+                                fontWeight: 600,
+                                color: "#c8ca3af3",
+                                lineHeight: 1,
+                                display: "inline-block",
+                              }}
+                            >
+                              step.label
+                            </h6>
+                            <p>"Pending"</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ESTIMATED DELIVERY */}
+                    <div
+                      className="d-flex align-items-center justify-content-between  p-3 px-sm-4"
+                      style={{
+                        background: "linear-gradient(135deg, #1a4a1a, #2d7a0a)",
+                        borderRadius: 14,
+                        padding: 14,
+                      }}
+                    >
+                      <div>
+                        <h5 style={{ color: "#ebe700" }}>Estimated delivery</h5>
+                        <h6 className="text-white fw-bold py-4">
+                          order.estimatedAt
+                        </h6>
+                      </div>
+                      <FaStore
+                        style={{
+                          fontSize: 32,
+                          color: "rgba(255,255,255,0.3)",
+                        }}
+                      />
+                    </div>
+
+                    {/* CANCELLED NOTICE */}
+
+                    <div
+                      className="p-3 px-sm-4"
+                      style={{
+                        background: "rgba(192, 58, 43, 0.14)",
+                        border: "0.5px solid rgba(192, 58, 43, 0.6)",
+                        borderRadius: 14,
+                      }}
+                    >
+                      <div className="d-flex align-items-center gap-4 mb-2">
+                        <X style={{ fontSize: 18, color: "#c0392b" }} />
+                        <h5
+                          style={{
+                            color: "#c0392b",
+                          }}
+                        >
+                          Order cancelled
+                        </h5>
+                      </div>
+
+                      <p
+                        style={{
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        Reason: Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit. Rerum dolorum, soluta ipsum, tempore
+                        fugiat enim voluptate laborum non laudantium repudiandae
+                        quos delectus repellendus necessitatibus praesentium?
+                        Temporibus eum consequuntur consequatur iure.
+                      </p>
+
+                      <div
+                        className="d-flex align-items-center gap-2"
+                        style={{
+                          marginTop: 10,
+                          background: "rgba(29,158,117,0.06)",
+                          border: "0.5px solid rgba(29,158,117,0.2)",
+                          borderRadius: 8,
+                          padding: "8px 12px",
+                        }}
+                      >
+                        <FaStore
+                          className="mb-1"
+                          style={{ fontSize: 14, color: "#1D9E75" }}
+                        />
+                        <span style={{ fontSize: 12, color: "#1D9E75" }}>
+                          ₦35,785 refunded to your r.o.a. wallet
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* DELIVERED — rate prompt */}
+
+                    <div
+                      //  onClick={() => navigate(`/orders/${order.id}/review`)}
+                      style={{
+                        background: "#c9c74c15",
+                        border: "0.5px solid #c9c74c60",
+                        borderRadius: 14,
+                        padding: 14,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div className="d-flex align-items-center gap-3">
+                        <div
+                          style={{
+                            width: 38,
+                            height: 38,
+                            borderRadius: 10,
+                            background: "#c9c74c1a",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FaShoppingBasket
+                            style={{
+                              fontSize: 20,
+                              color: "rgba(201, 199, 76, 0.94)",
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <h5
+                            className="mb-1 mb-sm-2"
+                            style={{
+                              fontWeight: 600,
+                              color: "#dfdb17",
+                            }}
+                          >
+                            How was your experience?
+                          </h5>
+                          <p>Rate Annoited chips and help other buyers</p>
+                        </div>
+                      </div>
+                      <FiArrowRight
+                        className="text-white"
+                        style={{ fontSize: 22 }}
+                      />
+                    </div>
+
+                    {/* ORDER ITEMS */}
+                    <div
+                      style={{
+                        background: "#111a11",
+                        border: "0.5px solid #1a2a1a",
+                        borderRadius: 14,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {/* Store header */}
+                      <div
+                        className="p-3 px-sm-4 d-flex align-items-center gap-4"
+                        //    onClick={() => navigate(`/store/${order.storeId}`)}
+                        style={{
+                          borderBottom: "0.5px solid #1a2a1a",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "clamp(45px, 3px + 5vw, 60px)",
+                            height: "clamp(45px, 3px + 5vw, 60px)",
+                            borderRadius: 10,
+                            background: "#1a2a1a",
+                            overflow: "hidden",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <img
+                            src="images/profile.jpg"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <p
+                            className="text-white mb-2 mb-lg-3"
+                            style={{
+                              fontWeight: 600,
+                            }}
+                          >
+                            Annointed chips
+                          </p>
+                          <p
+                            style={{
+                              fontSize: 11,
+                            }}
+                          >
+                            Tap to visit store
+                          </p>
+                        </div>
+                        <ArrowRight style={{ fontSize: 15, color: "#555" }} />
+                      </div>
+
+                      {/* Items */}
+
+                      <div
+                        style={{
+                          background: "#111a11b4",
+                          borderRadius: 14,
+                          overflow: "hidden",
+                        }}
+                      >
+                        <div
+                          className="d-flex align-items-center gap-3 px-3 px-sm-4 py-3"
+                          style={{
+                            borderTop: "0.5px solid #1a2a1a",
+                          }}
+                        ></div>
+                      </div>
+
+                      {/* Buy again row */}
+
+                      <div
+                        className="p-3 px-sm-4"
+                        style={{
+                          borderTop: "0.5px solid #1a2a1a",
+                        }}
+                      >
+                        <button
+                          type="button"
+                          //   onClick={() => navigate(`/product/${order.items?.[0]?.productId}`)}
+                          style={{
+                            width: "100%",
+                            padding: "10px 0",
+                            background: "transparent",
+                            border: "0.5px solid rgba(201,168,76,0.25)",
+                            borderRadius: 10,
+                            fontSize: 13,
+                            fontWeight: 600,
+                            color: "#c9a84c",
+                            cursor: "pointer",
+                            fontFamily: "'Plus Jakarta Sans',sans-serif",
+                          }}
+                        >
+                          Buy again
+                        </button>
+                      </div>
+                    </div>
+                  </Offcanvas.Body>
+                </Offcanvas>
               </div>
+            )}
+
+            {/* orders tab session */}
+            {selectedTab === "Orders" && (
+              <>
+                <StoreOrders />
+              </>
             )}
           </div>
         </Container>

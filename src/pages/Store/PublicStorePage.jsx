@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Image, Nav, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { STORE, STORE_PRODUCTS } from "../../js/store.js";
 // import WhatsAppFloat from "./WhatsappFloat";
 import ProductPage from "../../components/product/ProductPage.jsx";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,9 +29,9 @@ import {
 } from "react-bootstrap-icons";
 
 const STORE_STATS = [
-  { value: `${STORE.totalProducts}`, label: "Products" },
-  { value: `${STORE.followers}`, label: "Followers" },
-  { value: `${STORE.delivery}`, label: "Delivery" },
+  { value: `${STORES.totalProducts}`, label: "Products" },
+  { value: `${STORES.followers}`, label: "Followers" },
+  { value: `${STORES.delivery}`, label: "Delivery" },
 ];
 
 const STORE_POLICIES = [
@@ -40,37 +39,37 @@ const STORE_POLICIES = [
     Icon: FaBus,
     color: "#e0ee19",
     tag: "Delivery",
-    value: `${STORE.shipping}`,
+    value: `${STORES.shipping}`,
   },
   {
     Icon: FiLoader,
     tag: "Returns",
     color: "#1927ee",
-    value: `${STORE.returns}`,
+    value: `${STORES.returns}`,
   },
   {
     Icon: Shield,
     color: "#ee19ee",
     tag: "Warranty",
-    value: `${STORE.warranty}`,
+    value: `${STORES.warranty}`,
   },
   {
     Icon: FaMoneyBill,
     color: "#19eec0",
     tag: "Payment",
-    value: `${STORE.payment}`,
+    value: `${STORES.payment}`,
   },
   {
     Icon: FiHeadphones,
     color: "#19ee35",
     tag: "Support",
-    value: `${STORE.support}`,
+    value: `${STORES.support}`,
   },
   {
     Icon: FaLocationArrow,
     color: "#c0ee19",
     tag: "Location",
-    value: `${STORE.location}`,
+    value: `${STORES.location}`,
   },
 ];
 
@@ -80,30 +79,32 @@ const STORE_CONTACT = [
     color: "#19ee19",
     bg: "#19ee193a",
     tag: "Whatsapp",
-    value: `${STORE.whatsapp}`,
+    value: `${STORES.whatsapp}`,
   },
   {
     Icon: Envelope,
     color: "#7c19ee",
     bg: "#7c19ee3a",
     tag: "Email",
-    value: `${STORE.email}`,
+    value: `${STORES.email}`,
   },
   {
     Icon: Instagram,
     color: "#ee193c",
     bg: "#ee193c2d",
     tag: "instagram",
-    value: `${STORE.instagram}`,
+    value: `${STORES.instagram}`,
   },
   {
     Icon: TwitterX,
     color: "#ee193c",
     bg: "#ee193c2d",
     tag: "Twitter / X",
-    value: `${STORE.twitterX}`,
+    value: `${STORES.twitterX}`,
   },
 ];
+
+import { STORES, getProductsByStore } from "../../dummyData.js";
 
 export default function StorePublicPage() {
   const [followed, setFollowed] = useState(false);
@@ -145,7 +146,7 @@ export default function StorePublicPage() {
             <div
               className="scroll_active fixed-top"
               style={{
-                backgroundImage: `linear-gradient( #042c09e1 ) , url(${STORE.cover}) `,
+                backgroundImage: `linear-gradient( #042c09e1 ) , url(${STORES.cover}) `,
               }}
             >
               {/* Topbar */}
@@ -180,7 +181,7 @@ export default function StorePublicPage() {
                         lineHeight: 1.2,
                       }}
                     >
-                      {STORE.name}
+                      {STORES.name}
                     </h2>
                   </div>{" "}
                   <div className="d-flex gap-2 gap-sm-3 align-items-center ms-auto me-3">
@@ -220,7 +221,7 @@ export default function StorePublicPage() {
             }}
           >
             <Image
-              src={STORE.cover}
+              src={STORES.cover}
               style={{
                 objectFit: "cover",
                 width: "100%",
@@ -238,7 +239,7 @@ export default function StorePublicPage() {
               }}
             />
             {/* Badge pill */}
-            {STORE.verified && (
+            {STORES.verified && (
               <div>
                 <small
                   className="p-2 my-3 mx-sm-4 px-sm-4 me-3 d-flex align-items-center gap-2"
@@ -276,7 +277,7 @@ export default function StorePublicPage() {
                 display: "inline-block",
               }}
             >
-              {STORE.category}
+              {STORES.category}
             </small>
           </div>
 
@@ -296,7 +297,7 @@ export default function StorePublicPage() {
                 }}
               >
                 <div className="store-logo-wrapper">
-                  <img src={STORE.logo} className="store-logo" />
+                  <img src={STORES.logo} className="store-logo" />
                 </div>
                 <span
                   style={{
@@ -307,7 +308,7 @@ export default function StorePublicPage() {
                     height: 20,
                     borderRadius: "50%",
                     background:
-                      STORE.status === "active" ? "#00E676" : "#d60606",
+                      STORES.status === "active" ? "#00E676" : "#d60606",
                     border: "2.5px solid #0d1117",
                   }}
                 />
@@ -324,7 +325,7 @@ export default function StorePublicPage() {
                   lineHeight: 1.2,
                 }}
               >
-                {STORE.name}
+                {STORES.name}
               </span>
             </div>
           </Container>
@@ -339,8 +340,8 @@ export default function StorePublicPage() {
                 lineHeight: 1.72,
               }}
             >
-              {STORE.handle} &nbsp;·&nbsp; 📍 {STORE.state} , {STORE.country}{" "}
-              &nbsp;·&nbsp; {STORE.joined}
+              {STORES.handle} &nbsp;·&nbsp; 📍 {STORES.state} , {STORES.country}{" "}
+              &nbsp;·&nbsp; {STORES.joined}
             </h6>
 
             {/* Tagline */}
@@ -350,11 +351,11 @@ export default function StorePublicPage() {
                 lineHeight: 1.72,
               }}
             >
-              {STORE.tagline}
+              {STORES.tagline}
             </h6>
 
             {/* open */}
-            {STORE.isOpen && (
+            {STORES.isOpen && (
               <div className="d-flex align-items-center gap-2 justify-content-center pb-4">
                 {" "}
                 <span
@@ -494,7 +495,7 @@ export default function StorePublicPage() {
             </h6>
             <ProductPage
               filter={true}
-              product={STORE_PRODUCTS}
+              product={getProductsByStore("store-001")}
               count={!false}
             />
           </>
@@ -527,7 +528,7 @@ export default function StorePublicPage() {
                 ></div>
               </div>
 
-              <p className="py-4">{STORE.about}</p>
+              <p className="py-4">{STORES.about}</p>
             </div>
             {/* store policies*/}
             <div
@@ -699,7 +700,7 @@ export default function StorePublicPage() {
         </Container>
       </footer>
 
-      {/* <WhatsAppFloat store={STORE.whatsapp} /> */}
+      {/* <WhatsAppFloat store={STORES.whatsapp} /> */}
     </>
   );
 }

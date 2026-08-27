@@ -25,12 +25,12 @@ export function ProductType({
     <>
       <motion.div variants={container} initial="hidden" animate="visible">
         <motion.div variants={fadedown} className="mb-5">
-          <h3 className=" fs-3 mb-3 fw-bold">What Are You Listing</h3>
+          <h3 className=" fs-1 mb-3 fw-bold">What Are You Listing</h3>
 
-          <p>
+          <h5>
             Choose the type that best describes your listings, as this
             determines your provided informations
-          </p>
+          </h5>
         </motion.div>
 
         <Row className="g-5">
@@ -117,6 +117,7 @@ export function ProductType({
             );
           })}
         </Row>
+
         {errors.type && (
           <h6 className="text-danger fw-bold mt-3">{errors.type}</h6>
         )}

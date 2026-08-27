@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { FaSearch } from "react-Icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 export function SearchBar({ search, setSearch }) {
   return (
